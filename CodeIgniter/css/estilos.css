@@ -1,0 +1,153 @@
+body
+{
+ }
+ 
+ #cabecera
+ {
+     height:150px;
+     background-color:#FF7800;
+     color:white;
+     border:1px dashed #A64E06;
+     box-shadow:0px 0px 10px #000;   
+     position:relative;
+     z-index:2;  
+     border-radius:0px 0px 20px 20px;
+ }
+ 
+ #ContenidoCabecera
+ {
+     width:960px;
+     margin:auto;     
+ }
+ 
+#barrahorizontal
+{
+    height:40px;
+    background-color:#A64E06;
+    border-radius:0px 0px 10px 10px;
+    box-shadow:0px 0px 10px #000 inset;
+    text-align:center;
+}
+
+    #barrahorizontal > ul
+    {
+        list-style-type:none;
+        padding:0;
+        margin:0;        
+    }
+    
+    #barrahorizontal li
+    {
+        display:inline-block;
+        padding:10px;
+        cursor:pointer;
+        background-color:#FF9A40;
+        color:#A64E06;  
+        box-shadow:0px 0px 5px #000 inset;      
+    }
+    
+        #barrahorizontal li > a
+        {
+            display:block;
+            color:#A64E06;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+#logotipo
+{
+    width:35%;
+    float:left;
+    text-align:center;
+    margin-top:10px;    
+}
+
+    #logotipo > img
+    {
+        box-shadow:0px 0px 10px #000; 
+    }
+
+#titulo
+{
+    width:60%;
+    float:left;
+    text-shadow:2px 2px 3px #000; 
+}
+
+    #titulo > h1
+    {
+        margin-top:12px;       
+    }
+
+    #titulo > h2
+    {
+        margin-top:0;           
+    }
+
+#bajo
+{
+    width:960px;
+    margin:auto;
+    background-color:#FF9A40;
+    border-radius:0px 0px 20px 20px;
+    overflow:auto;  
+    box-shadow:0px 0px 10px #000 inset;  
+}
+
+#columnaizquierda ,#columnaderecha
+{
+    float:left;
+    width:20%;
+    min-height:450px;    
+}
+
+#menucontextual
+{
+    list-style-type:none;
+    padding:0;
+    margin:50px;
+}
+
+    #menucontextual > li
+    {
+        padding:10px;
+        text-align:center;
+        background-color:#A64E06;
+        border:1px outset #A64E06;
+        box-shadow:0px 0px 10px #000 inset;
+        
+    }
+    
+        #menucontextual > li > a
+        {
+            text-decoration:none;
+            color:White;
+        }
+
+#columnacentral
+{
+    float:left;
+    width:60%;
+    min-height:450px;
+    background-color:white;
+    box-shadow:0px 0px 5px #000 inset;
+}
+
+#foot
+{
+    height:30px;
+    background-color:#A64E06;
+    border-radius:0px 0px 20px 20px;
+    clear:both;
+    box-shadow:0px 0px 5px #000 inset;
+    color:White;
+    text-align:center;
+    padding-top:5px;
+}
+
+#columnaizquierdaLogin
+{
+    float:left;
+    width:60%;
+    min-height:450px;    
+}
