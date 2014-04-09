@@ -6,12 +6,21 @@ class ModelLogin extends CI_Model
 		parent::__construct();
 	}
 
-	public function login($username,$password)
+	public function logginUser($username,$password)
 	{
-		$query = $this->db->where('Usuario',$email);   //   La consulta se efectúa mediante Active Record. Una manera alternativa, y en lenguaje más sencillo, de generar las consultas Sql.
-      	$query = $this->db->where('Password',$password);
-      	$query = $this->db->get('Usuarios');
-      	return $query->row();
+		$query = ("SELECT * FROM users WHERE loggin=$username AND passw=$paswword;");
+		if($query->num_rows() > 0)
+		{
+			foreach ($query->result() as $fila)
+			{
+				$data[] = $fila;
+			}
+			return $data;
+		}
+		else
+		{
+			return False;
+		}
 	}
 }
 

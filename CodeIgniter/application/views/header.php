@@ -11,13 +11,14 @@
 
 </head>
 <body>
-    <form method="post" action="Form1.aspx" id="form1">
+    
         <div id = "cabecera">
                 <div id= "ContenidoCabecera">
                     <div id = "barrahorizontal">
                         <ul>
                             <li><a href="inicio">Home</a></li>
                             <li><a href="login">Login</a></li>
+                            <li><a href="register">Registrarse</a></li>
                         </ul>
                     </div> 
                     <div id = "logotipo">

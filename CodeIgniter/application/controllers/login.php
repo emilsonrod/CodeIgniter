@@ -8,20 +8,40 @@ class Login extends CI_Controller
 		$this->load->model('modelLogin');
 		$this->load->library('form_validation');
 	}
-	public function index()
+	public function index($error = '')
 	{
-		$this->load->helper('form');
-		$this->load->view('login');
-		$this->form_validation->set_rules('username','username','required');      //   Configuramos las validaciones ayudandonos con la librería form_validation del Framework Codeigniter
-        $this->form_validation->set_rules('password','password','required');
-		if($this->form_validation->run()==FALSE)
+		$data['error'] = $error;
+		$this->load->view('login',$data);	
+		
+	}	
+	public function loggin()
+	{
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[15]');
+        $this->form_validation->set_rules('passw', 'passw', 'trim|required|max_length[15]');
+
+        $this->form_validation->set_message('required', 'El campo %s es obligatorio');
+        $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+
+        if ($this->form_validation->run() == FALSE)
 		{
-			/*redirect('login');*/
+			$this->load->view('login',$data);
 		}
 		else
 		{
-			$this->new_login();
-		}
-	}	
+			
+			$nombre = $this->input->post('nombre');
+			$passw = $this->input->post('passw');
+			
+			$insert = $this->modelLogin->logginUser($nombre, $passw);
+			if($insert)
+			{
+				redirect('/inicio/','refresh');
+			}
+			else
+			{
+				$this->load->view('login');
+			}			
+		}		
+	}
 }
 ?>
