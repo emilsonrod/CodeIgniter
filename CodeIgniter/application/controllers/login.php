@@ -5,7 +5,7 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->helper('form');
-		//$this->load->model('modelLogin');
+		$this->load->model('modelLogin');
 		$this->load->library('form_validation');
 	}
 	public function index()
@@ -27,17 +27,15 @@ class Login extends CI_Controller
 			$nombre = $this->input->post('nombre');
 			$passw = $this->input->post('passw');
 				
-				//$insert = $this->modelLogin->logginUser($nombre, $passw);
-				/*if($insert)
-				{
-					$this->load->view('login');
-				}
-				else
-				{
-					//$this->load->view('login');
-					$this->index();
-				}*/	
-					
+			$load = $this->modelLogin->logginUser($nombre, $passw);
+			if($load == True)
+			{
+				$this->load->view('exito usuario');
+			}
+			else
+			{
+				$this->load->view('login');				
+			}					
 		}
 		
 	}

@@ -7,7 +7,6 @@ class ModelRegister extends CI_model
 	}
 	public function addUsers($nombre, $apellidos, $loggin, $passw,$correo)
 	{
-		//$this->db->query('Insert into usuarios values("")')
 		$data = array(
 						'nombre' => $nombre,
 						'apellidos_paterno' => $apellidos,
@@ -15,7 +14,7 @@ class ModelRegister extends CI_model
 						'passw' => $passw,
 						'correo' => $correo,
 						);
-		$this->db->insert('usuario',$data);
+		return $this->db->insert('usuario',$data);
 	}
 }
 ?>

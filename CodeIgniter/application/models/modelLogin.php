@@ -8,14 +8,14 @@ class ModelLogin extends CI_Model
 
 	public function logginUser($username,$password)
 	{
-		$query = ("SELECT * FROM users WHERE loggin=$username AND passw=$paswword;");
+		$this->db->select('*');
+		$this->db->from('usuario');
+		$this->db->where('loggin',$username);
+		$this->db->where('passw',$password);
+		$query= $this->db->get();
 		if($query->num_rows() > 0)
 		{
-			foreach ($query->result() as $fila)
-			{
-				$data[] = $fila;
-			}
-			return $data;
+			return True;
 		}
 		else
 		{
@@ -23,5 +23,4 @@ class ModelLogin extends CI_Model
 		}
 	}
 }
-
 ?>
