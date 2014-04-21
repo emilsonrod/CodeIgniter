@@ -10,11 +10,12 @@ class Login extends CI_Controller
 	}
 	public function index()
 	{
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[15]|alpha_numeric');
-	    $this->form_validation->set_rules('passw', 'passw', 'trim|required|max_length[15]|alpha_numeric');
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[15]|min_length[6]|alpha_numeric');
+	    $this->form_validation->set_rules('passw', 'passw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric');
 
 	    $this->form_validation->set_message('required', 'El campo %s es obligatorio');
 	    $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+	    $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
 	    $this->form_validation->set_message('alpha_numeric', 'El campo %s debe contener solo letras o numeros');
 
 	    if ($this->form_validation->run() == FALSE)
@@ -30,7 +31,7 @@ class Login extends CI_Controller
 			$load = $this->modelLogin->logginUser($nombre, $passw);
 			if($load == True)
 			{
-				$this->load->view('exito usuario');
+				$this->load->view('exitoLoggin');
 			}
 			else
 			{

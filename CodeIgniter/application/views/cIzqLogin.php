@@ -12,8 +12,8 @@
 		<?php echo form_password(array('name'=>'passw', 'id'=>'passw', 'type'=>'text', 'value'=>set_value('passw'), 'placeholder' => 'Ingrese su contraseña', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<?php echo form_error('passw')?>
 		</p>
-		<p><?php echo form_submit('Ingresar', 'Ingresar')?>
-		<?php echo form_submit('Registrarse', 'Registrarse')?>
+		<p>
+		<?php echo form_submit('Ingresar', 'Ingresar')?>
 		</p>
 	<?php echo form_close()?>
 	

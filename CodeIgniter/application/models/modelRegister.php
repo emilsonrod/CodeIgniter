@@ -5,7 +5,7 @@ class ModelRegister extends CI_model
 	{
 		parent::__construct();
 	}
-	public function addUsers($nombre, $apellidos, $loggin, $passw,$correo)
+	public function addUsersStudent($nombre, $apellidos, $loggin, $passw,$correo)
 	{
 		$data = array(
 						'nombre' => $nombre,
@@ -14,7 +14,54 @@ class ModelRegister extends CI_model
 						'passw' => $passw,
 						'correo' => $correo,
 						);
-		return $this->db->insert('usuario',$data);
+		$this->db->insert('usuario',$data);
+		$this->db->select('id_usuario');
+		$this->db->from('usuario');
+		$this->db->where('loggin',$loggin);
+		$this->db->where('passw',$passw);
+		$query= $this->db->get();
+		$IdUsuari = $query->row();
+
+
+		$aux = 'Estudiante';
+		$this->db->select('id_rol');
+		$this->db->from('rol');
+		$this->db->where('nombre_rol',$aux);
+		$query2 = $this->db->get();
+		$IdRol = $query2->row();
+
+		$data2 = array('id_rol' => $IdRol->id_rol,
+					  'id_usuario' => $IdUsuari->id_usuario,);
+		return $this->db->insert('rol_usuario',$data2);
+	}
+	public function addUsersDocente($nombre, $apellidos, $loggin, $passw,$correo)
+	{
+		$data = array(
+						'nombre' => $nombre,
+						'apellidos_paterno' => $apellidos,
+						'loggin' => $loggin,
+						'passw' => $passw,
+						'correo' => $correo,
+						);
+		$this->db->insert('usuario',$data);
+		$this->db->select('id_usuario');
+		$this->db->from('usuario');
+		$this->db->where('loggin',$loggin);
+		$this->db->where('passw',$passw);
+		$query= $this->db->get();
+		$IdUsuari = $query->row();
+
+
+		$aux = 'Docente';
+		$this->db->select('id_rol');
+		$this->db->from('rol');
+		$this->db->where('nombre_rol',$aux);
+		$query2 = $this->db->get();
+		$IdRol = $query2->row();
+
+		$data2 = array('id_rol' => $IdRol->id_rol,
+					  'id_usuario' => $IdUsuari->id_usuario,);
+		return $this->db->insert('rol_usuario',$data2);
 	}
 }
 ?>

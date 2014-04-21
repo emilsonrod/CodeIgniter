@@ -133,6 +133,20 @@ body
     box-shadow:0px 0px 5px #000 inset;
 }
 
+h5{
+    color:red; 
+}
+
+legend {
+background-color: white;
+font-family:Eras Light ITC , sans-serif;
+font-size: 25px;
+font-style: normal;
+color:  gray;
+}
+
+
+
 #foot
 {
     height:30px;
@@ -152,14 +166,13 @@ body
     min-height:450px;    
 }
 
-div.errors{
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:13px;
-    border: 1px solid;
-    margin: 10px 0px;
-    padding:15px 10px 15px 50px;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    color: #D8000C;
-    background-color: #FFBABA;
+div error
+{
+    background-color: :#FF8F8F;
+    border: : 1px solid #FF1111;
+    margin-bottom: 5px;
+    padding: 5px;
+    width: 400px;
 }
+
+

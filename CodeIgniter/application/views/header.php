@@ -19,7 +19,9 @@
                             <li><a href="inicio">Home</a></li>
                             <li><a href="login">Login</a></li>
                             <li><a href="register">Registrarse</a></li>
-                        </ul>
+                            <li><a href="regGrupoC">Inscribirse Grupo</a></li>
+                            <li><a href="grupoC">Registrar Grupo</a></li>
+                            </ul>
                     </div> 
                     <div id = "logotipo">
                         <img src="images/anka.jpg"  width="200px">
