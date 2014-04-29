@@ -5,6 +5,19 @@
     <meta charset='utf-8'>
 <?php echo link_tag('css/estilos.css')?>
     <link rel="stylesheet" href="css/estilos.css"/>
+<!-- CSS -->
+        <link href="http://fonts.googleapis.com/css?family=Aclonica:regular" rel="stylesheet" type="text/css" >
+
+        <!-- Libreria JQuery -->
+        <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+        
+        <!--PARA SUBIR ARCHIVOS -->
+        <link rel="stylesheet" href="uploadify/uploadify.css" type="text/css" />
+        <script type="text/javascript" src="uploadify/jquery.uploadify.js"></script>
+
+        <!--FUNCIONES GENERALES -->
+        <script type="text/javascript" src="js/funciones.js"></script>
+
 <title>
 
 </title>
