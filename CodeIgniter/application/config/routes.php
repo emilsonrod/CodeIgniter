@@ -43,7 +43,7 @@ $route['404_override'] = '';
 $route['inicio'] = "inicio";
 $route['login'] = "login";
 $route['register'] = "register";
-
+//$route['listaGrupos']="listaGrupos";
 
 
 /* End of file routes.php */

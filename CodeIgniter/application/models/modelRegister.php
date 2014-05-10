@@ -9,7 +9,7 @@ class ModelRegister extends CI_model
 	{
 		$data = array(
 						'nombre' => $nombre,
-						'apellidos_paterno' => $apellidos,
+						'apellidos' => $apellidos,
 						'loggin' => $loggin,
 						'passw' => $passw,
 						'correo' => $correo,
@@ -23,7 +23,7 @@ class ModelRegister extends CI_model
 		$IdUsuari = $query->row();
 
 
-		$aux = 'Estudiante';
+		$aux = 'estudiante';
 		$this->db->select('id_rol');
 		$this->db->from('rol');
 		$this->db->where('nombre_rol',$aux);
@@ -38,7 +38,7 @@ class ModelRegister extends CI_model
 	{
 		$data = array(
 						'nombre' => $nombre,
-						'apellidos_paterno' => $apellidos,
+						'apellidos' => $apellidos,
 						'loggin' => $loggin,
 						'passw' => $passw,
 						'correo' => $correo,
@@ -52,7 +52,7 @@ class ModelRegister extends CI_model
 		$IdUsuari = $query->row();
 
 
-		$aux = 'Docente';
+		$aux = 'docente';
 		$this->db->select('id_rol');
 		$this->db->from('rol');
 		$this->db->where('nombre_rol',$aux);

@@ -1,5 +1,5 @@
 <?php
-class Register extends CI_Controller
+class Registrar extends CI_Controller
 {
 	public function __construct()
 	{
@@ -11,11 +11,11 @@ class Register extends CI_Controller
 	public function index()
 	{
 		
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[30]|alpha');
-        $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|max_length[20]|alpha');
-        $this->form_validation->set_rules('loggin', 'loggin', 'trim|required|max_length[15]|min_length[6]|is_unique[usuario.loggin]|alpha_numeric');
+		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[25]|alpha');
+        $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|max_length[80]|alpha');
+        $this->form_validation->set_rules('loggin', 'loggin','trim|required|max_length[20]|min_length[6]|is_unique[usuario.loggin]|alpha_numeric');
         $this->form_validation->set_rules('passw', 'passw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|regex_match[/^.*(?=.{4,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/]');
-        $this->form_validation->set_rules('repassw', 'repassw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|matches[passw]|');
+        $this->form_validation->set_rules('repassw', 'repassw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|matches[passw]');
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
 	
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
@@ -32,8 +32,8 @@ class Register extends CI_Controller
 	    
 
         if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('register');
+		{	$data['tareas']=$this->session->userdata('tareas');
+			$this->load->view('viewRegistrar',$data);
 		}
 		else
 		{
@@ -51,13 +51,14 @@ class Register extends CI_Controller
 					$correo = $this->input->post('correo');
 					
 					$insert = $this->modelRegister->addUsersDocente($nombre, $apellidos, $loggin, $passw,$correo);
+					
 					if($insert)
 					{
 						$this->load->view('exitoDocente/exitoDoc');
 					}
 					else
 					{
-						$this->load->view('register');
+						$this->load->view('viewRegistrar');
 					}
 				}
 				else
@@ -80,7 +81,7 @@ class Register extends CI_Controller
 				}
 				else
 				{
-					$this->load->view('register');
+					$this->load->view('viewRegistrar');
 				}
 			}
 		}

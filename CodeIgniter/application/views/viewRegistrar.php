@@ -1,7 +1,10 @@
+<?php $this->load->view('viewCabecera');?>
+<?php $this->load->view('viewIzquierda',$tareas);?>
+
 <div id="columnacentral">                    
     <h1> Crear una Cuenta</h1>
     
-	<?php echo form_open('register');?>
+	<?php echo form_open('registrar');?>
 	<fieldset>
 	<legend >Ingrese los siguientes Datos :</legend>
 		<p>
@@ -15,7 +18,7 @@
 		<?php echo form_label('apellido', 'apellido')?>
 		</p>
 		<p>
-		<?php echo form_input(array('name'=>'apellido', 'id'=>'lastname', 'type'=>'text', 'value'=>set_value('apellido'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('name'=>'apellido', 'id'=>'apellido', 'type'=>'text', 'value'=>set_value('apellido'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('apellidos');?></h5>
 		</p>
 		<p>
@@ -61,3 +64,6 @@
 	</fieldset>
 	<?php echo form_close()?>
 </div>
+
+<?php $this->load->view('viewDerecha');?>
+<?php $this->load->view('viewPiePagina');?>

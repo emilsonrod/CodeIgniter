@@ -1,5 +1,5 @@
-<?php $this->load->view('header');?>
-<?php $this->load->view('cIzquierda');?>
-<?php $this->load->view('cCentral');?>
-<?php $this->load->view('cDerecha');?>
-<?php $this->load->view('footer');?>
+<?php $this->load->view('viewCabecera');?>
+<?php $this->load->view('viewIzquierda',$tareas);?>
+<?php $this->load->view('viewCentral');?>
+<?php $this->load->view('viewDerecha');?>
+<?php $this->load->view('viewPiePagina');?>
