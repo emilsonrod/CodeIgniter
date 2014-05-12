@@ -54,7 +54,7 @@ class Registrar extends CI_Controller
 					
 					if($insert)
 					{
-						$this->load->view('exitoDocente/exitoDoc');
+						$this->load->view('exito');
 					}
 					else
 					{

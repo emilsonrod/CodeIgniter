@@ -11,9 +11,17 @@ public function __construct() {
    
 public function index()
     {
-        $this->load->view('header');
-        $this->load->view('uploadCvs', array('error' => ' ' ));
-        $this->load->view('footer'); 
+        if(isset($this->session->userdata['usuario'])){
+            $data2['tareas']=$this->session->userdata('tareas');
+            $this->load->view('viewCabecera');
+            $this->load->view('viewIzquierda',$data2);
+            $this->load->view('uploadCvs', array('error' => ' ' ));
+            $this->load->view('viewDerecha');
+            $this->load->view('viewPiePagina'); 
+        }
+        else{
+            redirect('csvcontroller');
+        }
     }
 
 //************ CARGA DE ARCHIVOS  ****************   

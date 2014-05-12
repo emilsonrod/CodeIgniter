@@ -1,6 +1,6 @@
-<?php $this->load->view('header');?>
-<?php $this->load->view('cIzqExitoLogin');?>
+<?php $this->load->view('viewCabecera');?>
+<?php $this->load->view('viewIzquierda');?>
 <?php $this->load->view('cCentralCreardoc');?>
-<?php $this->load->view('cDerecha');?>
-<?php $this->load->view('footer');?>
+<?php $this->load->view('viewDerecha');?>
+<?php $this->load->view('viewPiePagina');?>
 <!--correcto-->

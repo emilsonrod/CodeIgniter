@@ -9,7 +9,9 @@ class Calendarmodel extends CI_Model
 		$this->conf = array(
 				'start_day' => 'monday',
 				'show_next_prev' => true,
-				'next_prev_url' => base_url() . 'calendar/index'
+				//'next_prev_url' => base_url() . 'calendar/index'
+				//'next_prev_url' => 'http://localhost/CodeIgniter/calendar/index/'
+				'next_prev_url' => site_url('calendar/index')
 			);
 
 		$this->conf['template'] = '
@@ -60,13 +62,13 @@ class Calendarmodel extends CI_Model
 
 	public function get_calendar_data($year, $month)
 	{
-		$query = $this->db->select('date, data')->from('calendar')->like('date', "$year-$month", 'after')->get();
+		$query = $this->db->select('fecha, comentario')->from('fecha_limite')->like('fecha', "$year-$month", 'after')->get();
 
 		$cal_data = array();
 
 		foreach ($query->result() as $row)
 		{
-			$cal_data[substr($row->date,8,2)] = $row->data;
+			$cal_data[ltrim(substr($row->fecha,8,2),'0')] = $row->comentario;
 		}
 
 		return $cal_data;
@@ -75,20 +77,20 @@ class Calendarmodel extends CI_Model
 
 	public function add_calendar_data($date,$data)
 	{
-		if($this->db->select('date')->from('calendar')
-			->where('date', $date)->count_all_results())
+		if($this->db->select('fecha')->from('fecha_limite')
+			->where('fecha', $date)->count_all_results())
 		{
-			$this->db->where('date',$date)
-					->update('calendar', array(
-				'date' => $date,
-				'data' => $data
+			$this->db->where('fecha',$date)
+					->update('fecha_limite', array(
+				'fecha' => $date,
+				'comentario' => $data
 				));
 		}
 		else
 		{
-			$this->db->insert('calendar',array(
-			'date' => $date,
-			'data' => $data
+			$this->db->insert('fecha_limite',array(
+			'fecha' => $date,
+			'comentario' => $data
 			));
 		}
 

@@ -43,6 +43,8 @@ $route['404_override'] = '';
 $route['inicio'] = "inicio";
 $route['login'] = "login";
 $route['register'] = "register";
+$route['calendar/index'] = "calendar/index";
+$route['calendar/index/(:num)/(:num)'] = "calendar/index/$1/$2";
 //$route['listaGrupos']="listaGrupos";
 
 
