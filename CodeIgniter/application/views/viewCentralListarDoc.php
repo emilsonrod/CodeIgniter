@@ -30,24 +30,24 @@
 								}else{
 									echo"<td><img src='images/001_19.png' width='20'></td>";
 								}
-							echo"<td>".$row->NOM_DOCUM."</td>";
+							echo"<td>".$row->NOMBRE_DOC."</td>";
 							echo"<td>".$row->DESCRIPCION."</td>";
 								switch ($row->TIPO) 
 								{
 									case 'pdf':
-											echo"<td><a target='_Blank' href='uploads/".$row->NOM_DOCUM."'><img src='images/pdf.png' width='70' height='70'></a></td>";
+											echo"<td><a target='_Blank' href='uploads/".$row->NOMBRE_DOC."'><img src='images/pdf.png' width='70' height='70'></a></td>";
 										break;
 									case 'docx':
-											echo"<td><a target='_Blank' href='uploads/".$row->NOM_DOCUM."'><img src='images/doc.png' width='70' height='70'></a></td>";
+											echo"<td><a target='_Blank' href='uploads/".$row->NOMBRE_DOC."'><img src='images/doc.png' width='70' height='70'></a></td>";
 										break;
 									case 'txt':
-											echo"<td><a target='_Blank' href='uploads/".$row->NOM_DOCUM."'><img src='images/txt.png' width='70' height='70'></a></td>";
+											echo"<td><a target='_Blank' href='uploads/".$row->NOMBRE_DOC."'><img src='images/txt.png' width='70' height='70'></a></td>";
 										break;
 									case 'zip':
-											echo"<td><a target='_Blank' href='uploads/".$row->NOM_DOCUM."'><img src='images/zip.png' width='70' height='70'></a></td>";
+											echo"<td><a target='_Blank' href='uploads/".$row->NOMBRE_DOC."'><img src='images/zip.png' width='70' height='70'></a></td>";
 										break;
 									default:
-											echo"<td><a target='_Blank' href='uploads/".$row->NOM_DOCUM."'><img src='uploads/".$row->NOM_DOCUM."' width='70' height='70'></a></td>";
+											echo"<td><a target='_Blank' href='uploads/".$row->NOMBRE_DOC."'><img src='uploads/".$row->NOMBRE_DOC."' width='70' height='70'></a></td>";
 										break;
 								}
 							echo"<td>".$row->FECHA."</td>";
