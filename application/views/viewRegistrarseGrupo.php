@@ -4,22 +4,19 @@
 
 	<h1> Inscribirse Grupo</h1>
 <?php
-
-$attributes = array('class' => '', 'id' => '');
-echo form_open('registrarseGrupo', $attributes); ?>
-<p>
-        <label for="grupo">Grupo</label>
-        <?php echo form_error('grupo'); ?>
-        <?php
-         $options = $lista;
-         ?>
-
+echo form_open('registrarseGrupo'); ?>
+<p>        
+    <?php echo form_label('Grupo', 'grupo');
+          echo form_error('grupo');        
+          $options = $lista;
+    ?>
         <br /><?php echo form_dropdown('grupo', $options, set_value('grupo'))?>
 </p>
 <p>
-        <label for="contrasenya">Contraseña <span class="required">*</span></label>
-        <?php echo form_error('contrasenya'); ?>
-        <br /><input id="contrasenya" type="password" name="contrasenya"  placeholder = "Contraseña del grupo" value="<?php echo set_value('contrasenya'); ?>"  />
+        <?php echo form_label('Contraseña','contrasenya');?><br/>                                                                                                            
+         <?php echo form_error('contrasenya');
+        echo form_input(array('name'=>'contrasenya', 'id'=>'contrasenya', 'type'=>'password', 'placeholder' => 'Ingrese contraseña al grupo', 'autofocus'=>'autofocus', 'size'=>'30'))?>
+        
 </p>
         <h5><?php echo form_error('confirmacionPassword');?></h5>
         <h5><?php echo form_error('integrante');?></h5>
