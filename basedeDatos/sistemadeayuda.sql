@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-05-2014 a las 22:56:18
+-- Tiempo de generación: 19-05-2014 a las 06:28:37
 -- Versión del servidor: 5.1.41
 -- Versión de PHP: 5.3.1
 
@@ -27,15 +27,23 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `documentos` (
   `COD_DOCUMEN` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE_DOC` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `RUTA` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `ID_USUARIO` int(10) DEFAULT NULL,
+  `COD_GRUPO` int(11) DEFAULT NULL,
+  `NOMBRE_DOC` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `DESCRIPCION` text CHARACTER SET utf8 COLLATE utf8_bin,
+  `TIPO` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ESTADO` int(1) DEFAULT NULL,
+  `FECHA` date DEFAULT NULL,
   PRIMARY KEY (`COD_DOCUMEN`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=571 ;
 
 --
 -- Volcar la base de datos para la tabla `documentos`
 --
 
+INSERT INTO `documentos` (`COD_DOCUMEN`, `ID_USUARIO`, `COD_GRUPO`, `NOMBRE_DOC`, `DESCRIPCION`, `TIPO`, `ESTADO`, `FECHA`) VALUES
+(556, 8, 1, '1400462672-otro (1).docx', 'camila prueba doc g', 'docx', 1, '2014-05-18'),
+(569, 7, 0, '1400482070-inv.pdf', 'CPTIS', 'pdf', 1, '2014-05-18');
 
 -- --------------------------------------------------------
 
@@ -56,6 +64,12 @@ CREATE TABLE IF NOT EXISTS `documentos_grupo` (
 -- Volcar la base de datos para la tabla `documentos_grupo`
 --
 
+INSERT INTO `documentos_grupo` (`ID_FECHA`, `COD_DOCUMEN`, `COD_GRUPO`) VALUES
+(6, 556, 1),
+(14, 559, 1),
+(14, 563, 2),
+(14, 564, 2),
+(14, 570, 2);
 
 -- --------------------------------------------------------
 
@@ -68,19 +82,17 @@ CREATE TABLE IF NOT EXISTS `fecha_limite` (
   `ID_FECHA` int(11) NOT NULL AUTO_INCREMENT,
   `COMENTARIO` varchar(150) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID_FECHA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=15 ;
 
 --
 -- Volcar la base de datos para la tabla `fecha_limite`
 --
 
 INSERT INTO `fecha_limite` (`FECHA`, `ID_FECHA`, `COMENTARIO`) VALUES
-('2014-05-17', 1, 'prueba'),
-('2014-07-12', 2, 'prueba2'),
-('2014-07-04', 3, 'ver'),
-('2014-05-18', 4, 'prueba3'),
-('2014-05-09', 5, 'aca ver'),
-('2014-06-05', 6, 'otra prueba error');
+('2014-05-22', 14, 'SEGUNDA ENTREGA'),
+('2014-05-08', 8, 'PRIMERA ENTREGA'),
+('2014-05-16', 12, 'RESAGADO 1 ENTREGA'),
+('2014-05-01', 10, 'ENTREGA INICIAL');
 
 -- --------------------------------------------------------
 
@@ -111,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `formulario` (
   `NOMBRE_FORM` varchar(30) COLLATE utf8_bin NOT NULL,
   `controlador` varchar(100) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`ID_FORM`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=12 ;
 
 --
 -- Volcar la base de datos para la tabla `formulario`
@@ -125,7 +137,8 @@ INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `controlador`) VALUES
 (6, 'Dar Baja Grupo', 'listaGrupos'),
 (8, 'incluir lista de estudiantes', 'csvcontroller'),
 (9, 'fijar fechas de entrega de hit', 'calendar'),
-(10, 'subir documentos convocatoria', 'subirDoc');
+(10, 'subir documentos convocatoria', 'subirDoc'),
+(11, 'Subir documentos', 'subirDoc');
 
 -- --------------------------------------------------------
 
@@ -144,14 +157,15 @@ CREATE TABLE IF NOT EXISTS `grupo` (
   PRIMARY KEY (`COD_GRUPO`),
   KEY `FK_RELATIONSHIP_14` (`ID_REPRESENTANTE`),
   KEY `FK_RELATIONSHIP_3` (`ID_DOCENTE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Volcar la base de datos para la tabla `grupo`
 --
 
 INSERT INTO `grupo` (`COD_GRUPO`, `ID_DOCENTE`, `ID_REPRESENTANTE`, `NOMBRE_LARGO`, `NOMBRE_CORTO`, `PASSW_GRUPO`, `ACTIVO`) VALUES
-(1, 1, 2, 'gran turismo radio', 'gtr', 'grantura', 1);
+(1, 1, 2, 'gran turismo radio', 'gtr', 'grantura', 1),
+(2, 7, 9, 'technology ancasoft', 'ankasoft', '123456', 1);
 
 -- --------------------------------------------------------
 
@@ -172,7 +186,9 @@ CREATE TABLE IF NOT EXISTS `integrantes_grupo` (
 
 INSERT INTO `integrantes_grupo` (`COD_GRUPO`, `ID_USUARIO`) VALUES
 (1, 3),
-(1, 5);
+(1, 5),
+(1, 8),
+(2, 9);
 
 -- --------------------------------------------------------
 
@@ -223,7 +239,8 @@ INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
 (7, 2),
 (8, 1),
 (9, 2),
-(10, 1);
+(10, 1),
+(11, 2);
 
 -- --------------------------------------------------------
 
@@ -245,9 +262,15 @@ CREATE TABLE IF NOT EXISTS `rol_usuario` (
 INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
 (1, 1),
 (1, 4),
+(1, 7),
+(1, 10),
 (2, 2),
 (2, 3),
-(2, 5);
+(2, 5),
+(2, 6),
+(2, 8),
+(2, 9),
+(2, 11);
 
 -- --------------------------------------------------------
 
@@ -281,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `CORREO` varchar(30) COLLATE utf8_bin NOT NULL,
   `ACTIVO` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID_USUARIO`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=12 ;
 
 --
 -- Volcar la base de datos para la tabla `usuario`
@@ -292,7 +315,12 @@ INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `APELLIDOS`, `LOGGIN`, `PASSW`, `
 (2, 'carla', 'salazar', 'carlita', 'AAaa11', 'AAaa11', 1),
 (3, 'emilson', '0', 'eleazar', 'Raptor1989', 'emilsonrod@gmail.com', 1),
 (4, 'alex', 'rodriguez', 'polal21', 'AAaa11', 'polal21@gmail.com', 1),
-(5, 'franklin', '0', 'franco', 'Franco1', 'franco@gmail.com', 1);
+(5, 'franklin', '0', 'franco', 'Franco1', 'franco@gmail.com', 1),
+(7, 'corina', 'camacho', 'corina', 'A123456a', 'corina1234@hotmail.com', 1),
+(8, 'camila', '0', 'camila', 'A123456a', 'cami@hotmail.com', 1),
+(9, 'camila', '0', 'camila2', 'A123456a', 'camiee@hotmail.com', 1),
+(10, 'jaldin', 'jaldin', 'jaldin', 'A123456a', 'jal@hotmail.com', 1),
+(11, 'sing', '0', 'singrupo', 'A123456a', 'sga@hotmail.com', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

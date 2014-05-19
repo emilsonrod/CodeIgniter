@@ -213,7 +213,16 @@ div error
     font-family: Arial;
 }
 /* //Divs Contend */
-
+#tituloSubirDoc{
+    background: #333;
+    padding:5px;
+    color:#FFF;
+    text-align: left;
+    /*text-shadow: 0px 1px 1px #4d4d4d;*/
+    /*text-transform:uppercase;*/
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size: 9px;
+}
 
 /* Tabla de lista de archivos */
 .ListaArchivo{
@@ -244,7 +253,7 @@ div error
 }
 
 .ListaArchivo td, .ListaArchivo th {
-    padding: 4px;
+    padding: 0px;
 }
 
 .ListaArchivo thead th {
@@ -268,9 +277,10 @@ div error
 .ListaArchivo tbody tr th {
     background-color:#0CC;
     color: #FFF;
-    text-align:left;
+    text-align:center;
     font-family:Tahoma, Geneva, sans-serif;
     font-size:14px;
+    height:30px;
 }
 /*
 .ListaArchivo tbody tr.odd {
@@ -289,9 +299,10 @@ border-top:1px solid #FFF;
 }*/
 
 .ListaArchivo tbody tr {
-    height:50px;
+    height:60px;
     background: #FAFAFA;
     border: 1px solid #FFF;
+    height:60px;
 }
 
 .ListaArchivo tbody tr.odd td{

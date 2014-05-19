@@ -30,6 +30,7 @@ class ModelSubirDoc extends CI_Model
 			return FALSE;
 		}
 	}
+	//METODO QUE OBTINE TODOS LOS DOCUMENTOS SUBIDOS
 	function verLista()
 	{
 		$query = $this->db->get('documentos');
@@ -42,7 +43,7 @@ class ModelSubirDoc extends CI_Model
 		}
 	}
 	
-	
+	//CONSULTA ARCHIVO POR ID
 	function consultarDoc($idArchivo)
 	{
 		$this->db->select('*');
@@ -57,6 +58,7 @@ class ModelSubirDoc extends CI_Model
 			return FALSE;
 		}
 	}
+	//BORRAR DOCUMNTOS POR ID ARCHIVO
 	function borrarDoc($idArchivo)
 	{
 		$this->db->where('COD_DOCUMEN',$idArchivo);
@@ -69,11 +71,12 @@ class ModelSubirDoc extends CI_Model
 			return FALSE;
 		}
 	}
+	//CONSULTAR TODO CON EL COD DE GRUPO
 	function consultarAll($cod_grupo)
 	{
 		$this->db->select('*');
 		$this->db->from('documentos');
-		return $this->db->get();
+		return $this->db->get(); 
 	}
 	/*--------------------conseguir el grupo del q subio el doc--------------------*/
 	function getIdGrupo($id)
@@ -82,60 +85,6 @@ class ModelSubirDoc extends CI_Model
 		$consulta = $this->db->query($ql);
 		$fila = $consulta->row();
 		return $fila->cod_grupo;
-
-		/*
-		$sql="select cod_grupo from integrantes_grupo where id_usuario = '".$id_usuario."'";
-		$consulta = $this->db->query($ql);
-		$fila = $consulta->row();
-		return $fila->cod_grupo;*/
-	}
-	function insertarDocG($id)
-	{
-		$sql="SELECT cod_documen from documentos where id_usuario='".$id."'";
-		$consulta = $this->db->query($ql);
-		$fila = $consulta->row();
-
-		$sql1="SELECT cod_grupo from integrantes_grupo where id_usuario='".$id."'";
-		$consulta1 = $this->db->query($ql1);
-		$fila1 = $consulta1->row();
-
-
-		$Datos = array('COD_DOCUMEN' =>$fila->cod_documen,
-					   'COD_GRUPO' =>$fila1->cod_grupo
-				       );
-		$this->db->insert('documentos_grupo', $Datos);
-
-		if ($this->db->affected_rows() == '1')
-		{
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
-
-	function consultarCodG($id_Session)
-	{
-		$sql="SELECT COD_GRUPO FROM integrantes_grupo WHERE ID_USUARIO ='".$id_Session."'";
-		$consulta = $this->db->query($sql);
-		$fila = $consulta->row();
-		return $fila->cod_grupo;
-	}
-
-	
-	
-	//-----------------------------------------------------------------------------
-	function getG($id)
-	{
-		$sql="select cod_documen,id_usuario from documentos where id_usuario=".$id;
-		$grupos=$this->db->query($sql);	
-		$arreglo=array();
-		foreach ($grupos->result_array() as $row)
-				{
-					$arreglo[$row['id_usuario']]=$row['cod_documen'];
-   					 
-				}
-		
-		return $arreglo;		
 	}
 
 	/*-----------------*/
@@ -149,15 +98,14 @@ class ModelSubirDoc extends CI_Model
 
 	function getDocGrupo($id)
 	{
-		$sql="select * from documentos where id_usuario=".$id;
+		$sql="select * from documentos where id_usuario='".$id."' order by cod_documen desc limit 1";
 		$grupos=$this->db->query($sql);	
-		
 		
 		return $grupos;		
 	}
-	function insertaDocGrupo($id_doc, $id_grupo)
+	function insertaDocGrupo($id_fecha, $id_doc, $id_grupo)
 	{
-		$Datos = array( 'ID_FECHA' => '0',
+		$Datos = array( 'ID_FECHA' => $id_fecha,
 						'COD_DOCUMEN' => $id_doc,
 						'COD_GRUPO' =>$id_grupo
 					   );
@@ -173,9 +121,94 @@ class ModelSubirDoc extends CI_Model
 	function getDocumentosGrupo($grupo){
 		$sql="select * from documentos 
 			where cod_grupo='".$grupo."'";
-		return $this->db->query($sql);
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}	
+
+		//return $this->db->query($sql);
+	}
+	function getDocumentosGrupoFecha($grupo)
+	{
+		$sql="select DISTINCT d.cod_documen, d.nombre_doc, d.descripcion, d.tipo, d.estado, d.fecha, fl.comentario from documentos d, documentos_grupo dg, fecha_limite fl
+			where dg.cod_grupo='".$grupo."' and  d.cod_grupo = dg.cod_grupo and dg.id_fecha = fl.id_fecha";
+
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}	
 		
 	}
-	 
+	function getDocumentosDoc($id_usuario){
+		$sql="select * from documentos 
+			where id_usuario='".$id_usuario."'";
+		$consulta = $this->db->query($sql);
 
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}	
+		//return $this->db->query($sql);
+		
+	}
+	function rolUsuario($id_usuario)
+	{
+		$sql = "select * from rol_usuario where id_rol='1' and id_usuario='".$id_usuario."'";
+
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
+	//VERIFICA SI HAY UNA FECHA LIMITE PARA LA ENTREGA DEL DOCUEMENTO
+	function  verificarFecha()
+	{
+		$sql = "select * from fecha_limite where fecha >= current_date order by fecha limit 1";
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}
+		
+	}
+	function verificarArchivoSubido($fecha)
+	{
+		$sql = "select * from fecha_limite where fecha <= '".$fecha."' order by fecha desc limit 1";
+		$consulta = $this->db->query($sql);
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}
+	}
+	//actualizar la base de datos de los documentos para verificar que despues de la fecha de entrega se desabilite la opcion eliminar
+
+	function actualizarEstadoDoc($fecha)
+	{
+		$sql ="UPDATE documentos SET ESTADO = 0 WHERE FECHA = current_date ";
+	}
 }

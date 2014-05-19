@@ -1,5 +1,5 @@
 <?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewIzquierda',$tareas);?>
 <!--SUBIR DOCUMENTO-->
 <div id="columnacentral">
 	
@@ -26,14 +26,14 @@
 	        'buttonText': 'Examinar',
 	        'checkScript': 'uploadify/check.php',
 	        'fileDesc': 'Archivos',
-	        
+	        'sizeLimit': 20971520 ,
 	        'auto':false,
 	        //Estensiones permitidas para carga de los archivos
 	        //'fileExt': '*.jpg;*.jpeg;*.gif;*.png;*.xlsx;*.docx;*.html;*.txt;*.pdf;*.zip',
 	        'fileExt': '*.docx;*.txt;*.pdf;*.zip',
 			
 			//Puede ingresar mas de 1 archivo a la vez, false solo 1 archivo
-	        'multi': true,
+	        'multi': false,
 	        'displayData': 'percentage',
 	        /*onComplete: function (){
 	     verlistadoimagenes();
@@ -58,7 +58,25 @@
 
 </script>
 	
-	<div id="tituloSubirDoc"><h1>Registrar Archivo :</h1></div>	
+	<!--div id="tituloSubirDoc"><h1>SUBIR DOCUMENTOS :</h1></div-->
+
+	<?php
+	if(!$docente)
+	{
+		if($fechas)
+		{
+			foreach ($fechas->result() as $fila) 
+			{
+			    echo "<div id='tituloSubirDoc'>";
+				    echo "<h3>Documentos para la fase: ".$fila->COMENTARIO."</h3>";
+					echo "<h3>Este documentos se entregara hasta la fecha : ".$fila->FECHA."</h3>";
+					echo "<span>Pasada la fecha no se podra entregar el documento o iniciara la entrega del siguiente hito</span>";
+				echo "</div>";
+			}
+		}
+	}
+		
+ 	?>
 	<div id="contenedorSubirDoc">		
 		<div id="formsubirDoc"></div>
 		     <form>
