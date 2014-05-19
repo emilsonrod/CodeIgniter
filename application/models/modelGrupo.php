@@ -23,7 +23,8 @@ class modelGrupo extends CI_Model {
 
 			$form['id_docente']=$form_data['docente'];
 			$form['id_representante']=$form_data['representante'];
-			$form['nombre_largo']=$form_data['nombreLargo'];
+			$form['correo_grupo']=$form_data['correo'];
+            $form['nombre_largo']=$form_data['nombreLargo'];
 			$form['nombre_corto']=$form_data['nombreCorto'];
 			$form['passw_grupo']=$form_data['contrasenya'];
 			$this->db->insert('grupo',$form);
@@ -91,7 +92,7 @@ class modelGrupo extends CI_Model {
         return $this->db->query("SELECT cod_grupo from grupo where nombre_corto='".$grupo."'")->row()->cod_grupo;
     }
     function gruposCreados(){
-        return $this->db->query("SELECT nombre_corto,nombre_largo from grupo");        
+        return $this->db->query("SELECT nombre_corto,nombre_largo,correo_grupo from grupo");        
     }
 
 }

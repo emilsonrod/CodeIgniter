@@ -14,10 +14,11 @@ class Grupo extends CI_Controller {
 	}
 	function index()
 	{	if(isset($this->session->userdata['usuario'])){
-			$this->form_validation->set_rules('nombreCorto', 'Nombre Corto',         'trim|required|max_length[15]|min_length[3]|is_unique[grupo.nombre_corto]|alpha_numeric');
-			$this->form_validation->set_rules('nombreLargo', 'Nombre Largo', 'required|trim|xss_clean|max_length[50]');
-			$this->form_validation->set_rules('contrasenya', 'Contraseña', 'required|trim|xss_clean|max_length[15]|min_length[6]');
-			$this->form_validation->set_rules('docente', 'Docente', 'required');
+			$this->form_validation->set_rules('nombreCorto','Nombre Corto',         'trim|required|max_length[15]|min_length[3]|is_unique[grupo.nombre_corto]|alpha_numeric');
+            $this->form_validation->set_rules('correo','email','required|valid_email|is_unique[grupo.correo_grupo]');
+			$this->form_validation->set_rules('nombreLargo','nombre Largo', 'required|trim|xss_clean|max_length[50]');
+			$this->form_validation->set_rules('contrasenya','Contraseña', 'required|trim|xss_clean|max_length[15]|min_length[6]');
+			$this->form_validation->set_rules('docente', 'docente', 'required');
 			$this->form_validation->set_rules('representante','representante','callback_check_representante');
             $this->form_validation->set_rules('integrante','integrante','callback_noPerteneceGrupo');
 
@@ -25,9 +26,9 @@ class Grupo extends CI_Controller {
 			$this->form_validation->set_message('alpha','El campo %s debe estar compuesto solo por letras');
         	$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
 		    $this->form_validation->set_message('alpha_numeric','Solo puede contener letras y numeros');
-
+            $this->form_validation->set_message('valid_email','El %s debe ser un correo electronico valido');
             $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
-		    $this->form_validation->set_message('is_unique', 'El nombre de grupo ya esta registrado elija otro por favor');
+		    $this->form_validation->set_message('is_unique', 'El %s ya esta registrado');
 	        $this->form_validation->set_message('check_representante','Usted ya creo un grupo no es posible crear otro grupo');
             $this->form_validation->set_message('noPerteneceGrupo','Esta inscrito en un grupo, no puede registrar un grupo');
 
@@ -44,7 +45,7 @@ class Grupo extends CI_Controller {
 					}
 
 				$data['docentes']=$arreglo;
-				$data['tareas']=$this->session->userdata('tareas');
+				//$data['tareas']=$this->session->userdata('tareas');
 				$this->load->view('viewRegistrarGrupo',$data);
 			}
 			else
@@ -52,6 +53,7 @@ class Grupo extends CI_Controller {
 
 
 					$form_data = array(
+                            'correo'=>set_value('correo'),
 					       	'nombreCorto' => set_value('nombreCorto'),
 					       	'nombreLargo' => set_value('nombreLargo'),
 					       	'contrasenya' => set_value('contrasenya'),
