@@ -28,7 +28,11 @@ class ModelRegGrupo extends CI_Model {
 		return FALSE;
 	}
 	function correctoPass($name='',$pass='') {
-        return $this->db->get_where('grupo', array('nombre_corto' => $name,'passw_grupo' => $pass))->row();
+        $var= $this->db->query("select * from usuario where loggin='".$name."' and passw='".$pass."'");
+        if($var->num_rows()==1){
+            return true;
+        }
+        return false;
     }
     function getNombreGrupo($id_grupo=''){
         $query=$this->db->query("SELECT nombre_corto FROM grupo WHERE cod_grupo=".$id_grupo);

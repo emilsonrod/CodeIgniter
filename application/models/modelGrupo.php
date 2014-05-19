@@ -37,14 +37,16 @@ class modelGrupo extends CI_Model {
 		return FALSE;
 	}
 	function getDocentes()
-	{ $sql="SELECT u.id_usuario,u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
+	{ 
+        $sql="SELECT u.id_usuario,u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
 			where r.nombre_rol='docente' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario";
 		$query = $this->db->query($sql);
 
 		return $query;
 	}
 	function getGrupos($id){
-		$sql="select cod_grupo,nombre_corto from grupo where activo=1 and id_docente=".$id;
+		//obteniendo los grupos q solo le pertenecen a un docente determinado
+        $sql="select cod_grupo,nombre_corto from grupo where activo=1 and id_docente=".$id;
 		$grupos=$this->db->query($sql);
 		$arreglo=array();
 		foreach ($grupos->result_array() as $row)
@@ -88,7 +90,9 @@ class modelGrupo extends CI_Model {
     function getIdGrupo($grupo=''){
         return $this->db->query("SELECT cod_grupo from grupo where nombre_corto='".$grupo."'")->row()->cod_grupo;
     }
-
+    function gruposCreados(){
+        return $this->db->query("SELECT nombre_corto,nombre_largo from grupo");        
+    }
 
 }
 ?>

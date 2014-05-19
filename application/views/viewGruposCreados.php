@@ -4,11 +4,11 @@
 <div id="columnacentral">
 <?php
 
-	$this->table->set_heading('Nombre', 'Apellidos'); //crea la primera fila de la tabla con el encabezado
+	$this->table->set_heading('Grupo', 'Nombre Largo'); //crea la primera fila de la tabla con el encabezado
 	$tmp = array ( 'table_open'  => '<table border="2" cellpadding="2" cellspacing="1">' ); //modifica el espaciado
 	$this->table->set_template($tmp); //aplico los cambios de modificacion anterior
 
-echo $this->table->generate($docentes); //cuando termina generamos la tabla a partir del vector
+echo $this->table->generate($grupos); //cuando termina generamos la tabla a partir del vector
 
 ?>
 </div>
