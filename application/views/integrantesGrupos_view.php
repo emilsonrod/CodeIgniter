@@ -18,9 +18,8 @@ echo form_open('integrantes', $attributes); ?>
                     	 <?php echo form_radio('integrantes',$value,FALSE,null)."".$value; ?> <br />
                     </div>
                     <?php
-                }
-                 echo form_error('integrantes');
-                ?>
+                }?>
+        <h5><?php   echo form_error('integrantes'); ?></h5>
 
 </p>
 

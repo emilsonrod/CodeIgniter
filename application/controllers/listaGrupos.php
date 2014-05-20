@@ -18,12 +18,18 @@ class ListaGrupos extends CI_Controller {
 		  if ($this->form_validation->run() == FALSE) // validation hasn't been passed
 		      {
 			     $data['grupos']=$this->modelGrupo->getGrupos($this->session->userdata('id'));
-			     $data['tareas']=$this->session->userdata('tareas');
+			     //$data['tareas']=$this->session->userdata('tareas');
                 /*
                 aqui tengo realizar un analisis si tiene grupos si hay muestra la vista DarBajaGrupo
                 sino otra q indique q no tiene grupo.......
                 */
-			     $this->load->view('viewDarBajaGrupo',$data);
+                $numeroGrupos=count($data['grupos']);
+                if($numeroGrupos>0){
+			         $this->load->view('viewDarBajaGrupo',$data);
+                }else{
+                     $mensage['error']="No tiene grupos disponible";
+                     $this->load->view('viewNoGrupos',$mensage);
+                }
 		      }
 		  else{
 			     foreach ($this->input->post('grupos')as $nombreGrupo) {

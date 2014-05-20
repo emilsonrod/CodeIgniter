@@ -14,15 +14,21 @@ class Integrantes extends CI_Controller {
 	function index()
 	{
 		$this->form_validation->set_rules('integrantes', 'Grupos', 'required');
-		$this->form_validation->set_message('required', 'El campo %s no selecciono el grupo');
+		$this->form_validation->set_message('required', 'No selecciono un grupo para ver sus integrantes');
 		if(isset($this->session->userdata['usuario'])){
-				$data['tareas']=$this->session->userdata('tareas');
+				//$data['tareas']=$this->session->userdata('tareas');
 
 			if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-			{
-				$data['grupos']=$this->grupoM->getGrupos();
-				$this->load->view('integrantesGrupos_view',$data);
-				$this->load->view('viewIzquierda',$data);
+			{ 				
+                $data['grupos']=$this->grupoM->getGrupos();
+				$numeroGrupos=count($data['grupos']);
+                if($numeroGrupos>0){
+                    $this->load->view('integrantesGrupos_view',$data);
+				    //$this->load->view('viewIzquierda');
+                }else{
+                    $mensage['error']='Lo sentimos no tiene grupos';
+                    $this->load->view('viewNoGrupos',$mensage);
+                }
 			}
 			else
 			{
