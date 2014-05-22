@@ -1,6 +1,6 @@
 <?php
 
-class modelGrupo extends CI_Model {
+class ModelGrupo extends CI_Model {
 
 	function __construct()
 	{
@@ -19,10 +19,8 @@ class modelGrupo extends CI_Model {
 
 	function SaveForm($form_data)
 	{
-
-
 			$form['id_docente']=$form_data['docente'];
-			$form['id_representante']=$form_data['representante'];
+			$form['id_representante']=$form_data['integrante'];
 			$form['correo_grupo']=$form_data['correo'];
             $form['nombre_largo']=$form_data['nombreLargo'];
 			$form['nombre_corto']=$form_data['nombreCorto'];
@@ -37,14 +35,18 @@ class modelGrupo extends CI_Model {
 
 		return FALSE;
 	}
-	function getDocentes()
-	{ 
-        $sql="SELECT u.id_usuario,u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
-			where r.nombre_rol='docente' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario";
-		$query = $this->db->query($sql);
-
-		return $query;
-	}
+    function inscribirseAGrupo($form_data){
+            $idGrupo=$this->db->query("SELECT cod_grupo FROM grupo WHERE nombre_corto='".$form_data['nombreCorto']."'");
+            $form['cod_grupo']=$idGrupo->row()->cod_grupo;
+			$form['id_usuario']=$form_data['integrante'];
+			$this->db->insert('integrantes_grupo', $form);
+			if ($this->db->affected_rows() == '1')
+		    {
+			     return TRUE;
+		    }
+		return FALSE;
+    }
+	
 	function getGrupos($id){
 		//obteniendo los grupos q solo le pertenecen a un docente determinado
         $sql="select cod_grupo,nombre_corto from grupo where activo=1 and id_docente=".$id;
@@ -72,13 +74,7 @@ class modelGrupo extends CI_Model {
 			where u.id_usuario=ig.id_usuario and ig.cod_grupo=g.cod_grupo and g.nombre_corto='".$grupo."'";
 		return $this->db->query($sql);
 	}
-	function mostrarDocentes(){
-		$sql="SELECT u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
-			where r.nombre_rol='docente' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario";
-		$query = $this->db->query($sql);
-
-		return $query;
-	}
+	
     function creoGrupo($id_representante=''){
         $query= $this->db->query("SELECT nombre_corto FROM grupo WHERE id_representante=".$id_representante);
         if ($query->num_rows() >0)
@@ -94,6 +90,34 @@ class modelGrupo extends CI_Model {
     function gruposCreados(){
         return $this->db->query("SELECT nombre_corto,nombre_largo,correo_grupo from grupo");        
     }
-
+    function listaGrupos(){
+    	//los grupos se lo realizara con la descrimiacion si esta libre y abilitado aquellos q tienen menor a 5 integrantes
+    	$sql="SELECT cod_grupo,nombre_corto  FROM grupo where activo=1 and 5>(SELECT count(integrantes_grupo.cod_grupo) FROM integrantes_grupo WHERE integrantes_grupo.cod_grupo=grupo.cod_grupo)";
+		$query = $this->db->query($sql);        
+        $lista=array();
+        $lista['']="Elige la Empresa";    
+			foreach ($query->result_array() as $row)
+				{
+					$lista[$row['nombre_corto']]=$row['nombre_corto'];
+				}
+		return $lista;
+    }
+    function inscritoEnUnaEmpresa($id=''){
+        
+        $query= $this->db->query("SELECT * FROM integrantes_grupo WHERE id_usuario=".$id);
+        if ($query->num_rows() >0)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function esCorrecto($grupo='',$password=''){
+         $query=$this->db->query("SELECT correo_grupo from grupo WHERE nombre_corto='".$grupo."' and passw_grupo='".$password."'");
+        if($query->num_rows()==1){
+            return true;
+        }
+        return false;
+    }
 }
 ?>

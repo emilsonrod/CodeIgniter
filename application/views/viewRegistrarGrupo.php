@@ -36,7 +36,7 @@ echo form_open('grupo', $attributes); ?>
     <?php echo form_dropdown('docente', $docentes, set_value('docente')); ?>
     <h5><?php echo form_error('docente');?></h5>
 </p><br/>
-    <h5><?php echo form_error('representante');?></h5>
+    
     <h5><?php echo form_error('integrante');?></h5>
 <p>
         <?php echo form_submit( 'submit', 'Registrar'); ?>
