@@ -5,11 +5,12 @@ class ModelRegister extends CI_model
 	{
 		parent::__construct();
 	}
-	public function addUsersStudent($nombre, $apellidos, $loggin, $passw,$correo)
+	public function addUsersStudent($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo)
 	{
 		$data = array(
 						'nombre' => $nombre,
-						'apellidos' => $apellidos,
+						'apellidop' => $apellidoP,
+						'apellidom' => $apellidoM,
 						'loggin' => $loggin,
 						'passw' => $passw,
 						'correo' => $correo,
@@ -34,14 +35,16 @@ class ModelRegister extends CI_model
 					  'id_usuario' => $IdUsuari->id_usuario,);
 		return $this->db->insert('rol_usuario',$data2);
 	}
-	public function addUsersDocente($nombre, $apellidos, $loggin, $passw,$correo)
+	public function addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente)
 	{
 		$data = array(
 						'nombre' => $nombre,
-						'apellidos' => $apellidos,
+						'apellidop' => $apellidoP,
+						'apellidom' => $apellidoM,
 						'loggin' => $loggin,
 						'passw' => $passw,
 						'correo' => $correo,
+						'ci_docente' => $ciDocente,
 						);
 		$this->db->insert('usuario',$data);
 		$this->db->select('id_usuario');
@@ -62,6 +65,18 @@ class ModelRegister extends CI_model
 		$data2 = array('id_rol' => $IdRol->id_rol,
 					  'id_usuario' => $IdUsuari->id_usuario,);
 		return $this->db->insert('rol_usuario',$data2);
+	}
+
+	public function chekarCI($ci)
+	{
+		$this->db->select('*');
+		$this->db->from('usuario');
+		$this->db->where('ci_docente',$ci);
+		$query = $this->db->get();
+		if($query -> num_rows() > 0)
+			return false;
+		else
+			return true;
 	}
 }
 ?>

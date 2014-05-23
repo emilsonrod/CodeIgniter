@@ -15,11 +15,18 @@
 		<h5><?php echo form_error('nombre');?></h5>
 		</p>
 		<p>
-		<?php echo form_label('apellido', 'apellido')?>
+		<?php echo form_label('apellidoPaterno', 'apellidoPaterno')?>
 		</p>
 		<p>
-		<?php echo form_input(array('name'=>'apellido', 'id'=>'apellido', 'type'=>'text', 'value'=>set_value('apellido'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
-		<h5><?php echo form_error('apellidos');?></h5>
+		<?php echo form_input(array('name'=>'apellidoP', 'id'=>'apellidoP', 'type'=>'text', 'value'=>set_value('apellidoP'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<h5><?php echo form_error('apellidoP');?></h5>
+		</p>
+		<p>
+		<?php echo form_label('apellidoMaterno', 'apellidoMaterno')?>
+		</p>
+		<p>
+		<?php echo form_input(array('name'=>'apellidoM', 'id'=>'apellidoM', 'type'=>'text', 'value'=>set_value('apellidoM'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<h5><?php echo form_error('apellidoM');?></h5>
 		</p>
 		<p>
 		<?php echo form_label('nombre usuario', 'nombre usuario')?>
@@ -58,6 +65,13 @@
 		<p>
 		<?php echo form_password(array('name'=>'passDocente', 'id'=>'passDocente', 'type'=>'text', 'value'=>set_value('passDocente'), 'placeholder' => 'Ingrese la contraseña tipo TIS', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('passDocente');?></h5>
+		</p>
+		<p>
+		<?php echo form_label('Ingrese su CI para confirmar docente','Contraseña Docente')?>
+		</p>
+		<p>
+		<?php echo form_input(array('name'=>'ciDocente', 'id'=>'ciDocente', 'type'=>'text', 'value'=>set_value('ciDocente'), 'placeholder' => 'Ingrese su C.I.', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<h5><?php echo form_error('ciDocente');?></h5>
 		</p>
 
 		<p><?php echo form_submit('Registrar', 'Registrar')?>

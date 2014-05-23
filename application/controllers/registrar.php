@@ -12,8 +12,9 @@ class Registrar extends CI_Controller
 	{
 
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[25]|alpha');
-        $this->form_validation->set_rules('apellido', 'apellido', 'trim|required|max_length[80]|alpha');
-        $this->form_validation->set_rules('loggin', 'loggin','trim|required|max_length[20]|min_length[6]|is_unique[usuario.loggin]|alpha_numeric');
+        $this->form_validation->set_rules('apellidoP', 'apellidoP', 'trim|required|max_length[80]|alpha');
+        $this->form_validation->set_rules('apellidoM', 'apellidoM', 'trim|required|max_length[80]|alpha');
+        $this->form_validation->set_rules('loggin', 'loggin','trim|required|max_length[20]|min_length[2]|is_unique[usuario.loggin]|alpha_numeric');
         $this->form_validation->set_rules('passw', 'passw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|regex_match[/^.*(?=.{4,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/]');
         $this->form_validation->set_rules('repassw', 'repassw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|matches[passw]');
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
@@ -41,20 +42,26 @@ class Registrar extends CI_Controller
 			if(!empty($passDocente)) //si esta vacia la pass docente registra comoestudiante
 			{
 				$this->form_validation->set_rules('passDocente', 'passDocente', 'callback_docente_check');
+				
 				//if ($this->form_validation->run('docente_check') == FALSE)
-				if ($passDocente == 'tis2014')
+				$ciDocente = $this->input->post('ciDocente');
+				//if ($passDocente == 'tis2014' && check_CIdocente($ciDocente) == true)
+				//if($passDocente == 'tis2014' && !empty($ciDocente))
+				if($passDocente == 'tis2014' && !empty($ciDocente) && $this -> modelRegister -> chekarCI($ciDocente))
 				{
 					$nombre = $this->input->post('nombre');
-					$apellidos = $this->input->post('apellido');
+					$apellidoP = $this->input->post('apellidoP');
+					$apellidoM = $this->input->post('apellidoM');
 					$loggin = $this->input->post('loggin');
 					$passw = $this->input->post('passw');
 					$correo = $this->input->post('correo');
+					
 
-					$insert = $this->modelRegister->addUsersDocente($nombre, $apellidos, $loggin, $passw,$correo);
+					$insert = $this->modelRegister->addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente);
 
 					if($insert)
-					{	$data['exito']=" Se registro correctamente";
-						$this->load->view('exito');
+					{	$data['exito']=" Se registro correctamente docente";
+						$this->load->view('exito',$data);
 					}
 					else
 					{
@@ -63,21 +70,22 @@ class Registrar extends CI_Controller
 				}
 				else
 				{
-					$this->load->view('registerFail/fail');
+					$this->load->view('viewRegistrar');
 				}
 			}
 			else
 			{
 				$nombre = $this->input->post('nombre');
-				$apellidos = $this->input->post('apellidos');
+				$apellidoP = $this->input->post('apellidoP');
+				$apellidoM = $this->input->post('apellidoM');
 				$loggin = $this->input->post('loggin');
 				$passw = $this->input->post('passw');
 				$correo = $this->input->post('correo');
 
-				$insert = $this->modelRegister->addUsersStudent($nombre, $apellidos, $loggin, $passw,$correo);
+				$insert = $this->modelRegister->addUsersStudent($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo);
 				if($insert)
-				{
-					$this->load->view('exito');
+				{	$data['exito']=" Se registro correctamente estudiante";
+					$this->load->view('exito',$data);
 				}
 				else
 				{
@@ -98,6 +106,20 @@ class Registrar extends CI_Controller
 				return TRUE;
 			}
 		}
+
+		function check_CIdocente($ci)	
+		{	
+			if(!empty($ci)){
+				$res = $this -> modelRegister -> chekarCI($ci);
+				if($res)
+					return false;
+				else
+					return true; 
+			}
+			else
+				return false;
+			
+		}	
 	}
 }
 ?>
