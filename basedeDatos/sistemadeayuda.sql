@@ -2,10 +2,10 @@
 -- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 19, 2014 at 03:14 p.m.
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Servidor: localhost
+-- Tiempo de generación: 23-05-2014 a las 20:21:43
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,13 +16,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `sistemadeayuda`
+-- Base de datos: `sistemadeayuda`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documentos`
+-- Estructura de tabla para la tabla `documentos`
 --
 
 CREATE TABLE IF NOT EXISTS `documentos` (
@@ -33,14 +33,14 @@ CREATE TABLE IF NOT EXISTS `documentos` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `documentos`
+-- Volcar la base de datos para la tabla `documentos`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documentos_grupo`
+-- Estructura de tabla para la tabla `documentos_grupo`
 --
 
 CREATE TABLE IF NOT EXISTS `documentos_grupo` (
@@ -53,14 +53,14 @@ CREATE TABLE IF NOT EXISTS `documentos_grupo` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `documentos_grupo`
+-- Volcar la base de datos para la tabla `documentos_grupo`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fecha_limite`
+-- Estructura de tabla para la tabla `fecha_limite`
 --
 
 CREATE TABLE IF NOT EXISTS `fecha_limite` (
@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `fecha_limite` (
   `ID_FECHA` int(11) NOT NULL AUTO_INCREMENT,
   `COMENTARIO` varchar(150) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID_FECHA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `fecha_limite`
+-- Volcar la base de datos para la tabla `fecha_limite`
 --
 
 INSERT INTO `fecha_limite` (`FECHA`, `ID_FECHA`, `COMENTARIO`) VALUES
@@ -80,12 +80,13 @@ INSERT INTO `fecha_limite` (`FECHA`, `ID_FECHA`, `COMENTARIO`) VALUES
 ('2014-07-04', 3, 'ver'),
 ('2014-05-18', 4, 'prueba3'),
 ('2014-05-09', 5, 'aca ver'),
-('2014-06-05', 6, 'otra prueba error');
+('2014-06-05', 6, 'otra prueba error'),
+('2014-05-01', 7, 'nuevo');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fecha_limite_tipo`
+-- Estructura de tabla para la tabla `fecha_limite_tipo`
 --
 
 CREATE TABLE IF NOT EXISTS `fecha_limite_tipo` (
@@ -96,14 +97,14 @@ CREATE TABLE IF NOT EXISTS `fecha_limite_tipo` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `fecha_limite_tipo`
+-- Volcar la base de datos para la tabla `fecha_limite_tipo`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `formulario`
+-- Estructura de tabla para la tabla `formulario`
 --
 
 CREATE TABLE IF NOT EXISTS `formulario` (
@@ -114,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `formulario` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
 
 --
--- Dumping data for table `formulario`
+-- Volcar la base de datos para la tabla `formulario`
 --
 
 INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `controlador`) VALUES
@@ -133,7 +134,7 @@ INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `controlador`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grupo`
+-- Estructura de tabla para la tabla `grupo`
 --
 
 CREATE TABLE IF NOT EXISTS `grupo` (
@@ -148,20 +149,22 @@ CREATE TABLE IF NOT EXISTS `grupo` (
   PRIMARY KEY (`COD_GRUPO`),
   KEY `FK_RELATIONSHIP_14` (`ID_REPRESENTANTE`),
   KEY `FK_RELATIONSHIP_3` (`ID_DOCENTE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `grupo`
+-- Volcar la base de datos para la tabla `grupo`
 --
 
 INSERT INTO `grupo` (`COD_GRUPO`, `ID_DOCENTE`, `ID_REPRESENTANTE`, `CORREO_GRUPO`, `NOMBRE_LARGO`, `NOMBRE_CORTO`, `PASSW_GRUPO`, `ACTIVO`) VALUES
 (5, 1, 7, 'softEli@gmail.com', 'desarrollo de software Eli', 'softEli', 'aaAA55', 1),
-(6, 6, 15, 'sofgolty@gmail.com', 'dfee bere  eli', 'softGolty', 'dfasdfwe', 1);
+(6, 6, 15, 'sofgolty@gmail.com', 'dfee bere  eli', 'softGolty', 'dfasdfwe', 1),
+(7, 24, 25, 'abc@gmail.es', 'Algo vhjsdfh', 'ABC', 'abc123', 0),
+(8, 24, 26, 'jas@vshd.com', 'dsf123 $%&amp;', 'jas', 'j123456', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `integrantes_grupo`
+-- Estructura de tabla para la tabla `integrantes_grupo`
 --
 
 CREATE TABLE IF NOT EXISTS `integrantes_grupo` (
@@ -172,17 +175,19 @@ CREATE TABLE IF NOT EXISTS `integrantes_grupo` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `integrantes_grupo`
+-- Volcar la base de datos para la tabla `integrantes_grupo`
 --
 
 INSERT INTO `integrantes_grupo` (`COD_GRUPO`, `ID_USUARIO`) VALUES
 (5, 7),
-(6, 15);
+(6, 15),
+(7, 25),
+(8, 26);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE IF NOT EXISTS `rol` (
@@ -192,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `rol` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `rol`
+-- Volcar la base de datos para la tabla `rol`
 --
 
 INSERT INTO `rol` (`ID_ROL`, `NOMBRE_ROL`) VALUES
@@ -205,7 +210,7 @@ INSERT INTO `rol` (`ID_ROL`, `NOMBRE_ROL`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol_formulario`
+-- Estructura de tabla para la tabla `rol_formulario`
 --
 
 CREATE TABLE IF NOT EXISTS `rol_formulario` (
@@ -216,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `rol_formulario` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `rol_formulario`
+-- Volcar la base de datos para la tabla `rol_formulario`
 --
 
 INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
@@ -237,7 +242,7 @@ INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol_usuario`
+-- Estructura de tabla para la tabla `rol_usuario`
 --
 
 CREATE TABLE IF NOT EXISTS `rol_usuario` (
@@ -248,13 +253,16 @@ CREATE TABLE IF NOT EXISTS `rol_usuario` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `rol_usuario`
+-- Volcar la base de datos para la tabla `rol_usuario`
 --
 
 INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
 (1, 1),
 (1, 4),
 (1, 6),
+(1, 18),
+(1, 22),
+(1, 24),
 (2, 2),
 (2, 3),
 (2, 5),
@@ -268,12 +276,18 @@ INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
 (2, 14),
 (2, 15),
 (2, 16),
-(2, 17);
+(2, 17),
+(2, 19),
+(2, 20),
+(2, 21),
+(2, 23),
+(2, 25),
+(2, 26);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_evento`
+-- Estructura de tabla para la tabla `tipo_evento`
 --
 
 CREATE TABLE IF NOT EXISTS `tipo_evento` (
@@ -283,49 +297,60 @@ CREATE TABLE IF NOT EXISTS `tipo_evento` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `tipo_evento`
+-- Volcar la base de datos para la tabla `tipo_evento`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE` varchar(25) COLLATE utf8_bin NOT NULL,
-  `APELLIDOS` varchar(80) COLLATE utf8_bin NOT NULL,
+  `apellidoM` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `apellidoP` varchar(25) COLLATE utf8_bin DEFAULT NULL,
   `LOGGIN` varchar(20) COLLATE utf8_bin NOT NULL,
   `PASSW` varchar(20) COLLATE utf8_bin NOT NULL,
   `CORREO` varchar(30) COLLATE utf8_bin NOT NULL,
   `ACTIVO` tinyint(1) NOT NULL DEFAULT '1',
+  `ci_docente` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`ID_USUARIO`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
 
 --
--- Dumping data for table `usuario`
+-- Volcar la base de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `APELLIDOS`, `LOGGIN`, `PASSW`, `CORREO`, `ACTIVO`) VALUES
-(1, 'marco', 'montecinos', 'marquito', 'AAaa11', 'marc@gmail.com', 1),
-(2, 'carla', 'salazar', 'carlita', 'AAaa11', 'AAaa11', 1),
-(3, 'emilson', '0', 'eleazar', 'Raptor1989', 'emilsonrod@gmail.com', 1),
-(4, 'alex', 'rodriguez', 'polal21', 'AAaa11', 'polal21@gmail.com', 1),
-(5, 'franklin', '0', 'franco', 'Franco1', 'franco@gmail.com', 1),
-(6, 'sergio', 'lino', 'serL', 'AAaa66', 'serg@gmail.com', 1),
-(7, 'jony', 'cerezo', 'JhonC', 'AAaa77', 'jon@gmail.com', 1),
-(8, 'juan', 'montes', 'JMont', 'AAaa88', 'juaMon@gmail.com', 1),
-(9, 'lucas', 'gonu', 'LucG', 'AAaa99', 'luc@gmail.com', 1),
-(10, 'marco', 'lino', 'linma', 'AAaa11', 'marcLinV@gmail.com', 1),
-(11, 'luis', 'ponko', 'Lponk', 'AAaa11', 'luiK@gmail.com', 1),
-(12, 'carlos', 'luna', 'carlun', 'AAaa11', 'carlos@gmail.com', 1),
-(13, 'cristian', 'arenas', 'cristare', 'AAaa11', 'cristian@gmail.com', 1),
-(14, 'nelly', 'choque', 'nelly', 'AAaa11', 'nelly@hotmail.com', 1),
-(15, 'richart', 'rio', 'ririo', 'AAaa11', 'riog@hotmail.com', 1),
-(16, 'janet', 'caceres', 'janca', 'AAaa11', 'janet@gmail.com', 1),
-(17, 'luis', 'montaño', 'lumon', 'AAaa11', 'monlu@gmail.com', 1);
+INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `apellidoM`, `apellidoP`, `LOGGIN`, `PASSW`, `CORREO`, `ACTIVO`, `ci_docente`) VALUES
+(1, 'marco', NULL, NULL, 'marquito', 'AAaa11', 'marc@gmail.com', 1, NULL),
+(2, 'carla', NULL, NULL, 'carlita', 'AAaa11', 'AAaa11', 1, NULL),
+(3, 'emilson', NULL, NULL, 'eleazar', 'Raptor1989', 'emilsonrod@gmail.com', 1, NULL),
+(4, 'alex', NULL, NULL, 'polal21', 'AAaa11', 'polal21@gmail.com', 1, NULL),
+(5, 'franklin', NULL, NULL, 'franco', 'Franco1', 'franco@gmail.com', 1, NULL),
+(6, 'sergio', NULL, NULL, 'serL', 'AAaa66', 'serg@gmail.com', 1, NULL),
+(7, 'jony', NULL, NULL, 'JhonC', 'AAaa77', 'jon@gmail.com', 1, NULL),
+(8, 'juan', NULL, NULL, 'JMont', 'AAaa88', 'juaMon@gmail.com', 1, NULL),
+(9, 'lucas', NULL, NULL, 'LucG', 'AAaa99', 'luc@gmail.com', 1, NULL),
+(10, 'marco', NULL, NULL, 'linma', 'AAaa11', 'marcLinV@gmail.com', 1, NULL),
+(11, 'luis', NULL, NULL, 'Lponk', 'AAaa11', 'luiK@gmail.com', 1, NULL),
+(12, 'carlos', NULL, NULL, 'carlun', 'AAaa11', 'carlos@gmail.com', 1, NULL),
+(13, 'cristian', NULL, NULL, 'cristare', 'AAaa11', 'cristian@gmail.com', 1, NULL),
+(14, 'nelly', NULL, NULL, 'nelly', 'AAaa11', 'nelly@hotmail.com', 1, NULL),
+(15, 'richart', NULL, NULL, 'ririo', 'AAaa11', 'riog@hotmail.com', 1, NULL),
+(16, 'janet', NULL, NULL, 'janca', 'AAaa11', 'janet@gmail.com', 1, NULL),
+(17, 'luis', NULL, NULL, 'lumon', 'AAaa11', 'monlu@gmail.com', 1, NULL),
+(18, 'boris', 'navia', 'calancha', 'borisito', 'AAaa11', 'boris@gmail.com', 1, '7892458'),
+(19, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkhoti', 'AAAaa11', 'hghgh@hotmail.com', 1, NULL),
+(20, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkh', 'AAAaa11', 'hgtrh@hotmail.com', 1, NULL),
+(21, 'franko', 'agtun', 'flores', 'agtuni', 'aaAA11', 'agt@gmail.com', 1, NULL),
+(22, 'franko', 'agtun', 'flores', 'agtuni2', 'aaAA11', 'agt2@gmail.com', 1, '4789652'),
+(23, 'marco', 'aguanta', 'aguanta', 'anggel', 'AAaa11', 'der@hotmail.com', 1, NULL),
+(24, 'Ana', 'Martinez', 'Lopez', 'ana', 'Ana123', 'ana@hotmail.com', 1, '12345678'),
+(25, 'Juan', 'Montan', 'Perez', 'juan', 'Juan123', 'juan@gmail.com', 1, NULL),
+(26, 'Maria', 'Marin', 'arnez', 'maria', 'Maria123', 'moni@gmail.com', 1, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
