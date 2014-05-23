@@ -1,5 +1,5 @@
 <?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda',$tareas);?>
+<?php $this->load->view('viewIzquierda');?>
 
 <div id="columnacentral">
     <h1> Crear una Cuenta</h1>

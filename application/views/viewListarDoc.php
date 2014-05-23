@@ -1,5 +1,5 @@
 <?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda',$tareas);?>
+<?php $this->load->view('viewIzquierda');?>
 
 <!--LISTAR DOCUMENTOS GRUPO-->
 <div id="columnacentral">

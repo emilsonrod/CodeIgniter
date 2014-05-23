@@ -33,7 +33,7 @@ class Registrar extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
 		{	$data['tareas']=$this->session->userdata('tareas');
-			$this->load->view('viewRegistrar',$data);
+			$this->load->view('viewRegistrar');
 		}
 		else
 		{

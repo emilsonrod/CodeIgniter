@@ -9,11 +9,7 @@ class ModelLogin extends CI_Model
         return $this->db->get_where('usuario', array('loggin' => $username,'passw' => $password))->row();
     }
 	function isLogged(){
-		if (isset($this->session->userdata['usuario'])) {
-			return TRUE;
-		}else{
-			return FALSE;
-		}
+		return isset($this->session->userdata['usuario']);		
 	}
 
 	public function getTareas($rol=''){
