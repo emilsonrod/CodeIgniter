@@ -36,7 +36,7 @@ class GrupoM extends CI_Model {
 		return FALSE;
 	}
 	function getDocentes()
-	{ $sql='SELECT u.id_usuario,u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
+	{ $sql='SELECT u.id_usuario,u.nombre,u.apellidoP  FROM usuario u,rol_usuario ru,rol r
 			where r.nombre_rol=\'docente\' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario';
 		$query = $this->db->query($sql);
 
@@ -57,7 +57,7 @@ class GrupoM extends CI_Model {
 	}
 
 	function getIntegrantes($grupo){
-		$sql="select u.nombre,u.apellidopaterno,u.apellidomaterno  from usuario u,grupo g,integrantes_grupo ig
+		$sql="select u.nombre,u.apellidoP,u.apellidoM  from usuario u,grupo g,integrantes_grupo ig
 			where u.id_usuario=ig.id_usuario and ig.cod_grupo=g.cod_grupo and g.nombre_corto='".$grupo."'";
 		return $this->db->query($sql);
 	}

@@ -10,7 +10,7 @@ class Registrar extends CI_Controller
 	}
 	public function index()
 	{
-
+        
 		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[25]|alpha');
         $this->form_validation->set_rules('apellidoP', 'apellidoP', 'trim|required|max_length[80]|alpha');
         $this->form_validation->set_rules('apellidoM', 'apellidoM', 'trim|required|max_length[80]|alpha');
@@ -34,7 +34,7 @@ class Registrar extends CI_Controller
 
         if ($this->form_validation->run() == FALSE)
 		{	$data['tareas']=$this->session->userdata('tareas');
-			$this->load->view('viewRegistrar');
+			$this->load->view('viewRegistrar',$data);
 		}
 		else
 		{

@@ -8,19 +8,19 @@ class ModelUsuario extends CI_Model {
 	}
     function getDocentes()
 	{ 
-        $sql="SELECT u.id_usuario,u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
+        $sql="SELECT u.id_usuario,u.nombre,u.apellidoP,u.apellidoM  FROM usuario u,rol_usuario ru,rol r
 			where r.nombre_rol='docente' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario";
 		$query = $this->db->query($sql);
         $arreglo =array();
         $arreglo['']="Elige tu Docente";
         foreach ($query->result_array() as $row)
 		{
-				$arreglo[$row['id_usuario']]=$row['nombre'].' '.$row['apellidos'];
+				$arreglo[$row['id_usuario']]=$row['nombre'].' '.$row['apellidoP'].' '.$row['apellidoM'] ;
     	}
 		return $arreglo;
 	}
     function mostrarDocentes(){
-		$sql="SELECT u.nombre,u.apellidos  FROM usuario u,rol_usuario ru,rol r
+		$sql="SELECT u.nombre,u.apellidoP,u.apellidoM  FROM usuario u,rol_usuario ru,rol r
 			where r.nombre_rol='docente' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario";
 		$query = $this->db->query($sql);
 

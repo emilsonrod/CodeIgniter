@@ -238,7 +238,55 @@ INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
 (11, 5),
 (12, 5),
 (13, 2);
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `usuario`
+--
 
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE` varchar(25) COLLATE utf8_bin NOT NULL,
+  `apellidoM` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `apellidoP` varchar(25) COLLATE utf8_bin DEFAULT NULL,
+  `LOGGIN` varchar(20) COLLATE utf8_bin NOT NULL,
+  `PASSW` varchar(20) COLLATE utf8_bin NOT NULL,
+  `CORREO` varchar(30) COLLATE utf8_bin NOT NULL,
+  `ACTIVO` tinyint(1) NOT NULL DEFAULT '1',
+  `ci_docente` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`ID_USUARIO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
+
+--
+-- Volcar la base de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `apellidoM`, `apellidoP`, `LOGGIN`, `PASSW`, `CORREO`, `ACTIVO`, `ci_docente`) VALUES
+(1, 'marco','Luna','Salinas', 'marquito', 'AAaa11', 'marc@gmail.com', 1, NULL),
+(2, 'carla', 'Mamani','Quispe', 'carlita', 'AAaa11', 'AAaa11', 1, NULL),
+(3, 'emilson', 'rodriguez','lopez', 'eleazar', 'Raptor1989', 'emilsonrod@gmail.com', 1, NULL),
+(4, 'alex', 'flores','rodriguez', 'polal21', 'AAaa11', 'polal21@gmail.com', 1, NULL),
+(5, 'franklin','siles','quispe', 'franco', 'Franco1', 'franco@gmail.com', 1, NULL),
+(6, 'sergio','lopez','salinas', 'serL', 'AAaa66', 'serg@gmail.com', 1, NULL),
+(7, 'jony','arjona','castro', 'JhonC', 'AAaa77', 'jon@gmail.com', 1, NULL),
+(8, 'juan', 'mamani','castro', 'JMont', 'AAaa88', 'juaMon@gmail.com', 1, NULL),
+(9, 'lucas', 'salinas','luna', 'LucG', 'AAaa99', 'luc@gmail.com', 1, NULL),
+(10, 'marco', 'cespedes','bult', 'linma', 'AAaa11', 'marcLinV@gmail.com', 1, NULL),
+(11, 'luis', 'luna','rodriguez', 'Lponk', 'AAaa11', 'luiK@gmail.com', 1, NULL),
+(12, 'carlos','cespedes','mamani', 'carlun', 'AAaa11', 'carlos@gmail.com', 1, NULL),
+(13, 'cristian', 'lopez','cespedes', 'cristare', 'AAaa11', 'cristian@gmail.com', 1, NULL),
+(14, 'nelly', 'flores','quispe', 'nelly', 'AAaa11', 'nelly@hotmail.com', 1, NULL),
+(15, 'richart', 'miranda',null, 'ririo', 'AAaa11', 'riog@hotmail.com', 1, NULL),
+(16, 'janet', 'nuvia','luna', 'janca', 'AAaa11', 'janet@gmail.com', 1, NULL),
+(17, 'luis', 'humer','trainer', 'lumon', 'AAaa11', 'monlu@gmail.com', 1, NULL),
+(18, 'boris', 'navia', 'calancha', 'borisito', 'AAaa11', 'boris@gmail.com', 1, '7892458'),
+(19, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkhoti', 'AAAaa11', 'hghgh@hotmail.com', 1, NULL),
+(20, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkh', 'AAAaa11', 'hgtrh@hotmail.com', 1, NULL),
+(21, 'franko', 'agtun', 'flores', 'agtuni', 'aaAA11', 'agt@gmail.com', 1, NULL),
+(22, 'franko', 'agtun', 'flores', 'agtuni2', 'aaAA11', 'agt2@gmail.com', 1, '4789652'),
+(23, 'marco', 'aguanta', 'aguanta', 'anggel', 'AAaa11', 'der@hotmail.com', 1, NULL),
+(24, 'Ana', 'Martinez', 'Lopez', 'ana', 'Ana123', 'ana@hotmail.com', 1, '12345678'),
+(25, 'Juan', 'Montan', 'Perez', 'juan', 'Juan123', 'juan@gmail.com', 1, NULL),
+(26, 'Maria', 'Marin', 'arnez', 'maria', 'Maria123', 'moni@gmail.com', 1, NULL);
 -- --------------------------------------------------------
 
 --
@@ -303,54 +351,7 @@ CREATE TABLE IF NOT EXISTS `tipo_evento` (
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `usuario`
---
 
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE` varchar(25) COLLATE utf8_bin NOT NULL,
-  `apellidoM` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `apellidoP` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `LOGGIN` varchar(20) COLLATE utf8_bin NOT NULL,
-  `PASSW` varchar(20) COLLATE utf8_bin NOT NULL,
-  `CORREO` varchar(30) COLLATE utf8_bin NOT NULL,
-  `ACTIVO` tinyint(1) NOT NULL DEFAULT '1',
-  `ci_docente` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_USUARIO`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
-
---
--- Volcar la base de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `apellidoM`, `apellidoP`, `LOGGIN`, `PASSW`, `CORREO`, `ACTIVO`, `ci_docente`) VALUES
-(1, 'marco', NULL, NULL, 'marquito', 'AAaa11', 'marc@gmail.com', 1, NULL),
-(2, 'carla', NULL, NULL, 'carlita', 'AAaa11', 'AAaa11', 1, NULL),
-(3, 'emilson', NULL, NULL, 'eleazar', 'Raptor1989', 'emilsonrod@gmail.com', 1, NULL),
-(4, 'alex', NULL, NULL, 'polal21', 'AAaa11', 'polal21@gmail.com', 1, NULL),
-(5, 'franklin', NULL, NULL, 'franco', 'Franco1', 'franco@gmail.com', 1, NULL),
-(6, 'sergio', NULL, NULL, 'serL', 'AAaa66', 'serg@gmail.com', 1, NULL),
-(7, 'jony', NULL, NULL, 'JhonC', 'AAaa77', 'jon@gmail.com', 1, NULL),
-(8, 'juan', NULL, NULL, 'JMont', 'AAaa88', 'juaMon@gmail.com', 1, NULL),
-(9, 'lucas', NULL, NULL, 'LucG', 'AAaa99', 'luc@gmail.com', 1, NULL),
-(10, 'marco', NULL, NULL, 'linma', 'AAaa11', 'marcLinV@gmail.com', 1, NULL),
-(11, 'luis', NULL, NULL, 'Lponk', 'AAaa11', 'luiK@gmail.com', 1, NULL),
-(12, 'carlos', NULL, NULL, 'carlun', 'AAaa11', 'carlos@gmail.com', 1, NULL),
-(13, 'cristian', NULL, NULL, 'cristare', 'AAaa11', 'cristian@gmail.com', 1, NULL),
-(14, 'nelly', NULL, NULL, 'nelly', 'AAaa11', 'nelly@hotmail.com', 1, NULL),
-(15, 'richart', NULL, NULL, 'ririo', 'AAaa11', 'riog@hotmail.com', 1, NULL),
-(16, 'janet', NULL, NULL, 'janca', 'AAaa11', 'janet@gmail.com', 1, NULL),
-(17, 'luis', NULL, NULL, 'lumon', 'AAaa11', 'monlu@gmail.com', 1, NULL),
-(18, 'boris', 'navia', 'calancha', 'borisito', 'AAaa11', 'boris@gmail.com', 1, '7892458'),
-(19, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkhoti', 'AAAaa11', 'hghgh@hotmail.com', 1, NULL),
-(20, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkh', 'AAAaa11', 'hgtrh@hotmail.com', 1, NULL),
-(21, 'franko', 'agtun', 'flores', 'agtuni', 'aaAA11', 'agt@gmail.com', 1, NULL),
-(22, 'franko', 'agtun', 'flores', 'agtuni2', 'aaAA11', 'agt2@gmail.com', 1, '4789652'),
-(23, 'marco', 'aguanta', 'aguanta', 'anggel', 'AAaa11', 'der@hotmail.com', 1, NULL),
-(24, 'Ana', 'Martinez', 'Lopez', 'ana', 'Ana123', 'ana@hotmail.com', 1, '12345678'),
-(25, 'Juan', 'Montan', 'Perez', 'juan', 'Juan123', 'juan@gmail.com', 1, NULL),
-(26, 'Maria', 'Marin', 'arnez', 'maria', 'Maria123', 'moni@gmail.com', 1, NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

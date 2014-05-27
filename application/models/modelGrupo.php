@@ -70,7 +70,7 @@ class ModelGrupo extends CI_Model {
 		return false;
 	}
 	function getIntegrantes($grupo){
-		$sql="select u.nombre,u.apellidos  from usuario u,grupo g,integrantes_grupo ig
+		$sql="select u.nombre,u.apellidoP,u.apellidoM  from usuario u,grupo g,integrantes_grupo ig
 			where u.id_usuario=ig.id_usuario and ig.cod_grupo=g.cod_grupo and g.nombre_corto='".$grupo."'";
 		return $this->db->query($sql);
 	}
