@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-05-2014 a las 20:21:43
+-- Tiempo de generación: 02-06-2014 a las 22:59:06
 -- Versión del servidor: 5.1.41
 -- Versión de PHP: 5.3.1
 
@@ -22,84 +22,110 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `documentos`
+-- Estructura de tabla para la tabla `documento_docente`
 --
 
-CREATE TABLE IF NOT EXISTS `documentos` (
-  `COD_DOCUMEN` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE_DOC` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `RUTA` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`COD_DOCUMEN`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `documento_docente` (
+  `ID_USUARIO` int(11) NOT NULL,
+  `COD_DOC_DOC` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE_DOC` varchar(100) DEFAULT NULL,
+  `FECHA_SUBIDA` date DEFAULT NULL,
+  `DESCRIPCION` text,
+  PRIMARY KEY (`ID_USUARIO`,`COD_DOC_DOC`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Volcar la base de datos para la tabla `documentos`
+-- Volcar la base de datos para la tabla `documento_docente`
 --
 
+INSERT INTO `documento_docente` (`ID_USUARIO`, `COD_DOC_DOC`, `NOMBRE_DOC`, `FECHA_SUBIDA`, `DESCRIPCION`) VALUES
+(1, 1, '1401747502-inv.pdf', '2014-06-02', 'nnnnnnnnnnnnnnnnnnnnnnnn'),
+(1, 2, '1401747521-inv.pdf', '2014-06-02', 'ccccc'),
+(1, 3, '1401747610-inv.pdf', '2014-06-02', 'corina doc\r\n'),
+(1, 4, '1401756284-inv.pdf', '2014-06-02', 'NNMB');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `documentos_grupo`
+-- Estructura de tabla para la tabla `entrega`
 --
 
-CREATE TABLE IF NOT EXISTS `documentos_grupo` (
-  `ID_FECHA` int(11) NOT NULL,
-  `COD_DOCUMEN` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `entrega` (
+  `ID_ENTREGA` int(11) NOT NULL AUTO_INCREMENT,
+  `COD_GRUPO` int(11) DEFAULT NULL,
+  `ID_EVENTO` int(11) DEFAULT NULL,
+  `NOMBRE_ENTREGA` varchar(50) DEFAULT NULL,
+  `FECHA_ENTREGA` date DEFAULT NULL,
+  `COMENTARIO` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_ENTREGA`),
+  KEY `FK_RELATIONSHIP_15` (`COD_GRUPO`),
+  KEY `FK_RELATIONSHIP_16` (`ID_EVENTO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+--
+-- Volcar la base de datos para la tabla `entrega`
+--
+
+INSERT INTO `entrega` (`ID_ENTREGA`, `COD_GRUPO`, `ID_EVENTO`, `NOMBRE_ENTREGA`, `FECHA_ENTREGA`, `COMENTARIO`) VALUES
+(25, 1, 5, '1401770433-inv.pdf', '2014-06-02', 'hito pruebas'),
+(24, 1, 5, '1401770249-inv.pdf', '2014-06-02', 'hito documneto entrega'),
+(22, 1, 1401745853, 'nnnnnnn corina', '2014-06-02', '1'),
+(23, 1, 2, '1401770141-inv.pdf', '2014-06-02', 'hito de hito'),
+(21, 1, 1, '1401700173-Doc1.docx', '2014-06-02', 'bbbbbbbbbbbbbbb'),
+(20, 1, 2, '1401699838-inv.pdf', '2014-06-02', 'asevv'),
+(18, 1, 4, '1401699594-inv.pdf', '2014-06-02', 'nnnnnnnnnnnnnnnn'),
+(19, 1, 2, '1401699651-inv.pdf', '2014-06-02', 'ffasea'),
+(26, 1, 5, '1401770997-inv.pdf', '2014-06-02', 'nnnnnnnnnnnnnnnnnnnnnnnnn');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento`
+--
+
+CREATE TABLE IF NOT EXISTS `evento` (
+  `FECHA_EVENTO` date DEFAULT NULL,
+  `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_USUARIO` int(11) NOT NULL,
+  `ID_TIPO_EVENTO` int(11) NOT NULL,
+  `AVISO` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_EVENTO`),
+  KEY `FK_RELATIONSHIP_13` (`ID_USUARIO`),
+  KEY `FK_RELATIONSHIP_14` (`ID_TIPO_EVENTO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Volcar la base de datos para la tabla `evento`
+--
+
+INSERT INTO `evento` (`FECHA_EVENTO`, `ID_EVENTO`, `ID_USUARIO`, `ID_TIPO_EVENTO`, `AVISO`) VALUES
+('2014-06-25', 1, 1, 1, 'Lo recomendable es que la entrega sea con el nombre entrga_A.zip'),
+('2014-06-16', 2, 2, 5, 'documentos doc '),
+('2014-06-16', 5, 2, 6, 'camila otro aviso'),
+('2014-06-01', 4, 1, 4, 'entrega de la fase a de la documentacion de la d ded eka skdasd a cege i fly when beat my herart eeee i up no body oooo'),
+('2014-06-16', 6, 3, 5, 'kkkk');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `evento_particular`
+--
+
+CREATE TABLE IF NOT EXISTS `evento_particular` (
+  `ID_EVENTO` int(11) NOT NULL,
   `COD_GRUPO` int(11) NOT NULL,
-  PRIMARY KEY (`ID_FECHA`,`COD_DOCUMEN`,`COD_GRUPO`),
-  KEY `FK_RELATIONSHIP_11` (`COD_GRUPO`),
-  KEY `FK_RELATIONSHIP_12` (`COD_DOCUMEN`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  PRIMARY KEY (`ID_EVENTO`,`COD_GRUPO`),
+  KEY `FK_RELATIONSHIP_19` (`COD_GRUPO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Volcar la base de datos para la tabla `documentos_grupo`
+-- Volcar la base de datos para la tabla `evento_particular`
 --
 
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `fecha_limite`
---
-
-CREATE TABLE IF NOT EXISTS `fecha_limite` (
-  `FECHA` date DEFAULT NULL,
-  `ID_FECHA` int(11) NOT NULL AUTO_INCREMENT,
-  `COMENTARIO` varchar(150) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_FECHA`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
-
---
--- Volcar la base de datos para la tabla `fecha_limite`
---
-
-INSERT INTO `fecha_limite` (`FECHA`, `ID_FECHA`, `COMENTARIO`) VALUES
-('2014-05-17', 1, 'prueba'),
-('2014-07-12', 2, 'prueba2'),
-('2014-07-04', 3, 'ver'),
-('2014-05-18', 4, 'prueba3'),
-('2014-05-09', 5, 'aca ver'),
-('2014-06-05', 6, 'otra prueba error'),
-('2014-05-01', 7, 'nuevo');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `fecha_limite_tipo`
---
-
-CREATE TABLE IF NOT EXISTS `fecha_limite_tipo` (
-  `ID_FECHA` int(11) NOT NULL,
-  `ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID_FECHA`,`ID`),
-  KEY `FK_RELATIONSHIP_8` (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Volcar la base de datos para la tabla `fecha_limite_tipo`
---
-
+INSERT INTO `evento_particular` (`ID_EVENTO`, `COD_GRUPO`) VALUES
+(2, 1),
+(5, 1),
+(6, 2);
 
 -- --------------------------------------------------------
 
@@ -109,27 +135,29 @@ CREATE TABLE IF NOT EXISTS `fecha_limite_tipo` (
 
 CREATE TABLE IF NOT EXISTS `formulario` (
   `ID_FORM` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE_FORM` varchar(30) COLLATE utf8_bin NOT NULL,
-  `controlador` varchar(100) COLLATE utf8_bin NOT NULL,
+  `NOMBRE_FORM` varchar(30) NOT NULL,
+  `CONTROLADOR` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_FORM`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Volcar la base de datos para la tabla `formulario`
 --
 
-INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `controlador`) VALUES
-(7, 'Salir', 'ingresar/cerrarSession'),
-(2, 'Registrar Grupo', 'grupo'),
-(3, 'Inscribirse', 'registrarseGrupo'),
-(5, 'Ver Grupos', 'integrantes'),
-(6, 'Dar Baja Grupo', 'listaGrupos'),
-(8, 'incluir lista de estudiantes', 'csvcontroller'),
-(9, 'fijar fechas de entrega de hit', 'calendar'),
-(10, 'subir documentos convocatoria', 'subirDoc'),
-(11, 'Registrarse', 'registrar'),
-(12, 'Docentes', 'docente'),
-(13, 'Grupos existentes', 'gruposInscritosGlobal');
+INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `CONTROLADOR`) VALUES
+(1, 'Salir', 'ingresar/cerrarSession'),
+(2, 'Registrarse', 'registrar'),
+(3, 'Registrar Grupo', 'grupo'),
+(4, 'Inscribirse Grupo', 'registrarseGrupo'),
+(5, 'Fijar fecha Entrega HITO', 'calendar'),
+(6, 'Grupos Existentes', 'gruposInscritosGlobal'),
+(7, 'Subir Documento', 'subirDocEst'),
+(8, 'Subir Hito', 'subirHito'),
+(9, 'Subir Documentos Convocatoria', 'subirDocDocente'),
+(10, 'Ver Grupos', 'integrantes'),
+(11, 'Dar Baja Grupo', 'listaGrupos'),
+(12, 'Incluir Lista de Estudiantes', 'csvcontroller'),
+(13, 'Docentes', 'docente');
 
 -- --------------------------------------------------------
 
@@ -139,27 +167,24 @@ INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `controlador`) VALUES
 
 CREATE TABLE IF NOT EXISTS `grupo` (
   `COD_GRUPO` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_DOCENTE` int(11) NOT NULL,
-  `ID_REPRESENTANTE` int(11) NOT NULL,
-  `CORREO_GRUPO` varchar(50) COLLATE utf8_bin NOT NULL,
-  `NOMBRE_LARGO` varchar(100) COLLATE utf8_bin NOT NULL,
-  `NOMBRE_CORTO` varchar(50) COLLATE utf8_bin NOT NULL,
-  `PASSW_GRUPO` varchar(15) COLLATE utf8_bin NOT NULL,
-  `ACTIVO` tinyint(1) NOT NULL DEFAULT '1',
+  `ID_USUARIO` int(11) NOT NULL,
+  `USU_ID_USUARIO` int(11) NOT NULL,
+  `NOMBRE_LARGO` varchar(100) NOT NULL,
+  `NOMBRE_CORTO` varchar(50) NOT NULL,
+  `PASSW_GRUPO` varchar(15) NOT NULL,
+  `ACTIVO` tinyint(1) NOT NULL,
   PRIMARY KEY (`COD_GRUPO`),
-  KEY `FK_RELATIONSHIP_14` (`ID_REPRESENTANTE`),
-  KEY `FK_RELATIONSHIP_3` (`ID_DOCENTE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=9 ;
+  KEY `FK_RELATIONSHIP_3` (`ID_USUARIO`),
+  KEY `FK_RELATIONSHIP_9` (`USU_ID_USUARIO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcar la base de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`COD_GRUPO`, `ID_DOCENTE`, `ID_REPRESENTANTE`, `CORREO_GRUPO`, `NOMBRE_LARGO`, `NOMBRE_CORTO`, `PASSW_GRUPO`, `ACTIVO`) VALUES
-(5, 1, 7, 'softEli@gmail.com', 'desarrollo de software Eli', 'softEli', 'aaAA55', 1),
-(6, 6, 15, 'sofgolty@gmail.com', 'dfee bere  eli', 'softGolty', 'dfasdfwe', 1),
-(7, 24, 25, 'abc@gmail.es', 'Algo vhjsdfh', 'ABC', 'abc123', 0),
-(8, 24, 26, 'jas@vshd.com', 'dsf123 $%&amp;', 'jas', 'j123456', 0);
+INSERT INTO `grupo` (`COD_GRUPO`, `ID_USUARIO`, `USU_ID_USUARIO`, `NOMBRE_LARGO`, `NOMBRE_CORTO`, `PASSW_GRUPO`, `ACTIVO`) VALUES
+(1, 2, 1, 'technology ancasoft', 'ancasoft', '123456', 1),
+(2, 3, 4, 'OTRO GRUPO', 'OTRO', '123456', 1);
 
 -- --------------------------------------------------------
 
@@ -168,21 +193,54 @@ INSERT INTO `grupo` (`COD_GRUPO`, `ID_DOCENTE`, `ID_REPRESENTANTE`, `CORREO_GRUP
 --
 
 CREATE TABLE IF NOT EXISTS `integrantes_grupo` (
-  `COD_GRUPO` int(11) NOT NULL,
   `ID_USUARIO` int(11) NOT NULL,
-  PRIMARY KEY (`COD_GRUPO`,`ID_USUARIO`),
-  KEY `FK_RELATIONSHIP_6` (`ID_USUARIO`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `COD_GRUPO` int(11) NOT NULL,
+  PRIMARY KEY (`ID_USUARIO`,`COD_GRUPO`),
+  KEY `FK_RELATIONSHIP_7` (`COD_GRUPO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcar la base de datos para la tabla `integrantes_grupo`
 --
 
-INSERT INTO `integrantes_grupo` (`COD_GRUPO`, `ID_USUARIO`) VALUES
-(5, 7),
-(6, 15),
-(7, 25),
-(8, 26);
+INSERT INTO `integrantes_grupo` (`ID_USUARIO`, `COD_GRUPO`) VALUES
+(2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nota`
+--
+
+CREATE TABLE IF NOT EXISTS `nota` (
+  `ID_ENTREGA` int(11) NOT NULL,
+  `CALIFICACION` int(11) DEFAULT NULL,
+  `OBSERVACION` text,
+  PRIMARY KEY (`ID_ENTREGA`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `nota`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nota_estudiante`
+--
+
+CREATE TABLE IF NOT EXISTS `nota_estudiante` (
+  `ID_USUARIO` int(11) NOT NULL,
+  `NOTA_ESTUDIANTE` int(11) DEFAULT NULL,
+  `OBSERVACION_ESTUDIANTE` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_USUARIO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcar la base de datos para la tabla `nota_estudiante`
+--
+
 
 -- --------------------------------------------------------
 
@@ -192,9 +250,9 @@ INSERT INTO `integrantes_grupo` (`COD_GRUPO`, `ID_USUARIO`) VALUES
 
 CREATE TABLE IF NOT EXISTS `rol` (
   `ID_ROL` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE_ROL` varchar(25) COLLATE utf8_bin NOT NULL,
+  `NOMBRE_ROL` varchar(25) NOT NULL,
   PRIMARY KEY (`ID_ROL`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcar la base de datos para la tabla `rol`
@@ -214,79 +272,32 @@ INSERT INTO `rol` (`ID_ROL`, `NOMBRE_ROL`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `rol_formulario` (
-  `ID_FORM` int(11) NOT NULL,
   `ID_ROL` int(11) NOT NULL,
-  PRIMARY KEY (`ID_FORM`,`ID_ROL`),
-  KEY `FK_RELATIONSHIP_4` (`ID_ROL`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `ID_FORM` int(11) NOT NULL,
+  PRIMARY KEY (`ID_ROL`,`ID_FORM`),
+  KEY `FK_RELATIONSHIP_5` (`ID_FORM`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcar la base de datos para la tabla `rol_formulario`
 --
 
-INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
-(1, 2),
-(2, 2),
-(3, 2),
-(5, 1),
-(6, 1),
-(7, 1),
-(7, 2),
-(8, 1),
-(9, 2),
-(10, 1),
-(11, 5),
-(12, 5),
-(13, 2);
--- --------------------------------------------------------
---
--- Estructura de tabla para la tabla `usuario`
---
+INSERT INTO `rol_formulario` (`ID_ROL`, `ID_FORM`) VALUES
+(1, 1),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(2, 1),
+(2, 3),
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
+(5, 2),
+(5, 13);
 
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
-  `NOMBRE` varchar(25) COLLATE utf8_bin NOT NULL,
-  `apellidoM` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `apellidoP` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  `LOGGIN` varchar(20) COLLATE utf8_bin NOT NULL,
-  `PASSW` varchar(20) COLLATE utf8_bin NOT NULL,
-  `CORREO` varchar(30) COLLATE utf8_bin NOT NULL,
-  `ACTIVO` tinyint(1) NOT NULL DEFAULT '1',
-  `ci_docente` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID_USUARIO`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
-
---
--- Volcar la base de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `apellidoM`, `apellidoP`, `LOGGIN`, `PASSW`, `CORREO`, `ACTIVO`, `ci_docente`) VALUES
-(1, 'marco','Luna','Salinas', 'marquito', 'AAaa11', 'marc@gmail.com', 1, NULL),
-(2, 'carla', 'Mamani','Quispe', 'carlita', 'AAaa11', 'AAaa11', 1, NULL),
-(3, 'emilson', 'rodriguez','lopez', 'eleazar', 'Raptor1989', 'emilsonrod@gmail.com', 1, NULL),
-(4, 'alex', 'flores','rodriguez', 'polal21', 'AAaa11', 'polal21@gmail.com', 1, NULL),
-(5, 'franklin','siles','quispe', 'franco', 'Franco1', 'franco@gmail.com', 1, NULL),
-(6, 'sergio','lopez','salinas', 'serL', 'AAaa66', 'serg@gmail.com', 1, NULL),
-(7, 'jony','arjona','castro', 'JhonC', 'AAaa77', 'jon@gmail.com', 1, NULL),
-(8, 'juan', 'mamani','castro', 'JMont', 'AAaa88', 'juaMon@gmail.com', 1, NULL),
-(9, 'lucas', 'salinas','luna', 'LucG', 'AAaa99', 'luc@gmail.com', 1, NULL),
-(10, 'marco', 'cespedes','bult', 'linma', 'AAaa11', 'marcLinV@gmail.com', 1, NULL),
-(11, 'luis', 'luna','rodriguez', 'Lponk', 'AAaa11', 'luiK@gmail.com', 1, NULL),
-(12, 'carlos','cespedes','mamani', 'carlun', 'AAaa11', 'carlos@gmail.com', 1, NULL),
-(13, 'cristian', 'lopez','cespedes', 'cristare', 'AAaa11', 'cristian@gmail.com', 1, NULL),
-(14, 'nelly', 'flores','quispe', 'nelly', 'AAaa11', 'nelly@hotmail.com', 1, NULL),
-(15, 'richart', 'miranda',null, 'ririo', 'AAaa11', 'riog@hotmail.com', 1, NULL),
-(16, 'janet', 'nuvia','luna', 'janca', 'AAaa11', 'janet@gmail.com', 1, NULL),
-(17, 'luis', 'humer','trainer', 'lumon', 'AAaa11', 'monlu@gmail.com', 1, NULL),
-(18, 'boris', 'navia', 'calancha', 'borisito', 'AAaa11', 'boris@gmail.com', 1, '7892458'),
-(19, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkhoti', 'AAAaa11', 'hghgh@hotmail.com', 1, NULL),
-(20, 'kdjfdjfkl', 'cvm', 'mbnbjgut', 'kjhkh', 'AAAaa11', 'hgtrh@hotmail.com', 1, NULL),
-(21, 'franko', 'agtun', 'flores', 'agtuni', 'aaAA11', 'agt@gmail.com', 1, NULL),
-(22, 'franko', 'agtun', 'flores', 'agtuni2', 'aaAA11', 'agt2@gmail.com', 1, '4789652'),
-(23, 'marco', 'aguanta', 'aguanta', 'anggel', 'AAaa11', 'der@hotmail.com', 1, NULL),
-(24, 'Ana', 'Martinez', 'Lopez', 'ana', 'Ana123', 'ana@hotmail.com', 1, '12345678'),
-(25, 'Juan', 'Montan', 'Perez', 'juan', 'Juan123', 'juan@gmail.com', 1, NULL),
-(26, 'Maria', 'Marin', 'arnez', 'maria', 'Maria123', 'moni@gmail.com', 1, NULL);
 -- --------------------------------------------------------
 
 --
@@ -294,43 +305,21 @@ INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `apellidoM`, `apellidoP`, `LOGGIN
 --
 
 CREATE TABLE IF NOT EXISTS `rol_usuario` (
-  `ID_ROL` int(11) NOT NULL,
   `ID_USUARIO` int(11) NOT NULL,
-  PRIMARY KEY (`ID_ROL`,`ID_USUARIO`),
-  KEY `FK_RELATIONSHIP_1` (`ID_USUARIO`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `ID_ROL` int(11) NOT NULL,
+  PRIMARY KEY (`ID_USUARIO`,`ID_ROL`),
+  KEY `FK_RELATIONSHIP_2` (`ID_ROL`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcar la base de datos para la tabla `rol_usuario`
 --
 
-INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
+INSERT INTO `rol_usuario` (`ID_USUARIO`, `ID_ROL`) VALUES
 (1, 1),
-(1, 4),
-(1, 6),
-(1, 18),
-(1, 22),
-(1, 24),
 (2, 2),
-(2, 3),
-(2, 5),
-(2, 7),
-(2, 8),
-(2, 9),
-(2, 10),
-(2, 11),
-(2, 12),
-(2, 13),
-(2, 14),
-(2, 15),
-(2, 16),
-(2, 17),
-(2, 19),
-(2, 20),
-(2, 21),
-(2, 23),
-(2, 25),
-(2, 26);
+(3, 2),
+(4, 1);
 
 -- --------------------------------------------------------
 
@@ -339,19 +328,48 @@ INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tipo_evento` (
-  `ID` int(11) NOT NULL,
-  `NOMBRE_TIPO_EVENTO` varchar(25) COLLATE utf8_bin DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `ID_TIPO_EVENTO` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE_TIPO_EVENTO` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`ID_TIPO_EVENTO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Volcar la base de datos para la tabla `tipo_evento`
 --
 
+INSERT INTO `tipo_evento` (`ID_TIPO_EVENTO`, `NOMBRE_TIPO_EVENTO`) VALUES
+(1, 'Entrega FASE A'),
+(6, 'documento entrega'),
+(4, 'Entrega FASE B'),
+(5, 'Entrega rezagados'),
+(7, 'documnto entrega 33'),
+(8, 'documento 1camila');
 
 -- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `usuario`
+--
 
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE` varchar(25) NOT NULL,
+  `APELLIDOS` varchar(50) NOT NULL,
+  `LOGGIN` varchar(50) NOT NULL,
+  `PASSW` varchar(15) NOT NULL,
+  `CORREO` varchar(25) NOT NULL,
+  PRIMARY KEY (`ID_USUARIO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Volcar la base de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `APELLIDOS`, `LOGGIN`, `PASSW`, `CORREO`) VALUES
+(1, 'corina', 'camacho ', 'corina', 'A123456a', 'corina@hotmail.com'),
+(2, 'camila', 'flores', 'camila', 'A123456a', 'cam@hotmail.com'),
+(3, 'cmila', 'camacho', 'camila2', 'A123456a', 'cam@hotmail.com'),
+(4, 'jaldin', 'camacho', 'jaldin', 'A123456a', 'jaldin@hotmail.com');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
