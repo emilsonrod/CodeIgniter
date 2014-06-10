@@ -10,7 +10,7 @@
 	<div id="contenedorSubirDoc">
 		<div id = "barra1">
 	        <ul>
-	        	<li><a href="subirHito">subir Documento</a></li>
+	        	<li><a href="subirDocDocente">subir Documento</a></li>
 	        </ul>
         </div>		
 		<?php
@@ -31,10 +31,10 @@
 						foreach ($lista->result() as $row) 
 						{	
 							echo"<tr>";
-							echo"<td>".$row->nombre_entrega."</td>";
-							echo"<td>".$row->comentario."</td>";
-							echo"<td><center>".$row->fecha_entrega."</center></td>";
-							echo"<td><center><a href='uploadsDocumento/".$row->nombre_entrega."'><img title='Descargar' src='images/Descargar.png' width='30' height='30'></a><a href=listarHito/eliminarArchivo/".$row->id_entrega."><img title='Eliminar' src='images/eliminar.png' width='30' height='30'></a></center></td>";
+							echo"<td>".$row->NOMBRE_DOC."</td>";
+							echo"<td>".$row->DESCRIPCION."</td>";
+							echo"<td><center>".$row->FECHA_SUBIDA."</center></td>";
+							echo"<td><center><a href='uploadsDocente/".$row->NOMBRE_DOC."'><img title='Descargar' src='images/Descargar.png' width='30' height='30'></a><a href=listarDoc/eliminarArchivo/".$row->COD_DOC_DOC."><img title='Eliminar' src='images/eliminar.png' width='30' height='30'></a></center></td>";
 							echo"</tr>";
 						}
 				echo"</table>";
@@ -47,3 +47,9 @@
 		?>
 		
 </div>
+		
+
+<!--FIN-->
+
+<?php $this->load->view('viewDerecha');?>
+<?php $this->load->view('viewPiePagina');?>

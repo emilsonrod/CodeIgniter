@@ -47,10 +47,14 @@ class ModelSubirDoc extends CI_Model
 	//obtener el grupo del q inicio sesion 
 	function getCodGrupo($id)
 	{
-		$sql="select * from integrantes_grupo where id_usuario=".$id;
+		$sql="select cod_grupo from integrantes_grupo where id_usuario='".$id."' limit 1";
 		$grupos=$this->db->query($sql);	
-		
-		return $grupos;
+		if ($grupos->num_rows() >0)
+        {
+            return $grupos;
+        }else{
+            return false;
+        }
 	}
 	//verifica si esta inscrito o no
 	function inscrito($id){
@@ -78,10 +82,10 @@ class ModelSubirDoc extends CI_Model
     }
     function obtenerDocente($grupo)
     {
-    	$sql = "select * from grupo where cod_grupo = ".$grupo ;
+    	$sql = "select usu_id_usuario from grupo where cod_grupo = '".$grupo."'";
     	$consulta = $this->db->query($sql);
 
-		if($consulta ->num_rows() > 0)
+		if($consulta -> num_rows() > 0)
 		{
 			return $consulta;
 		}

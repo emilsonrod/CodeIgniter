@@ -34,7 +34,7 @@
 							echo"<td>".$row->nombre_entrega."</td>";
 							echo"<td>".$row->comentario."</td>";
 							echo"<td><center>".$row->fecha_entrega."</center></td>";
-							echo"<td><center><a href='uploadsDocumento/".$row->nombre_entrega."'><img title='Descargar' src='images/Descargar.png' width='30' height='30'></a><a href=listarHito/eliminarArchivo/".$row->id_entrega."><img title='Eliminar' src='images/eliminar.png' width='30' height='30'></a></center></td>";
+							echo"<td><center><a href='uploadsHito/".$row->nombre_entrega."'><img title='Descargar' src='images/Descargar.png' width='30' height='30'></a><a href=listarHito/eliminarArchivo/".$row->id_entrega."><img title='Eliminar' src='images/eliminar.png' width='30' height='30'></a></center></td>";
 							echo"</tr>";
 						}
 				echo"</table>";
@@ -47,3 +47,9 @@
 		?>
 		
 </div>
+		
+
+<!--FIN-->
+
+<?php $this->load->view('viewDerecha');?>
+<?php $this->load->view('viewPiePagina');?>

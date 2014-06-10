@@ -25,17 +25,23 @@
 						<input type="file" name="userfile" id="userfile"/>
 					<p/>
 			</fieldset>
-				<fieldset>
+			<fieldset>
 				<legend>Descripcion del documento:</legend>
 				<span>Numero de caracteres permitidos 150.</span><br/>
 				<?php echo form_textarea(array('class' =>'cajas' ,'name' => 'txtdes' ,'maxLength' => '150', 'id' => 'txtdes', 'style' =>'width:400px; height:80px'))?>
 				<br/>
 				<h5><?php echo form_error('txtdes');?></h5>
-				</fieldset>
+			</fieldset>
 			<div aling="right">
 				<input class = "button" type="submit" name="submit" value="Subir Documento" />
 			</div>
 			</form>
+			<div id = "barra1">
+	        <ul>
+	        	<li><a href="listarDocEst">Listar Documentos</a></li>
+	        </ul>
+       </div>
+			
 			
 		</div> 
 	</div>

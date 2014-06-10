@@ -1,5 +1,5 @@
 <?php
-class ListarDoc extends CI_Controller
+class ListarHito extends CI_Controller
 {
 	public function __construct()
 	{
@@ -8,6 +8,7 @@ class ListarDoc extends CI_Controller
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->model('modelListarDoc');
+		$this->load->model('modelSubirDoc');
 		$this->load->library('form_validation');
 	}
 
@@ -15,7 +16,9 @@ class ListarDoc extends CI_Controller
 	{
 		if(isset($this->session->userdata['usuario']))
 		{	
-			$consulta = $this->modelListarDoc->listarDocDocentes($this->session->userdata('id'));
+			$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));
+			foreach ($codGrupo->result() as $fila) {$CODG = $fila->cod_grupo;}
+			$consulta = $this->modelListarDoc->listarHitosEst($CODG);
 
 			$data = array('lista' => $consulta,
 						  'tareas'=> $this->session->userdata('tareas')
@@ -42,7 +45,7 @@ class ListarDoc extends CI_Controller
 					break;
 				}
 			}*/
-			$this->load->view('viewListarDocDocente',$data);
+			$this->load->view('viewListarHito',$data);
 		}else{
 			redirect('inicio');
 		}
@@ -50,17 +53,17 @@ class ListarDoc extends CI_Controller
 	public function eliminarArchivo()
 	{
 		$id = $this->uri->segment(3);
-		$consulta = $this->modelListarDoc->consultarDoc($id);
-		$dir = "uploadsDocente/";
+		$consulta = $this->modelListarDoc->consultarHito($id);
+		$dir = "uploadsHito/";
 		
 			//Borrar archivo del servidor
 			foreach($consulta->result() as $row)
 				{
-					unlink($dir.$row->NOMBRE_DOC);
-					$borrar = $this->modelListarDoc->borrarDoc($id);
+					unlink($dir.$row->NOMBRE_ENTREGA);
+					$borrar = $this->modelListarDoc->borrarHito($id);
 					if ($borrar) {
 						//echo '<script>window.alert("El archivo elimino correctamente";location.href="listarDoc";)</script>';
-						redirect('listarDoc');
+						redirect('listarHito');
 						break;
 				
 					}else {
@@ -72,4 +75,3 @@ class ListarDoc extends CI_Controller
 				}
 	}
 }
-?>
