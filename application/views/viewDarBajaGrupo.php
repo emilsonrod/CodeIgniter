@@ -4,8 +4,8 @@
 <div id="columnacentral">
 <?php
 
-$attributes = array('class' => '', 'id' => '');
-echo form_open('listaGrupos', $attributes); ?>
+
+echo form_open('listaGrupos'); ?>
 
 <p>
 

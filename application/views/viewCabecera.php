@@ -3,8 +3,11 @@
 <html lang="es">
 <head>
     <meta charset='utf-8'>
-<?php echo link_tag('css/estilos.css')?>
-    <link rel="stylesheet" href="css/estilos.css"/>
+    
+<?php   echo link_tag('css/bootstrap.css'); 
+        echo link_tag('css/estilos.css');    
+    ?>
+    
 <title>
 
 </title>
@@ -56,6 +59,13 @@
                     </div>
                     <div id = "titulo">
                         <h1>Sistema de Apoyo a TIS</h1>
+                    </div>
+                    <div align="right">
+                        <?php             
+                    if(isset($this->session->userdata['usuario'])){                    
+                    ?>
+                    <label>Bienvenido: <?php echo $this->session->userdata('usuario'); ?></php??></label>
+                    <?php } ?>
                     </div>
                 </div>
             </div>
