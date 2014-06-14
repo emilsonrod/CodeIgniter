@@ -5,7 +5,8 @@
     <meta charset='utf-8'>
     
 <?php   echo link_tag('css/bootstrap.css'); 
-        echo link_tag('css/estilos.css');    
+        echo link_tag('css/estilos.css');
+        
     ?>
     
 <title>

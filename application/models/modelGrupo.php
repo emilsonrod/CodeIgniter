@@ -75,13 +75,13 @@ class ModelGrupo extends CI_Model {
 		return $this->db->query($sql);
 	}
 	function getIntegrantesNota($grupo){
-        $sql="select u.id_usuario, u.nombre,u.apellidoP,u.apellidoM, ne.nota from usuario u,
+        $sql="select u.id_usuario, u.nombre,u.apellidoP,u.apellidoM, ne.nota_estudiante from usuario u,
         grupo g,integrantes_grupo ig,nota_estudiante ne
-			where u.id_usuario=ig.id_usuario and u.id_usuario=ne.id_estudiante and ig.cod_grupo=g.cod_grupo and g.nombre_corto='".$grupo."'";
+			where u.id_usuario=ig.id_usuario and u.id_usuario=ne.id_usuario and ig.cod_grupo=g.cod_grupo and g.nombre_corto='".$grupo."'";
         $query=$this->db->query($sql);
         $integrantes=array();
         foreach($query->result_array() as $fila){
-            $integrantes[$fila['id_usuario']]=(array('nombre'=>$fila['nombre'],'paterno'=>$fila['apellidoP'],'materno'=>$fila['apellidoM'],'nota'=>$fila['nota']));
+            $integrantes[$fila['id_usuario']]=(array('nombre'=>$fila['nombre'],'paterno'=>$fila['apellidoP'],'materno'=>$fila['apellidoM'],'nota'=>$fila['nota_estudiante']));
         }
     return $integrantes;
     }
