@@ -45,7 +45,7 @@ create table DOCUMENTO_DOCENTE
 (
    ID_USUARIO           int not null,
    COD_DOC_DOC          int not null,
-   NONBRE_DOC           varchar(100),
+   NOMBRE_DOC           varchar(100),
    FECHA_SUBIDA         date,
    DESCRIPCION          text,
    primary key (ID_USUARIO, COD_DOC_DOC)
@@ -232,7 +232,8 @@ create table USUARIO
    APELLIDOM            varchar(50) not null,
    LOGGIN               varchar(50) not null,   
    PASSW                varchar(15) not null,
-   CORREO               varchar(25) not null,   
+   CORREO               varchar(25) not null,
+    ACTIVO               bool not null   
    CI_DOCENTE           int not null,
    primary key (ID_USUARIO)
 );

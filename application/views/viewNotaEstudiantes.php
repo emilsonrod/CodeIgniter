@@ -21,7 +21,7 @@
                 <td><?php echo $valor['paterno'];?></td>
                 <td><?php echo $valor['materno'];?></td>
                 <td>
-<input type="number" name="<?php echo $index;?>" min="0" max="100" step="0.5" value=<?php echo $valor['nota']; ?>  />       
+<input type="number" name="<?php echo $index;?>" min="0" max="100" step="1" value=<?php echo $valor['nota']; ?>  />       
                 </td>
                 </tr>
             <?php } ?>
