@@ -2,8 +2,8 @@
 <?php $this->load->view('viewIzquierda');?>
 
 <div id="columnacentral">
-<?php
-echo form_open('calificarEstudiante',array('method'=>'get')); ?>
+
+<form action="calificarEstudiante" method="post">    
     <div class="panel panel-primary">
         <div class="panel-heading" align="center">Integrantes</div>
         <div class="panel-body">
@@ -16,7 +16,7 @@ echo form_open('calificarEstudiante',array('method'=>'get')); ?>
          </thead>
             <tbody>          
         <?php foreach($integrantes as $index => $valor){ ?>
-                <tr>
+                <tr>    
                 <td><?php echo $valor['nombre'];?></td>
                 <td><?php echo $valor['paterno'];?></td>
                 <td><?php echo $valor['materno'];?></td>
@@ -31,7 +31,7 @@ echo form_open('calificarEstudiante',array('method'=>'get')); ?>
         </div>       
     </div>
     <?php echo form_submit( 'submit', 'Aceptar'); ?>
-<?php echo form_close(); ?>
+</form>   
 </div>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

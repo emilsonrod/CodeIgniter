@@ -26,5 +26,13 @@ class ModelUsuario extends CI_Model {
 
 		return $query;
 	}
+    function actalizarNotaEstudiantes($id_estudiante='',$nota=''){
+        $this->db->where('id_usuario',$id_estudiante);
+		$data=array('nota_estudiante'=>intval($nota));
+		$this->db->update('nota_estudiante',$data);
+		if($this->db->affected_rows()=='1')
+		{	return true;}
+		return false;
+    }
 }
 ?>

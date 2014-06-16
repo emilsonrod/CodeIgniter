@@ -1,13 +1,6 @@
 <?php $this->load->view('viewCabecera');?>
 <?php $this->load->view('viewIzquierda');?>
 <div id="columnacentral">
-
-  <!--  <?php
-        //foreach($grupos as $key => $value){ ?>
-            <a href="notaEstudiante" class="btn btn-primary" rol="button" name="<?php //echo $key; ?>" ><?php //echo $key ?>
-            <span class="badge"><?php //echo $value; ?></span>
-            </a>
-        <?php// } ?>-->
 <p>
     <?php $metodo=array('method'=>'post') ;
         echo form_open('notaEstudiante',$metodo); ?>

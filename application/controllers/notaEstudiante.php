@@ -3,7 +3,7 @@ class NotaEstudiante extends CI_Controller {
 
 	function __construct()
 	{
- 		parent::__construct();
+ 		parent::__construct();       
 		$this->load->library('form_validation');
 		$this->load->model('modelGrupo');
 	}
@@ -24,6 +24,12 @@ class NotaEstudiante extends CI_Controller {
              }else{
                  $grupo= $this->input->post('grupos');
                  $data['integrantes']=$this->modelGrupo->getIntegrantesNota($grupo);
+                 $auxiliar=$data['integrantes'];
+                 $guardarIdEstudiantes=array();
+                 foreach($auxiliar as $indice=>$valor){                     
+                   $guardarIdEstudiantes[]=$indice;
+                 }
+                 $this->session->set_userdata('idEst',$guardarIdEstudiantes);
                  $this->load->view('viewNotaEstudiantes',$data);
              }
             
@@ -31,6 +37,5 @@ class NotaEstudiante extends CI_Controller {
 			redirect('inicio');
 		}
 	}
-
 }
 ?>
