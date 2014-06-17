@@ -1,6 +1,6 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Integrantes extends CI_Controller {
+class ControladorVerGrupo extends CI_Controller {
 
 	function __construct()
 	{
@@ -9,8 +9,7 @@ class Integrantes extends CI_Controller {
 		$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
-		$this->load->model('grupoM');
-		$this->load->model('modelDatos');
+		$this->load->model('modelVerGrupo');	
 	}
 	function index()
 	{
@@ -21,7 +20,7 @@ class Integrantes extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE) // validation hasn't been passed
 			{ 				
-                $data['grupos']=$this->grupoM->getGrupos();
+                $data['grupos']=$this->modelVerGrupo->getGrupos();
 				$numeroGrupos=count($data['grupos']);
                 if($numeroGrupos>0){
                     $this->load->view('integrantesGrupos_view',$data);
@@ -33,30 +32,22 @@ class Integrantes extends CI_Controller {
 			}
 			else
 			{
-				
-				$entrar['tareas'] = $this->grupoM->getVerGrupos();
+				$entrar['tareas'] = $this->modelVerGrupo->getVerGrupos();
 				$this->session->unset_userdata('tareas');
 				$this->session->set_userdata('tareas',$entrar['tareas']);
 
-
+				
 				$this->load->library('table');
 				$this->load->library('pagination'); //cargamos la libreria de paginacion
 				$grupo=$this->input->post('integrantes');
 
-				$data['integrantes']=$this->grupoM->getIntegrantes($grupo);
-				//$codigo['codGrup']=$this->grupoM->getId($grupo);
+
 				$this->session->unset_userdata('grupo');
 				$this->session->set_userdata('grupo',$grupo);
 
-				//$data['nombreCorto']=$grupo;
-				//$data['nombreLargo']=$this->grupoM->getNombreLargo($grupo);
-				//$data['documentos']=$this->grupoM->getDocumentosGrupo($grupo);
-        		//$data= $this->grupoM->getNombreLargo($grupo);
-        		//$this->load->view('verIntegrantes_view',$nombreL);
-      			$this->load->view('verIntegrantes_view',$data);
-
-
-
+				
+				$this->load->view('verIntegrantes_view',$data);
+				
 			}
 		}
 	}

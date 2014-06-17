@@ -82,7 +82,7 @@ class ModelSubirDoc extends CI_Model
     }
     function obtenerDocente($grupo)
     {
-    	$sql = "select usu_id_usuario from grupo where cod_grupo = '".$grupo."'";
+    	$sql = "select id_docente from grupo where cod_grupo = '".$grupo."'";
     	$consulta = $this->db->query($sql);
 
 		if($consulta -> num_rows() > 0)

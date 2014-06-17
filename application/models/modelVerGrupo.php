@@ -1,6 +1,6 @@
 <?php
 
-class GrupoM extends CI_Model {
+class ModelVerGrupo extends CI_Model {
 
 	function __construct()
 	{
@@ -68,24 +68,28 @@ class GrupoM extends CI_Model {
 				}
 		return $arreglo;
 	}
-
-	function getIntegrantes($grupo){
-		$sql="select u.nombre,u.apellidop,u.apellidom  from usuario u,grupo g,integrantes_grupo ig
-			where u.id_usuario=ig.id_usuario and ig.cod_grupo=g.cod_grupo and g.nombre_corto='".$grupo."'";
-		return $this->db->query($sql);
-	}
-	function getId($grupo){
-		$sql="select cod_grupo from grupo where nombre_corto='".$grupo."'";
+	function getRol($id){
+		$sql="select r.nombre_rol from usuario u,rol r,rol_usuario ru  where u.id_usuario='".$id."' and ru.id_usuario='".$id."' and ru.id_rol=r.id_rol";
 		$codgrupo=$this->db->query($sql);
-		$codgrupo->row()->cod_grupo;
-		$res=$codgrupo;
-		return $res;
+		$codgrupo->row();
+		return $codgrupo;
 	}
-	/*function getDocumentosGrupo($grupo){
-		$sql="select nombre_entrega from entrega e, grupo g, evento ev , tipo_evento tp
-			where ev.id_evento= e.id_evento and g.cod_grupo= e.cod_grupo and g.nombre_corto='".$grupo."' and ev.id_tipo_evento=tp.id_tipo_evento";
-		return $this->db->query($sql);
+	function getDocente($grupo)
+	{ $sql="select g.id_docente from grupo g where nombre_corto='".$grupo."'";
+		$codigo = $this->db->query($sql);
+		$codigo->row();
+		return $codigo;
+	}
+	public function getTareas($rol){
+		$sql="select f.nombre_form as tarea,f.controlador  FROM formulario f,rol_formulario rf,rol r WHERE r.nombre_rol='".$rol."' and r.id_rol=rf.id_rol and rf.id_form=f.id_form";
+		$tareas=$this->db->query($sql);
+		$arreglo=array();
+		foreach ($tareas->result_array() as $row)
+				{
+					$arreglo[$row['controlador']]=$row['tarea'];
 
-	}*/
+				}
+		return $arreglo;
+	}
 }
 ?>
