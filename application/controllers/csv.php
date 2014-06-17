@@ -47,7 +47,8 @@ class Csv extends CI_Controller {
                 foreach ($csv_array as $row) {
                     $insert_data = array(
                         'nombre'=>$row['nombre'],
-                        'apellidos'=>$row['apellidos'],
+                        'apellidoM'=>$row['apellidoM'],
+                        'apellidoP'=>$row['apellidoP'],
                         'loggin'=>$row['loggin'],
                         'passw'=>$row['passw'],
                     );

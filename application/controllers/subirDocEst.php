@@ -20,19 +20,25 @@ class SubirDocEst extends CI_Controller
 		if (isset($this->session->userdata['usuario'])) 
 		{
 			$inscrito = $this->modelSubirDoc->inscrito($this->session->userdata('id'));
-			$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));
-			foreach ($codGrupo->result() as $fila) {$CODG = $fila->cod_grupo;}
+			
 
 			if($inscrito)
 			{
+				$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));
+				foreach ($codGrupo->result() as $fila) {$CODG = $fila->cod_grupo;}
+
 				$IdDocente = $this->modelSubirDoc->obtenerDocente($CODG);
-				foreach ($IdDocente->result() as $row) {$IDU = $row->usu_id_usuario;}
+				foreach ($IdDocente->result() as $row) {$IDU = $row->id_docente;}
 				$hayFecha = $this->modelSubirDoc->verificarEventoDoc($IDU);
 
 				if($hayFecha)
 				{
-					$this->form_validation->set_rules('txtdes', 'Descripcion', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('userfile', 'archivo', 'trim|requerid');
+					$this->form_validation->set_rules('txtdes', 'Descripcion', 'trim|required');
+					$this->form_validation->set_rules('userfile', 'File', 'trim|requerid');
+					if (empty($_FILES['userfile']['name']))
+					{
+					    $this->form_validation->set_rules('userfile', 'archivo', 'required');
+					}
 
 					$this->form_validation->set_message('required', 'El campo %s es obligatorio');
 
@@ -65,12 +71,22 @@ class SubirDocEst extends CI_Controller
 							/*------------------------------------------INSERTAR EN LA BASE DE DATOS---------------------------------------*/
 							if ( ! $this->upload->do_upload())
 							{
-
-								
-								$error = array('error' => $this->upload->display_errors(),
+								$tipo_archivo = $_FILES['userfile']['type']; 
+								if (!(strpos($tipo_archivo, "pdf")  ) )
+								 {
+								 	$errores = "El tipo de archivo no es correcto. El archivo tiene q ser de tipo PDF.";
+								 }
+								else{
+									if ($_FILES['userfile']['size'] > 10485760)
+									{
+										$errores = "EL tamanio permitido es 10Mb.";
+									}
+								}
+								$error = array('error' => $errores,
 											   'tareas'=> $this->session->userdata('tareas'),
 											    'lista'=> $this->modelSubirDoc->listaEventos($IDU, $fehcaIg));
 								$this->load->view('viewSubirDoc', $error);
+								
 							}
 							else
 							{
@@ -87,7 +103,7 @@ class SubirDocEst extends CI_Controller
 
 								$docente = $this->modelSubirDoc->obtenerDocente($CODG);
 								foreach ($docente->result() as $fila) 
-									{$IDU = $fila->usu_id_usuario;}
+									{$IDU = $fila->id_docente;}
 
 								$id_ev = $this->modelSubirDoc->getEvento($evento, $IDU);
 								foreach($id_ev->result() as $fila)

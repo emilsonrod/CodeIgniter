@@ -20,15 +20,7 @@ class NotaEstudiante extends CI_Controller {
                     $arreglo[$value]=$value;
                 }
                 $data['grupos']=$arreglo;
-                 
-                  $numeroGrupos=count($data['grupos']);
-                if($numeroGrupos>0){
-			         $this->load->view('viewNotaEstud',$data);
-                }else{
-                     $mensage['error']="No tiene grupos disponible";
-                     $this->load->view('viewNoGrupos',$mensage);
-                }    
-               
+                $this->load->view('viewNotaEstud',$data);
              }else{
                  $grupo= $this->input->post('grupos');
                  $data['integrantes']=$this->modelGrupo->getIntegrantesNota($grupo);

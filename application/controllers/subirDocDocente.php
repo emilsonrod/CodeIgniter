@@ -22,6 +22,10 @@ class SubirDocDocente extends CI_Controller
 		{
 			$this->form_validation->set_rules('txtdes', 'Descripcion', 'trim|required');
 			$this->form_validation->set_rules('userfile', 'File', 'trim|requerid');
+			if (empty($_FILES['userfile']['name']))
+			{
+			    $this->form_validation->set_rules('userfile', 'archivo', 'required');
+			}
 
 			$this->form_validation->set_message('required', 'El campo %s es obligatorio');
 
@@ -46,7 +50,19 @@ class SubirDocDocente extends CI_Controller
 
 				if ( ! $this->upload->do_upload())
 				{
-					$error = array('error' => $this->upload->display_errors(),
+					$tipo_archivo = $_FILES['userfile']['type']; 
+					if (!(strpos($tipo_archivo, "pdf")  ) )
+					 {
+					 	$errores = "El tipo de archivo no es correcto. El archivo tiene q ser de tipo PDF.";
+					 }
+					else{
+						if ($_FILES['userfile']['size'] > 10485760)
+						{
+							$errores = "EL tamanio permitido es 10Mb.";
+						}
+					}
+					
+					$error = array('error' => $errores,
 									'tareas'=> $this->session->userdata('tareas'));
 					$this->load->view('viewSubirDocDocente', $error);
 				}

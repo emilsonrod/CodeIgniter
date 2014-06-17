@@ -2,9 +2,9 @@
 <?php $this->load->view('viewIzquierda');?>
 <div id="columnacentral">
 
-    <div aling="center">
-    <h4><strong><span><?php echo $error; ?></span></strong></h4>
-        </div>
+    
+    <span><?php echo $error; ?></span>
+
 </div>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

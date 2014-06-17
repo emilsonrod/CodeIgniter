@@ -9,8 +9,8 @@ class ModelRegister extends CI_model
 	{
 		$data = array(
 						'nombre' => $nombre,
-						'apellidop' => $apellidoP,
-						'apellidom' => $apellidoM,
+						'apellidoP' => $apellidoP,
+						'apellidoM' => $apellidoM,
 						'loggin' => $loggin,
 						'passw' => $passw,
 						'correo' => $correo,
@@ -65,18 +65,6 @@ class ModelRegister extends CI_model
 		$data2 = array('id_rol' => $IdRol->id_rol,
 					  'id_usuario' => $IdUsuari->id_usuario,);
 		return $this->db->insert('rol_usuario',$data2);
-	}
-
-	public function chekarCI($ci)
-	{
-		$this->db->select('*');
-		$this->db->from('usuario');
-		$this->db->where('ci_docente',$ci);
-		$query = $this->db->get();
-		if($query -> num_rows() > 0)
-			return false;
-		else
-			return true;
 	}
 }
 ?>

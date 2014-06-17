@@ -20,22 +20,28 @@ class SubirHito extends CI_Controller
 		if (isset($this->session->userdata['usuario'])) 
 		{
 			$inscrito = $this->modelSubirDoc->inscrito($this->session->userdata('id'));//inscrito en algun grupo
-			$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));//cod de grupo
-			foreach ($codGrupo->result() as $fila) {$CODG = $fila->cod_grupo;}
+			
 
 			if($inscrito)
 			{
+				$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));//cod de grupo
+				foreach ($codGrupo->result() as $fila) {$CODG = $fila->cod_grupo;}
 				$hayFecha = $this->modelSubirHito->verificarFechaEvento($CODG);
 				
 				if($hayFecha)
 				{
-					$this->form_validation->set_rules('txtdes', 'Descripcion', 'trim|required|max_length[150]');
+					$this->form_validation->set_rules('txtdes', 'Descripcion', 'trim|required');
 					$this->form_validation->set_rules('userfile', 'File', 'trim|requerid');
+					if (empty($_FILES['userfile']['name']))
+					{
+					    $this->form_validation->set_rules('userfile', 'archivo', 'required');
+					}
 
 					$this->form_validation->set_message('required', 'El campo %s es obligatorio');
 		        	
 
 		        	foreach ($hayFecha->result() as $fila) {$fehcaIg = $fila->fecha_evento;}
+		        	
 		        	if ($this->form_validation->run() == FALSE)
 					{	
 						//foreach ($hayFecha->result() as $fila) {$fehcaIg = $fila->FECHA_EVENTO;}
@@ -63,11 +69,22 @@ class SubirHito extends CI_Controller
 							/*------------------------------------------INSERTAR EN LA BASE DE DATOS---------------------------------------*/
 							if ( ! $this->upload->do_upload())
 							{
-								$errores = array(
-											  'tareas'=> $this->session->userdata('tareas'),
-											  'lista'=> $this->modelSubirHito->listaEventoHito($CODG, $fehcaIg),
-											'error' => $this->upload->display_errors());
-								$this->load->view('viewSubirHito', $errores);
+								$tipo_archivo = $_FILES['userfile']['type']; 
+								if (!(strpos($tipo_archivo, "pdf")  ) )
+								 {
+								 	$errores = "El tipo de archivo no es correcto. El archivo tiene q ser de tipo PDF.";
+								 }
+								else{
+									if ($_FILES['userfile']['size'] > 10485760)
+									{
+										$errores = "EL tamanio permitido es 10Mb.";
+									}
+								}
+								
+								$error = array('error' => $errores,
+											   'lista'=> $this->modelSubirHito->listaEventoHito($CODG, $fehcaIg),
+											   'tareas'=> $this->session->userdata('tareas'));
+								$this->load->view('viewSubirHito', $error);
 							}
 							else
 							{

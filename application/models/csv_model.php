@@ -7,9 +7,14 @@ class Csv_model extends CI_Model {
         
     }
     
-    function get_addressbook() {  
-        $this->db->select('nombre,apellidos,loggin,correo');   
-        $query = $this->db->get('usuario');
+    function get_addressbook() { 
+        $sql = "SELECT nombre,apellidoM,apellidoP,correo  FROM usuario us, rol_usuario ru where us.id_usuario=ru.id_usuario AND id_rol=2"; 
+        /*$this->db->select('nombre,apellidoM,apellidoP,correo'); 
+        $this->db->from('usuario');
+        $this->db->from('rol_usuario');
+        $this->db->where('usuario.id_usuario','rol_usuario.id_usuario');
+        $this->db->where('id_rol',2); */ 
+        $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             return $query->result_array();
         } else {

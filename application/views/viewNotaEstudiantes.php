@@ -2,6 +2,7 @@
 <?php $this->load->view('viewIzquierda');?>
 
 <div id="columnacentral">
+
 <form action="calificarEstudiante" method="post">    
     <div class="panel panel-primary">
         <div class="panel-heading" align="center">Integrantes</div>
@@ -20,7 +21,7 @@
                 <td><?php echo $valor['paterno'];?></td>
                 <td><?php echo $valor['materno'];?></td>
                 <td>
-<input required="required" type="number" name="<?php echo $index;?>" min="0" max="100" step="1" value=<?php echo $valor['nota']; ?> autofocus />       
+<input type="number" name="<?php echo $index;?>" min="0" max="100" step="0.5" value=<?php echo $valor['nota']; ?>  />       
                 </td>
                 </tr>
             <?php } ?>
@@ -29,17 +30,8 @@
         </div>
         </div>       
     </div>
-    <div align="center">
-    <input type="submit" name="submit" value="Aceptar" class="btn btn-primary ">
-    <a href="notaEstudiante" class="btn btn-primary" role="button">Cancelar</a>
-</div></form>
-<div>
-<p><strong><mark id="ayuda">TOMAR ENCUENTA</mark></strong></p>
-<p>*Nota limite [0-100]<br/> *Solo numeros <br/>*No vacio</p>
-     
-</div>    
+    <?php echo form_submit( 'submit', 'Aceptar'); ?>
+</form>   
 </div>
-
-<script type="text/javascript" src="js/validaciones.js"></script>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

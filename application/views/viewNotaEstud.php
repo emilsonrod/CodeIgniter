@@ -7,24 +7,25 @@
         <label for="grupos">Grupos</label>
 
 <div align="center">
-    <select name="grupos" id="grupos">
-        <option value="">Elejir grupo</option>
+    <select name="grupos">    
     <?php
                 foreach ($grupos as $value) {
                     ?>
-            <option value=<?php echo $value; ?>><?php echo $value; ?></option>        
+            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>        
                     <?php
                 }?>
 
     </select>
-<p></p>    
+
+<p></p>
 <p>
-        <?php echo form_submit( 'submit', 'Calificar Estudiantes'); ?>
+        <?php echo form_submit( 'submit', 'Estudiantes'); ?>
 </p>
 </div>
 <?php echo form_close(); ?>
 </p>
 
 </div>
+
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

@@ -28,11 +28,9 @@
         </table>
         </div>
         </div> 
-   		 
+   		 <?php echo form_submit( 'submit', 'Agregar'); ?>
  		</div>
-        <?php echo form_submit( 'submit', 'Agregar'); ?>
 	</form>
-    <script type="text/javascript" src="js/validaciones.js"></script>
 </div>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>
