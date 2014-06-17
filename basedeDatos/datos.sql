@@ -52,7 +52,6 @@ INSERT INTO usuario (ID_USUARIO, NOMBRE, APELLIDOP,APELLIDOM,LOGGIN, PASSW, CORR
 --
 
 INSERT INTO formulario (ID_FORM, NOMBRE_FORM, CONTROLADOR) VALUES
-(7, 'Salir', 'ingresar/cerrarSession'),
 (2, 'Registrar Grupo', 'grupo'),
 (3, 'Inscribirse', 'registrarseGrupo'),
 (5, 'Ver Grupos', 'controladorVerGrupo'),
@@ -60,8 +59,6 @@ INSERT INTO formulario (ID_FORM, NOMBRE_FORM, CONTROLADOR) VALUES
 (8, 'incluir lista de estudiantes', 'csvcontroller'),
 (9, 'fijar fechas de entrega de hit', 'calendar'),
 (10, 'subir documentos convocatoria', 'subirDocDocente'),
-(11, 'Registrarse', 'registrar'),
-(12, 'Docentes', 'docente'),
 (13, 'Grupos existentes', 'gruposInscritosGlobal'),
 (14, 'Calificacion Hitos', 'notaHitos'),
 (15, 'Calificacion Estudiantes', 'notaEstudiante'),
@@ -81,8 +78,7 @@ INSERT INTO rol (ID_ROL,NOMBRE_ROL) VALUES
 (2, 'estudiante'),
 (3, 'cliente'),
 (4, 'managerProyect'),
-(5, 'general'),
-(6, 'grupo');
+(5, 'grupo');
 
 --
 -- Dumping data for table 'rol_formulario'
@@ -99,16 +95,14 @@ INSERT INTO rol_formulario (ID_FORM, ID_ROL) VALUES
 (8, 1),
 (9, 2),
 (10, 1),
-(11, 5),
-(12, 5),
 (13, 2),
 (14, 1),
 (15, 1),
-(16, 6),
-(17, 6),
-(18, 6),
-(19, 6),
-(20, 6),
+(16, 5),
+(17, 5),
+(18, 5),
+(19, 5),
+(20, 5),
 (21, 2),
 (22, 2);
 -- Dumping data for table 'grupo'

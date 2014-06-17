@@ -11,7 +11,7 @@ class Inicio extends CI_Controller
 	public function index()
 	{
 		if(!$this->session->userdata('usuario')){
-		  $tareas=$this->modelLogin->getTareas('general');
+		  $tareas=$this->modelLogin->getTareasGeneral();
 		  $this->session->set_userdata('tareas',$tareas);
 		  $this->load->view('home');
         }else{

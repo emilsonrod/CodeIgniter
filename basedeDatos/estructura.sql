@@ -107,10 +107,11 @@ create table GRUPO
    COD_GRUPO            int not null auto_increment,
    ID_DOCENTE           int not null,
    ID_REPRESENTANTE       int not null,
+   CORREO_GRUPO         varchar(50) not null,
    NOMBRE_LARGO         varchar(100) not null,
    NOMBRE_CORTO         varchar(50) not null,
    PASSW_GRUPO          varchar(15) not null,
-   ACTIVO               bool not null,
+   ACTIVO               bool not null DEFAULT  '1',
    primary key (COD_GRUPO)
 );
 
@@ -217,7 +218,7 @@ create table TAREA
 create table TIPO_EVENTO
 (
    ID_TIPO_EVENTO       int not null,
-   NOMBRE_TIPO_EVENTO   varchar(25),
+   NOMBRE_TIPO_EVENTO   varchar(25) not null,
    primary key (ID_TIPO_EVENTO)
 );
 
@@ -233,7 +234,7 @@ create table USUARIO
    LOGGIN               varchar(50) not null,   
    PASSW                varchar(15) not null,
    CORREO               varchar(25) not null,
-    ACTIVO               bool not null   
+    ACTIVO               bool not null DEFAULT  '1',   
    CI_DOCENTE           int not null,
    primary key (ID_USUARIO)
 );
@@ -301,3 +302,4 @@ alter table ROL_USUARIO add constraint FK_RELATIONSHIP_2 foreign key (ID_ROL)
 alter table TAREA add constraint FK_RELATIONSHIP_23 foreign key (ID_HISTORIA)
       references HISTORIA_USUARIO (ID_HISTORIA) on delete cascade on update cascade;
 
+------------------------

@@ -11,8 +11,8 @@ class Ingresar extends CI_Controller
 	}
 	public function index()
 	{
-		$this->form_validation->set_rules('nombre', 'nombre', 'trim|required|max_length[20]|min_length[3]');
-	    $this->form_validation->set_rules('passw', 'passw', 'trim|required|max_length[20]|min_length[6]');
+		$this->form_validation->set_rules('nombre', 'Nombre', 'trim|required|max_length[20]|min_length[3]');
+	    $this->form_validation->set_rules('passw', 'Password', 'trim|required|max_length[20]|min_length[6]');
 
 	    $this->form_validation->set_message('required', 'El campo %s es obligatorio');
 	    $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');

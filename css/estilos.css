@@ -596,3 +596,6 @@ border-top:1px solid #FFF;
    /*border-top-color: #990;*/
    background: #3CC;
    }
+mark[id="ayuda"]{
+   background-color:#428bca;
+}

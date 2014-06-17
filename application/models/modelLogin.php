@@ -21,6 +21,7 @@ class ModelLogin extends CI_Model
 					$arreglo[$row['controlador']]=$row['tarea'];
 
 				}
+            $arreglo['ingresar/cerrarSession']='Salir';
 		return $arreglo;
 	}
 	public function getRol($username=''){
@@ -34,5 +35,9 @@ class ModelLogin extends CI_Model
 		$query=$this->db->query($sql);
 		return $query->row()->id_usuario;
 	}
+    function getTareasGeneral(){
+        $tareas=array('docente'=>'Docentes','registrarEstudiante'=>'Registrar Estudiante','registrarDocente'=>'Registra Docente');
+        return $tareas;
+    }
 }
 ?>
