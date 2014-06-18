@@ -1,304 +1,287 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     12/06/2014 07:09:41 a.m.                     */
-/*==============================================================*/
+-- phpMyAdmin SQL Dump
+-- version 3.2.4
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tiempo de generación: 18-06-2014 a las 22:45:56
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
-drop table if exists DOCUMENTO_DOCENTE;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-drop table if exists ENTREGA;
+--
+-- Base de datos: `sistemadeayuda`
+--
 
-drop table if exists EVENTO;
+-- --------------------------------------------------------
 
-drop table if exists EVENTO_PARTICULAR;
+--
+-- Estructura de tabla para la tabla `documento_docente`
+--
 
-drop table if exists FORMULARIO;
+DROP TABLE IF EXISTS `documento_docente`;
+CREATE TABLE IF NOT EXISTS `documento_docente` (
+  `ID_USUARIO` int(11) NOT NULL,
+  `COD_DOC_DOC` int(11) NOT NULL,
+  `NOMBRE_DOC` varchar(100) DEFAULT NULL,
+  `FECHA_SUBIDA` date DEFAULT NULL,
+  `DESCRIPCION` text,
+  PRIMARY KEY (`ID_USUARIO`,`COD_DOC_DOC`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-drop table if exists GRUPO;
+-- --------------------------------------------------------
 
-drop table if exists HISTORIA_USUARIO;
+--
+-- Estructura de tabla para la tabla `entrega`
+--
 
-drop table if exists INTEGRANTES_GRUPO;
+DROP TABLE IF EXISTS `entrega`;
+CREATE TABLE IF NOT EXISTS `entrega` (
+  `ID_ENTREGA` int(11) NOT NULL AUTO_INCREMENT,
+  `COD_GRUPO` int(11) DEFAULT NULL,
+  `ID_EVENTO` int(11) DEFAULT NULL,
+  `NOMBRE_ENTREGA` varchar(50) DEFAULT NULL,
+  `FECHA_ENTREGA` date DEFAULT NULL,
+  `COMENTARIO` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_ENTREGA`),
+  KEY `FK_RELATIONSHIP_15` (`COD_GRUPO`),
+  KEY `FK_RELATIONSHIP_16` (`ID_EVENTO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
-drop table if exists NOTA;
+-- --------------------------------------------------------
 
-drop table if exists NOTA_ESTUDIANTE;
+--
+-- Estructura de tabla para la tabla `evento`
+--
 
-drop table if exists RESPONSABLE_TAREA;
+DROP TABLE IF EXISTS `evento`;
+CREATE TABLE IF NOT EXISTS `evento` (
+  `FECHA_EVENTO` date DEFAULT NULL,
+  `ID_EVENTO` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_TIPO_EVENTO` int(11) NOT NULL,
+  `ID_USUARIO` int(11) NOT NULL,
+  `AVISO` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_EVENTO`),
+  KEY `FK_RELATIONSHIP_13` (`ID_USUARIO`),
+  KEY `FK_RELATIONSHIP_14` (`ID_TIPO_EVENTO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
-drop table if exists ROL;
+-- --------------------------------------------------------
 
-drop table if exists ROL_FORMULARIO;
+--
+-- Estructura de tabla para la tabla `evento_particular`
+--
 
-drop table if exists ROL_USUARIO;
+DROP TABLE IF EXISTS `evento_particular`;
+CREATE TABLE IF NOT EXISTS `evento_particular` (
+  `COD_GRUPO` int(11) NOT NULL,
+  `ID_EVENTO` int(11) NOT NULL,
+  PRIMARY KEY (`COD_GRUPO`,`ID_EVENTO`),
+  KEY `FK_RELATIONSHIP_18` (`ID_EVENTO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-drop table if exists TAREA;
+-- --------------------------------------------------------
 
-drop table if exists TIPO_EVENTO;
+--
+-- Estructura de tabla para la tabla `formulario`
+--
 
-drop table if exists USUARIO;
+DROP TABLE IF EXISTS `formulario`;
+CREATE TABLE IF NOT EXISTS `formulario` (
+  `ID_FORM` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE_FORM` varchar(30) NOT NULL,
+  `CONTROLADOR` varchar(100) NOT NULL,
+  PRIMARY KEY (`ID_FORM`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
-/*==============================================================*/
-/* Table: DOCUMENTO_DOCENTE                                     */
-/*==============================================================*/
-create table DOCUMENTO_DOCENTE
-(
-   ID_USUARIO           int not null,
-   COD_DOC_DOC          int not null,
-   NOMBRE_DOC           varchar(100),
-   FECHA_SUBIDA         date,
-   DESCRIPCION          text,
-   primary key (ID_USUARIO, COD_DOC_DOC)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: ENTREGA                                               */
-/*==============================================================*/
-create table ENTREGA
-(
-   ID_ENTREGA           int not null auto_increment,
-   COD_GRUPO            int,
-   ID_EVENTO            int,
-   NOMBRE_ENTREGA       varchar(50),
-   FECHA_ENTREGA        date,
-   COMENTARIO           varchar(250),
-   primary key (ID_ENTREGA)
-);
+--
+-- Estructura de tabla para la tabla `grupo`
+--
 
-/*==============================================================*/
-/* Table: EVENTO                                                */
-/*==============================================================*/
-create table EVENTO
-(
-   FECHA_EVENTO         date,
-   ID_EVENTO            int not null auto_increment,
-   ID_TIPO_EVENTO       int not null,
-   ID_USUARIO           int not null,
-   AVISO                varchar(250),
-   primary key (ID_EVENTO)
-);
+DROP TABLE IF EXISTS `grupo`;
+CREATE TABLE IF NOT EXISTS `grupo` (
+  `COD_GRUPO` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_DOCENTE` int(11) NOT NULL,
+  `ID_REPRESENTANTE` int(11) NOT NULL,
+  `CORREO_GRUPO` varchar(25) NOT NULL,
+  `NOMBRE_LARGO` varchar(100) NOT NULL,
+  `NOMBRE_CORTO` varchar(50) NOT NULL,
+  `PASSW_GRUPO` varchar(15) NOT NULL,
+  `ACTIVO` tinyint(1) NOT NULL,
+  PRIMARY KEY (`COD_GRUPO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
-/*==============================================================*/
-/* Table: EVENTO_PARTICULAR                                     */
-/*==============================================================*/
-create table EVENTO_PARTICULAR
-(
-   COD_GRUPO            int not null,
-   ID_EVENTO            int not null,
-   primary key (COD_GRUPO, ID_EVENTO)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: FORMULARIO                                            */
-/*==============================================================*/
-create table FORMULARIO
-(
-   ID_FORM              int not null auto_increment,
-   NOMBRE_FORM          varchar(30) not null,
-   CONTROLADOR          varchar(100) not null,
-   primary key (ID_FORM)
-);
+--
+-- Estructura de tabla para la tabla `historia_usuario`
+--
 
-/*==============================================================*/
-/* Table: GRUPO                                                 */
-/*==============================================================*/
-create table GRUPO
-(
-   COD_GRUPO            int not null auto_increment,
-   ID_DOCENTE           int not null,
-   ID_REPRESENTANTE       int not null,
-   CORREO_GRUPO         varchar(25) not null, 
-   NOMBRE_LARGO         varchar(100) not null,
-   NOMBRE_CORTO         varchar(50) not null,
-   PASSW_GRUPO          varchar(15) not null,
-   ACTIVO               bool not null,
-   primary key (COD_GRUPO)
-);
+DROP TABLE IF EXISTS `historia_usuario`;
+CREATE TABLE IF NOT EXISTS `historia_usuario` (
+  `ID_HISTORIA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_EVENTO` int(11) NOT NULL,
+  `NOM_HISTORIA` varchar(150) NOT NULL,
+  PRIMARY KEY (`ID_HISTORIA`),
+  KEY `FK_RELATIONSHIP_22` (`ID_EVENTO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-/*==============================================================*/
-/* Table: HISTORIA_USUARIO                                      */
-/*==============================================================*/
-create table HISTORIA_USUARIO
-(
-   ID_HISTORIA          int not null auto_increment,
-   ID_EVENTO            int not null,
-   NOM_HISTORIA         varchar(150) not null,
-   primary key (ID_HISTORIA)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: INTEGRANTES_GRUPO                                     */
-/*==============================================================*/
-create table INTEGRANTES_GRUPO
-(
-   COD_GRUPO            int not null,
-   ID_USUARIO           int not null,
-   primary key (COD_GRUPO, ID_USUARIO)
-);
+--
+-- Estructura de tabla para la tabla `integrantes_grupo`
+--
 
-/*==============================================================*/
-/* Table: NOTA                                                  */
-/*==============================================================*/
-create table NOTA
-(
-   ID_ENTREGA           int not null,
-   CALIFICACION         int not null,
-   OBSERVACION          text,
-   primary key (ID_ENTREGA)
-);
+DROP TABLE IF EXISTS `integrantes_grupo`;
+CREATE TABLE IF NOT EXISTS `integrantes_grupo` (
+  `COD_GRUPO` int(11) NOT NULL,
+  `ID_USUARIO` int(11) NOT NULL,
+  PRIMARY KEY (`COD_GRUPO`,`ID_USUARIO`),
+  KEY `FK_RELATIONSHIP_6` (`ID_USUARIO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*==============================================================*/
-/* Table: NOTA_ESTUDIANTE                                       */
-/*==============================================================*/
-create table NOTA_ESTUDIANTE
-(
-   ID_USUARIO           int not null,
-   NOTA_ESTUDIANTE      int not null,
-   OBSERVACION_ESTUDIANTE varchar(250),
-   primary key (ID_USUARIO)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: RESPONSABLE_TAREA                                     */
-/*==============================================================*/
-create table RESPONSABLE_TAREA
-(
-   COD_GRUPO            int not null,
-   ID_USUARIO           int not null,
-   ID_TAREA             int not null,
-   primary key (COD_GRUPO, ID_USUARIO, ID_TAREA)
-);
+--
+-- Estructura de tabla para la tabla `nota`
+--
 
-/*==============================================================*/
-/* Table: ROL                                                   */
-/*==============================================================*/
-create table ROL
-(
-   ID_ROL               int not null auto_increment,
-   NOMBRE_ROL           varchar(25) not null,
-   primary key (ID_ROL)
-);
+DROP TABLE IF EXISTS `nota`;
+CREATE TABLE IF NOT EXISTS `nota` (
+  `ID_ENTREGA` int(11) NOT NULL,
+  `CALIFICACION` int(11) NOT NULL,
+  `OBSERVACION` text,
+  PRIMARY KEY (`ID_ENTREGA`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*==============================================================*/
-/* Table: ROL_FORMULARIO                                        */
-/*==============================================================*/
-create table ROL_FORMULARIO
-(
-   ID_FORM              int not null,
-   ID_ROL               int not null,
-   primary key (ID_FORM, ID_ROL)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: ROL_USUARIO                                           */
-/*==============================================================*/
-create table ROL_USUARIO
-(
-   ID_ROL               int not null,
-   ID_USUARIO           int not null,
-   primary key (ID_ROL, ID_USUARIO)
-);
+--
+-- Estructura de tabla para la tabla `nota_estudiante`
+--
 
-/*==============================================================*/
-/* Table: TAREA                                                 */
-/*==============================================================*/
-create table TAREA
-(
-   ID_TAREA             int not null auto_increment,
-   ID_HISTORIA          int not null,
-   NOM_TAREA            varchar(150) not null,
-   EVALUACION_EST       int not null,
-   EVALUACION_DOC       int not null,
-   primary key (ID_TAREA)
-);
+DROP TABLE IF EXISTS `nota_estudiante`;
+CREATE TABLE IF NOT EXISTS `nota_estudiante` (
+  `ID_USUARIO` int(11) NOT NULL,
+  `NOTA_ESTUDIANTE` int(11) NOT NULL,
+  `OBSERVACION_ESTUDIANTE` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`ID_USUARIO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-/*==============================================================*/
-/* Table: TIPO_EVENTO                                           */
-/*==============================================================*/
-create table TIPO_EVENTO
-(
-   ID_TIPO_EVENTO       int not null,
-   NOMBRE_TIPO_EVENTO   varchar(25),
-   primary key (ID_TIPO_EVENTO)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: USUARIO                                               */
-/*==============================================================*/
-create table USUARIO
-(
-   ID_USUARIO           int not null auto_increment,
-   NOMBRE               varchar(25) not null,
-   APELLIDOP            varchar(50) not null,
-   APELLIDOM            varchar(50) not null,
-   LOGGIN               varchar(50) not null,   
-   PASSW                varchar(15) not null,
-   CORREO               varchar(25) not null,   
-   ACTIVO               int not null,
-   CI_DOCENTE           int not null,
-   primary key (ID_USUARIO)
-);
+--
+-- Estructura de tabla para la tabla `responsable_tarea`
+--
 
-alter table DOCUMENTO_DOCENTE add constraint FK_RELATIONSHIP_21 foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `responsable_tarea`;
+CREATE TABLE IF NOT EXISTS `responsable_tarea` (
+  `COD_GRUPO` int(11) NOT NULL,
+  `ID_USUARIO` int(11) NOT NULL,
+  `ID_TAREA` int(11) NOT NULL,
+  PRIMARY KEY (`COD_GRUPO`,`ID_USUARIO`,`ID_TAREA`),
+  KEY `FK_RELATIONSHIP_25` (`ID_TAREA`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-alter table ENTREGA add constraint FK_RELATIONSHIP_15 foreign key (COD_GRUPO)
-      references GRUPO (COD_GRUPO) on delete cascade on update cascade;
+-- --------------------------------------------------------
 
-alter table ENTREGA add constraint FK_RELATIONSHIP_16 foreign key (ID_EVENTO)
-      references EVENTO (ID_EVENTO) on delete cascade on update cascade;
+--
+-- Estructura de tabla para la tabla `rol`
+--
 
-alter table EVENTO add constraint FK_RELATIONSHIP_13 foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `rol`;
+CREATE TABLE IF NOT EXISTS `rol` (
+  `ID_ROL` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE_ROL` varchar(25) NOT NULL,
+  PRIMARY KEY (`ID_ROL`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
-alter table EVENTO add constraint FK_RELATIONSHIP_14 foreign key (ID_TIPO_EVENTO)
-      references TIPO_EVENTO (ID_TIPO_EVENTO) on delete cascade on update cascade;
+-- --------------------------------------------------------
 
-alter table EVENTO_PARTICULAR add constraint FK_RELATIONSHIP_18 foreign key (ID_EVENTO)
-      references EVENTO (ID_EVENTO) on delete cascade on update cascade;
+--
+-- Estructura de tabla para la tabla `rol_formulario`
+--
 
-alter table EVENTO_PARTICULAR add constraint FK_RELATIONSHIP_19 foreign key (COD_GRUPO)
-      references GRUPO (COD_GRUPO) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `rol_formulario`;
+CREATE TABLE IF NOT EXISTS `rol_formulario` (
+  `ID_FORM` int(11) NOT NULL,
+  `ID_ROL` int(11) NOT NULL,
+  PRIMARY KEY (`ID_FORM`,`ID_ROL`),
+  KEY `FK_RELATIONSHIP_4` (`ID_ROL`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-alter table GRUPO add constraint FK_RELATIONSHIP_3 foreign key (ID_DOCENTE)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+-- --------------------------------------------------------
 
-alter table GRUPO add constraint FK_RELATIONSHIP_9 foreign key (ID_REPRESENTANTE)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+--
+-- Estructura de tabla para la tabla `rol_usuario`
+--
 
-alter table HISTORIA_USUARIO add constraint FK_RELATIONSHIP_22 foreign key (ID_EVENTO)
-      references EVENTO (ID_EVENTO) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `rol_usuario`;
+CREATE TABLE IF NOT EXISTS `rol_usuario` (
+  `ID_ROL` int(11) NOT NULL,
+  `ID_USUARIO` int(11) NOT NULL,
+  PRIMARY KEY (`ID_ROL`,`ID_USUARIO`),
+  KEY `FK_RELATIONSHIP_1` (`ID_USUARIO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-alter table INTEGRANTES_GRUPO add constraint FK_RELATIONSHIP_6 foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+-- --------------------------------------------------------
 
-alter table INTEGRANTES_GRUPO add constraint FK_RELATIONSHIP_7 foreign key (COD_GRUPO)
-      references GRUPO (COD_GRUPO) on delete cascade on update cascade;
+--
+-- Estructura de tabla para la tabla `tarea`
+--
 
-alter table NOTA add constraint FK_RELATIONSHIP_17 foreign key (ID_ENTREGA)
-      references ENTREGA (ID_ENTREGA) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `tarea`;
+CREATE TABLE IF NOT EXISTS `tarea` (
+  `ID_TAREA` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_HISTORIA` int(11) NOT NULL,
+  `NOM_TAREA` varchar(150) NOT NULL,
+  `EVALUACION_EST` int(11) NOT NULL,
+  `EVALUACION_DOC` int(11) NOT NULL,
+  PRIMARY KEY (`ID_TAREA`),
+  KEY `FK_RELATIONSHIP_23` (`ID_HISTORIA`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-alter table NOTA_ESTUDIANTE add constraint FK_RELATIONSHIP_20 foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+-- --------------------------------------------------------
 
-alter table RESPONSABLE_TAREA add constraint FK_RELATIONSHIP_24 foreign key (COD_GRUPO, ID_USUARIO)
-      references INTEGRANTES_GRUPO (COD_GRUPO, ID_USUARIO) on delete cascade on update cascade;
+--
+-- Estructura de tabla para la tabla `tipo_evento`
+--
 
-alter table RESPONSABLE_TAREA add constraint FK_RELATIONSHIP_25 foreign key (ID_TAREA)
-      references TAREA (ID_TAREA) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `tipo_evento`;
+CREATE TABLE IF NOT EXISTS `tipo_evento` (
+  `ID_TIPO_EVENTO` int(11) NOT NULL,
+  `NOMBRE_TIPO_EVENTO` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`ID_TIPO_EVENTO`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-alter table ROL_FORMULARIO add constraint FK_RELATIONSHIP_4 foreign key (ID_ROL)
-      references ROL (ID_ROL) on delete cascade on update cascade;
+-- --------------------------------------------------------
 
-alter table ROL_FORMULARIO add constraint FK_RELATIONSHIP_5 foreign key (ID_FORM)
-      references FORMULARIO (ID_FORM) on delete cascade on update cascade;
+--
+-- Estructura de tabla para la tabla `usuario`
+--
 
-alter table ROL_USUARIO add constraint FK_RELATIONSHIP_1 foreign key (ID_USUARIO)
-      references USUARIO (ID_USUARIO) on delete cascade on update cascade;
+DROP TABLE IF EXISTS `usuario`;
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
+  `NOMBRE` varchar(25) NOT NULL,
+  `APELLIDOP` varchar(50) NOT NULL,
+  `APELLIDOM` varchar(50) NOT NULL,
+  `LOGGIN` varchar(50) NOT NULL,
+  `PASSW` varchar(15) NOT NULL,
+  `CORREO` varchar(25) NOT NULL,
+  `ACTIVO` int(11) NOT NULL,
+  `CI_DOCENTE` int(11) NOT NULL,
+  PRIMARY KEY (`ID_USUARIO`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
 
-alter table ROL_USUARIO add constraint FK_RELATIONSHIP_2 foreign key (ID_ROL)
-      references ROL (ID_ROL) on delete cascade on update cascade;
-
-alter table TAREA add constraint FK_RELATIONSHIP_23 foreign key (ID_HISTORIA)
-      references HISTORIA_USUARIO (ID_HISTORIA) on delete cascade on update cascade;
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

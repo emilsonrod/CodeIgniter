@@ -2,21 +2,241 @@
 -- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 30, 2014 at 02:17 p.m.
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Servidor: localhost
+-- Tiempo de generación: 18-06-2014 a las 22:47:11
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: 'sistemadeayuda'
+--
+
+--
+-- Volcar la base de datos para la tabla 'documento_docente'
+--
 
 
 --
--- Dumping data for table 'usuario'
+-- Volcar la base de datos para la tabla 'entrega'
 --
 
-INSERT INTO usuario (ID_USUARIO, NOMBRE, APELLIDOP,APELLIDOM,LOGGIN, PASSW, CORREO, ACTIVO,CI_DOCENTE) VALUES
+INSERT INTO entrega (ID_ENTREGA, COD_GRUPO, ID_EVENTO, NOMBRE_ENTREGA, FECHA_ENTREGA, COMENTARIO) VALUES
+(1, 5, 3, '1403085164-document.pdf', '2014-06-18', 'doc'),
+(2, 5, 1, '1403085214-vendedores.pdf', '2014-06-18', 'gjgjgjgj'),
+(3, 5, 1, '1403085631-document.pdf', '2014-06-18', 'doc prueba A');
+
+--
+-- Volcar la base de datos para la tabla 'evento'
+--
+
+INSERT INTO evento (FECHA_EVENTO, ID_EVENTO, ID_TIPO_EVENTO, ID_USUARIO, AVISO) VALUES
+('2014-06-19', 1, 1, 1, 'documento A'),
+('2014-06-19', 2, 4, 3, 'hito'),
+('2014-06-19', 3, 4, 3, 'hito');
+
+--
+-- Volcar la base de datos para la tabla 'evento_particular'
+--
+
+INSERT INTO evento_particular (COD_GRUPO, ID_EVENTO) VALUES
+(5, 1),
+(5, 2),
+(5, 3);
+
+--
+-- Volcar la base de datos para la tabla 'formulario'
+--
+
+INSERT INTO formulario (ID_FORM, NOMBRE_FORM, CONTROLADOR) VALUES
+(7, 'Salir', 'ingresar/cerrarSession'),
+(2, 'Registrar Grupo', 'grupo'),
+(3, 'Inscribirse', 'registrarseGrupo'),
+(5, 'Ver Grupos', 'controladorVerGrupo'),
+(6, 'Dar Baja Grupo', 'listaGrupos'),
+(8, 'incluir lista de estudiantes', 'csv'),
+(9, 'fijar fechas de entrega de hit', 'calendar2'),
+(10, 'subir documentos convocatoria', 'subirDoc'),
+(11, 'RegistrarDocente', 'registrarDocente'),
+(12, 'RegistrarEstudiante', 'registrarEstudiante'),
+(13, 'Docentes', 'docente'),
+(14, 'Grupos existentes', 'gruposInscritosGlobal'),
+(15, 'Calificacion Hitos', 'notaHitos'),
+(16, 'Calificacion Estudiantes', 'notaEstudiante'),
+(17, 'Datos Grupo', 'controladorDatos'),
+(18, 'Integrantes', 'integrantes'),
+(19, 'Documentos', 'controladorDoc'),
+(20, 'Hitos ', 'controladorHito'),
+(21, 'volver', 'retornar'),
+(22, 'Subir Documento', 'subirDocDocente'),
+(23, 'Subir Documento Estudiante', 'subirDocEst'),
+(24, 'subir hitos', 'subirHito');
+
+--
+-- Volcar la base de datos para la tabla 'grupo'
+--
+
+INSERT INTO grupo (COD_GRUPO, ID_DOCENTE, ID_REPRESENTANTE, CORREO_GRUPO, NOMBRE_LARGO, NOMBRE_CORTO, PASSW_GRUPO, ACTIVO) VALUES
+(5, 1, 7, 'softEli@gmail.com', 'desarrollo de software Eli', 'softEli', 'aaAA55', 1),
+(6, 6, 15, 'sofgolty@gmail.com', 'dfee bere  eli', 'softGolty', 'dfasdfwe', 1),
+(7, 24, 25, 'abc@gmail.es', 'Algo vhjsdfh', 'ABC', 'abc123', 1),
+(8, 24, 26, 'jas@vshd.com', 'dsf123 $%&amp;', 'jas', 'j123456', 1),
+(9, 6, 27, 'gokuBall@gmail.com', 'super sayayin', 'goku', 'Goku2014', 1);
+
+--
+-- Volcar la base de datos para la tabla 'historia_usuario'
+--
+
+
+--
+-- Volcar la base de datos para la tabla 'integrantes_grupo'
+--
+
+INSERT INTO integrantes_grupo (COD_GRUPO, ID_USUARIO) VALUES
+(5, 3),
+(5, 7),
+(6, 15),
+(7, 25),
+(8, 26),
+(9, 12),
+(9, 13),
+(9, 21),
+(9, 23),
+(9, 27);
+
+--
+-- Volcar la base de datos para la tabla 'nota'
+--
+
+
+--
+-- Volcar la base de datos para la tabla 'nota_estudiante'
+--
+
+INSERT INTO nota_estudiante (ID_USUARIO, NOTA_ESTUDIANTE, OBSERVACION_ESTUDIANTE) VALUES
+(7, 50, 'vacio'),
+(12, 45, 'vacio'),
+(13, 45, 'vacio'),
+(14, 0, 'vacio'),
+(15, 0, 'vacio'),
+(21, 60, 'vacio'),
+(23, 0, 'vacio'),
+(25, 0, 'vacio'),
+(26, 0, 'vacio'),
+(27, 0, 'vacio');
+
+--
+-- Volcar la base de datos para la tabla 'responsable_tarea'
+--
+
+
+--
+-- Volcar la base de datos para la tabla 'rol'
+--
+
+INSERT INTO rol (ID_ROL, NOMBRE_ROL) VALUES
+(1, 'docente'),
+(2, 'estudiante'),
+(3, 'cliente'),
+(4, 'managerProyect'),
+(5, 'general'),
+(6, 'grupo');
+
+--
+-- Volcar la base de datos para la tabla 'rol_formulario'
+--
+
+INSERT INTO rol_formulario (ID_FORM, ID_ROL) VALUES
+(1, 2),
+(2, 2),
+(3, 2),
+(5, 1),
+(6, 1),
+(7, 1),
+(7, 2),
+(8, 1),
+(9, 2),
+(10, 1),
+(11, 5),
+(12, 5),
+(13, 5),
+(14, 2),
+(15, 1),
+(16, 1),
+(17, 6),
+(18, 6),
+(19, 6),
+(20, 6),
+(21, 6),
+(22, 1),
+(23, 2),
+(24, 2);
+
+--
+-- Volcar la base de datos para la tabla 'rol_usuario'
+--
+
+INSERT INTO rol_usuario (ID_ROL, ID_USUARIO) VALUES
+(1, 1),
+(1, 4),
+(1, 6),
+(1, 18),
+(1, 22),
+(1, 24),
+(1, 29),
+(1, 30),
+(2, 2),
+(2, 3),
+(2, 5),
+(2, 7),
+(2, 8),
+(2, 9),
+(2, 10),
+(2, 11),
+(2, 12),
+(2, 13),
+(2, 14),
+(2, 15),
+(2, 16),
+(2, 17),
+(2, 19),
+(2, 20),
+(2, 21),
+(2, 23),
+(2, 25),
+(2, 26),
+(2, 27),
+(2, 28),
+(2, 31);
+
+--
+-- Volcar la base de datos para la tabla 'tarea'
+--
+
+
+--
+-- Volcar la base de datos para la tabla 'tipo_evento'
+--
+
+INSERT INTO tipo_evento (ID_TIPO_EVENTO, NOMBRE_TIPO_EVENTO) VALUES
+(1, 'documento_a'),
+(2, 'documento_b'),
+(3, 'reunion_grupo'),
+(4, 'hito'),
+(5, 'documneto_general');
+
+--
+-- Volcar la base de datos para la tabla 'usuario'
+--
+
+INSERT INTO usuario (ID_USUARIO, NOMBRE, APELLIDOP, APELLIDOM, LOGGIN, PASSW, CORREO, ACTIVO, CI_DOCENTE) VALUES
 (16, 'janet', 'luna', 'nuvia', 'janca', 'AAaa11', 'janet@gmail.com', 1, 0),
 (15, 'richart', '', 'miranda', 'ririo', 'AAaa11', 'riog@hotmail.com', 1, 0),
 (14, 'nelly', 'quispe', 'flores', 'nelly', 'AAaa11', 'nelly@hotmail.com', 1, 0),
@@ -45,169 +265,10 @@ INSERT INTO usuario (ID_USUARIO, NOMBRE, APELLIDOP,APELLIDOM,LOGGIN, PASSW, CORR
 (26, 'Maria', 'arnez', 'Marin', 'maria', 'Maria123', 'moni@gmail.com', 1, 0),
 (27, 'evo', 'morales', 'ayma', 'huevo', 'Huevo2014', 'huev@gmail.com', 1, 0),
 (28, 'maria', 'lopez', 'delgado', 'mariLop', 'maria2014L', 'mari@gmail.com', 1, 0),
-(29, 'victor', 'sanchez', 'lozada', 'vicoc', 'Vito2014', 'vitoc@gmail.com', 1, 7596453);
+(29, 'victor', 'sanchez', 'lozada', 'vicoc', 'Vito2014', 'vitoc@gmail.com', 1, 7596453),
+(30, 'patricia', 'rodriguez', 'romero', 'paty20', 'AAaa11', 'paty@gmail.com', 0, 7563245),
+(31, 'laura', 'vicunia', 'llamita', 'laurita', 'Laura10', 'laurita@hotmail.com', 0, 0);
 
---
--- Dumping data for table 'formulario'
---
-
-INSERT INTO formulario (ID_FORM, NOMBRE_FORM, CONTROLADOR) VALUES
-(2, 'Registrar Grupo', 'grupo'),
-(3, 'Inscribirse', 'registrarseGrupo'),
-(5, 'Ver Grupos', 'controladorVerGrupo'),
-(6, 'Dar Baja Grupo', 'listaGrupos'),
-(8, 'incluir lista de estudiantes', 'csvcontroller'),
-(9, 'fijar fechas de entrega de hit', 'calendar'),
-(10, 'subir documentos convocatoria', 'subirDocDocente'),
-(13, 'Grupos existentes', 'gruposInscritosGlobal'),
-(14, 'Calificacion Hitos', 'notaHitos'),
-(15, 'Calificacion Estudiantes', 'notaEstudiante'),
-(18, 'Datos Grupo', 'controladorDatos'),
-(19, 'Integrantes', 'integrantes'),
-(16, 'Documentos', 'controladorDoc'),
-(17, 'Hitos ', 'controladorHito'),
-(20, 'volver', 'ingresar'),
-(21, 'subir hito', 'subirHito'),
-(22, 'subir documentos', 'subirDocEst');
---
--- Dumping data for table 'rol'
---
-
-INSERT INTO rol (ID_ROL,NOMBRE_ROL) VALUES
-(1, 'docente'),
-(2, 'estudiante'),
-(3, 'cliente'),
-(4, 'managerProyect'),
-(5, 'grupo');
-
---
--- Dumping data for table 'rol_formulario'
---
-
-INSERT INTO rol_formulario (ID_FORM, ID_ROL) VALUES
-(1, 2),
-(2, 2),
-(3, 2),
-(5, 1),
-(6, 1),
-(7, 1),
-(7, 2),
-(8, 1),
-(9, 2),
-(10, 1),
-(13, 2),
-(14, 1),
-(15, 1),
-(16, 5),
-(17, 5),
-(18, 5),
-(19, 5),
-(20, 5),
-(21, 2),
-(22, 2);
--- Dumping data for table 'grupo'
---
-
-INSERT INTO grupo (COD_GRUPO, ID_DOCENTE, ID_REPRESENTANTE, CORREO_GRUPO, NOMBRE_LARGO, NOMBRE_CORTO, PASSW_GRUPO, ACTIVO) VALUES
-(5, 1, 7, 'softEli@gmail.com', 'desarrollo de software Eli', 'softEli', 'aaAA55', 1),
-(6, 6, 15, 'sofgolty@gmail.com', 'dfee bere  eli', 'softGolty', 'dfasdfwe', 1),
-(7, 24, 25, 'abc@gmail.es', 'Algo vhjsdfh', 'ABC', 'abc123', 1),
-(8, 24, 26, 'jas@vshd.com', 'dsf123 $%&amp;', 'jas', 'j123456', 1),
-(9, 6, 27, 'gokuBall@gmail.com', 'super sayayin', 'goku', 'Goku2014', 1);
-
-
---
--- Dumping data for table 'integrantes_grupo'
---
-
-INSERT INTO integrantes_grupo (COD_GRUPO, ID_USUARIO) VALUES
-(5, 7),
-(6, 15),
-(7, 5),
-(7, 6),
-(7, 14),
-(7, 25),
-(8, 26),
-(9, 12),
-(9, 13),
-(9, 21),
-(9, 23),
-(9, 27);
---
--- Dumping data for table 'rol_usuario'
---
-
-INSERT INTO rol_usuario (ID_ROL, ID_USUARIO) VALUES
-(1, 1),
-(1, 4),
-(2, 6),
-(1, 18),
-(1, 22),
-(1, 24),
-(1, 29),
-(2, 2),
-(2, 3),
-(2, 5),
-(2, 7),
-(2, 8),
-(2, 9),
-(2, 10),
-(2, 11),
-(2, 12),
-(2, 13),
-(2, 14),
-(2, 15),
-(2, 16),
-(2, 17),
-(2, 19),
-(2, 20),
-(2, 21),
-(2, 23),
-(2, 25),
-(2, 26),
-(2, 27),
-(2, 28);
-----------------------------------
-INSERT INTO tipo_evento(id_tipo_evento,nombre_tipo_evento) VALUES
-(1,'documento_a'),
-(2,'documento_b'),
-(3,'reunion_grupo'),
-(4,'hito'),
-(5,'documneto_general');
-
-INSERT INTO nota_estudiante
-(id_usuario,nota_estudiante,observacion_estudiante) VALUES
-(7, 50, 'vacio'),
-(12, 45, 'vacio'),
-(13, 45, 'vacio'),
-(14, 20, 'vacio'),
-(15, 0, 'vacio'),
-(21, 60, 'vacio'),
-(23, 0, 'vacio'),
-(25, 70, 'vacio'),
-(26, 0, 'vacio'),
-(27, 0, 'vacio');
-
-INSERT INTO nota(ID_ENTREGA,CALIFICACION,OBSERVACION) VALUES
-(3, 90, 'no estan bien terminadas las historias ');
-
-
-INSERT INTO entrega (ID_ENTREGA,COD_GRUPO,ID_EVENTO, NOMBRE_ENTREGA, FECHA_ENTREGA, COMENTARIO) VALUES
-(1, 7, 4, 'documento A', '2014-05-29', 'documento A'),
-(2, 7, 5, 'documento B', '2014-05-30', 'documento B'),
-(3, 7, 6, 'hito', '2014-06-11', 'fhajhfj'),
-(4, 7, 8, 'documento general ', '2014-06-13', 'validacion de la base de datos');
-
-
-INSERT INTO evento (FECHA_EVENTO, ID_EVENTO, ID_TIPO_EVENTO, ID_USUARIO, AVISO) VALUES
-('2014-06-01', 1, 1, 12, 'el documento A se subio '),
-('2014-05-14', 2, 2, 13, 'el documento B'),
-('2014-06-02', 3, 2, 21, 'el documento B se subio'),
-('2014-05-29', 4, 1, 5, 'documento A '),
-('2014-05-30', 5, 2, 6, 'el documento B'),
-('2014-06-11', 6, 4, 25, 'primer hito'),
-('2014-06-12', 7, 4, 27, 'primer hito'),
-('2014-06-13', 8, 5, 5, 'validacion de la base de datos');
-
-
-
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
