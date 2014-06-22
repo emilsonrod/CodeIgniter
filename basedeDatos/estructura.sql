@@ -204,8 +204,18 @@ CREATE TABLE IF NOT EXISTS `rol` (
   PRIMARY KEY (`ID_ROL`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
--- --------------------------------------------------------
-
+-- ------------------------
+-- Actividad usuario
+-- ------------------------
+DROP TABLE IF EXISTS `actividad_usuario`;
+CREATE TABLE IF NOT EXISTS `actividad_usuario` (
+   `ID_USUARIO` int(11) NOT NULL,
+   `ID_FORM`    int(11) NOT NULL,
+   `PERMITIDO`  tinyint(1) NOT NULL DEFAULT '0',
+   PRIMARY KEY (`ID_USUARIO`,`ID_FORM`),
+   KEY `FK_RELATIONSHIP_26` (`ID_USUARIO`),
+   KEY `FK_RELATIONSHIP_27` (`ID_FORM`)
+)  ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 -- Estructura de tabla para la tabla `rol_formulario`
 --
@@ -277,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `LOGGIN` varchar(50) NOT NULL,
   `PASSW` varchar(15) NOT NULL,
   `CORREO` varchar(25) NOT NULL,
-  `ACTIVO` int(11) NOT NULL,
+  `ACTIVO` tinyint(1) NOT NULL,
   `CI_DOCENTE` int(11) NOT NULL,
   PRIMARY KEY (`ID_USUARIO`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;

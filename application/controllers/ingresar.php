@@ -34,7 +34,7 @@ class Ingresar extends CI_Controller
 			{	$username=$_POST['nombre'];
 				$id=$this->modelLogin->getId($username);
 				$perfil=$this->modelLogin->getRol($username)->perfil;
-				$data['tareas']=$this->modelLogin->getTareas($perfil);
+				$data['tareas']=$this->modelLogin->getTareas($id);
 	            $this->session->unset_userdata('tareas');
 
 				$this->session->set_userdata('id',$id);
