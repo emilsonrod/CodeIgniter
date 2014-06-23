@@ -1,100 +1,77 @@
-<!DOCTYPE html >
-
-<html lang="es">
-<head>
-    <meta charset='utf-8'>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="./css/bootstrap.css" rel="stylesheet" type="text/css" /> 
     
-<?php   echo link_tag('css/bootstrap.css'); 
-        echo link_tag('css/estilos.css');
-        
-    ?>
-<!-- Include CSS for color picker plugin (Not required for calendar plugin. Used for example.) -->
-<link rel="stylesheet" type="text/css" href="css/colorpicker/colorpicker.css" />
+    <link rel="shortcut icon" href="./assets/ico/favicon.ico">
 
-<!-- Include CSS for JQuery UI (Required for calendar plugin.) -->
-<link rel="stylesheet" type="text/css" href="css/jquery-ui/smoothness/jquery-ui-1.8.1.custom.css" />
+    <title>Sistema de ayuda a TIS</title>
 
-<!--
-Include JQuery Core (Required for calendar plugin)
-** This is our IE fix version which enables drag-and-drop to work correctly in IE. See README file in js/jquery-core folder. **
--->
-<script type="text/javascript" src="js/jquery-core/jquery-1.4.2-ie-fix.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Include JQuery UI (Required for calendar plugin.) -->
-<script type="text/javascript" src="js/jquery-ui/smoothness/jquery-ui-1.8.1.custom.min.js"></script>
-
-<!-- Include color picker plugin (Not required for calendar plugin. Used for example.) -->
-<script type="text/javascript" src="js/colorpicker/colorpicker.js"></script>
-
-<!--
-    (Required for plugin)
-    Dependancies for JQuery Frontier Calendar plugin.
-    ** THESE MUST BE INCLUDED BEFORE THE FRONTIER CALENDAR PLUGIN. **
--->
-<script type="text/javascript" src="js/lib/jshashtable-2.1.js"></script>
-
-<!-- Include JQuery Frontier Calendar plugin -->
-<script type="text/javascript" src="js/frontierCalendar/jquery-frontier-cal-1.2.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="./css/jumbotron.css" rel="stylesheet">
+    <link href="./css/carousel.css" rel="stylesheet">
     
-<title>
+  </head>
 
-</title>
-<style type="text/css">
-        .calendar
-        {
-            font-family: Arial;
-            font-size: 12px;
-        }
-        table.calendar
-        {
-            margin: auto;
-            border-collapse: collapse;
-        }
-        .calendar .days td
-        {
-            width: 80px;
-            height: 80px;
-            padding: 4px;
-            border: 1px solid #999;
-            vertical-align: top;
-            background-color: #DEF;
-        }
-        .calendar .days td:hover
-        {
-            background-color: #FFF;
-        }
-        .calendar .highlight
-        {
-            font-weight: bold;
-            color: #00F;
-        }
-    </style>
-    <script type="text/javascript"
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-</head>
-<body>
+  <body>
 
-        <div id = "cabecera">
-                <div id= "ContenidoCabecera">
-                    <div id = "barrahorizontal">
-                        <ul>
-                            <li><a href="inicio">Home</a></li>
-                            <li><a href="ingresar">Login</a></li>
-                        </ul>
-                    </div>
-                    <div id = "logotipo">
-                        <img src='./images/anka.jpg' width="200px">
-                    </div>
-                    <div id = "titulo">
-                        <h1>Sistema de Apoyo a TIS</h1>
-                    </div>
-                    <div align="right">
-                        <?php             
-                    if(isset($this->session->userdata['usuario'])){                    
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+               <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <?php
+                      $tareas=$this->session->userdata('tareas');
+                      foreach ($tareas as $key => $value) {?>
+                        <li><a class="navbar-brand" href="<?php echo site_url($key); ?>"><?php echo $value; ?></a></li>
+                    <?php
+                    }
                     ?>
-                    <label>Bienvenido: <?php echo $this->session->userdata('usuario'); ?></php??></label>
-                    <?php } ?>
-                    </div>
-                </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>          
+        </div>
+
+        <div class="navbar-collapse collapse">
+           <?php echo form_open('ingresar',array('class'=>"navbar-form navbar-right", 'role'=>"form"));?>
+          <!--<form class="navbar-form navbar-right" role="form">-->
+            <div class="form-group">
+              <?php echo form_input(array('class'=>"form-control",'type'=>"text",'required'=>'required','name'=>'nombre', 'id'=>'nombre', 'value'=>set_value('nombre'), 'placeholder' => 'nombre de Usuario', 'autofocus'=>'autofocus', 'size'=>'25'))?>
+              <?php echo form_error('nombre');?>
+              <!--<input type="text" placeholder="Email" class="form-control">-->
+            </div>           
+            <div class="form-group">
+              <?php echo form_password(array('class'=>"form-control",'required'=>'required','name'=>'passw', 'id'=>'passw', 'type'=>'password', 'value'=>set_value('passw'), 'placeholder' => 'contraseña', 'autofocus'=>'autofocus', 'size'=>'25'))?>
+              <?php echo form_error('passw')?>
+              <!--<input type="password" placeholder="Password" class="form-control">-->
             </div>
-            <div id = "bajo">
+            <button type="submit" class="btn btn-success">Ingresar</button>
+            <?php echo form_close()?>
+          </form>
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+  

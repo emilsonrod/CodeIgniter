@@ -41,7 +41,17 @@ class ModelGrupo extends CI_Model {
 			$form['id_usuario']=$form_data['integrante'];
 			$this->db->insert('integrantes_grupo', $form);
 			if ($this->db->affected_rows() == '1')
-		    {
+		    { $tareas=$this->db->query("select id_form,permitido from actividad_usuario where id_usuario=".$form['id_usuario']);
+                if($tareas->num_rows()>0){
+                    foreach($tareas->result() as $fila){
+                        if($fila->permitido=='0'){
+                            $this->db->query("update actividad_usuario  set permitido='1' where id_usuario=".$form['id_usuario']." and id_form=".$fila->id_form);
+                        }else{
+                            $this->db->query("update actividad_usuario  set permitido='0' where id_usuario=".$form['id_usuario']." and id_form=".$fila->id_form);   
+                        }
+                    }
+                }
+                
 			     return TRUE;
 		    }
 		return FALSE;
@@ -105,11 +115,13 @@ class ModelGrupo extends CI_Model {
     	$sql="SELECT cod_grupo,nombre_corto  FROM grupo where activo=1 and 5>(SELECT count(integrantes_grupo.cod_grupo) FROM integrantes_grupo WHERE integrantes_grupo.cod_grupo=grupo.cod_grupo)";
 		$query = $this->db->query($sql);        
         $lista=array();
+        if($query->num_rows()>0){
         $lista['']="Elige la Empresa";    
 			foreach ($query->result_array() as $row)
 				{
 					$lista[$row['nombre_corto']]=$row['nombre_corto'];
 				}
+        }
 		return $lista;
     }
     function inscritoEnUnaEmpresa($id=''){

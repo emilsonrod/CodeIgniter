@@ -16,6 +16,18 @@ class ModelRegister extends CI_model
 						'correo' => $correo,
 						);
 		$this->db->insert('usuario',$data);
+        
+		if ($this->db->affected_rows() == '1')
+		{ 
+            //ID TE TODAS LAS TAREAS PERMITIDAS AL REGISTRARSE
+         $sql="CALL tareasInicioEstudiante(?,?)";
+         $parametros=array($loggin,$passw);
+         $this->db->query($sql,$parametros);    
+          return true;
+		}else {
+            return false;
+        }        
+        /*
 		$this->db->select('id_usuario');
 		$this->db->from('usuario');
 		$this->db->where('loggin',$loggin);
@@ -30,10 +42,10 @@ class ModelRegister extends CI_model
 		$this->db->where('nombre_rol',$aux);
 		$query2 = $this->db->get();
 		$IdRol = $query2->row();
-
+        
 		$data2 = array('id_rol' => $IdRol->id_rol,
 					  'id_usuario' => $IdUsuari->id_usuario,);
-		return $this->db->insert('rol_usuario',$data2);
+		return $this->db->insert('rol_usuario',$data2);*/
 	}
 	public function addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente)
 	{

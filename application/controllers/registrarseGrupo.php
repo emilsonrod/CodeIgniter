@@ -9,6 +9,7 @@ class RegistrarseGrupo extends CI_Controller {
 		//$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
+        $this->load->model('modelLogin');
 		$this->load->model('modelGrupo');
 	}
 	function index()
@@ -26,9 +27,13 @@ class RegistrarseGrupo extends CI_Controller {
 		
         $data['lista']=$this->modelGrupo->listaGrupos();
 		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-		{			
-			$this->load->view('viewRegistrarseGrupo',$data);
-		}
+		{	if(count($data['lista'])==0){
+                $data['error']="No hay grupo disponibles,registre uno";
+                $this->load->view('error',$data);
+            }else{
+                $this->load->view('viewRegistrarseGrupo',$data);
+            }
+        }		
 		else
 		{		
                 $form_data = array(
@@ -36,7 +41,10 @@ class RegistrarseGrupo extends CI_Controller {
 						    'integrante'=>$this->session->userdata('id')
 						);
 				if ($this->modelGrupo->inscribirseAGrupo($form_data) == TRUE)
-				{
+				{   
+                    $this->session->unset_userdata('tareas');
+                        $this->session->set_userdata('tareas',$this->modelLogin->getTareas($this->session->userdata('id')));
+                    
                     $data['exito']='Es integrante de la empresa';
 					$this->load->view('exito',$data);   // or whatever logic needs to occur
 				}

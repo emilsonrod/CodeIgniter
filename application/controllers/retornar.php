@@ -10,7 +10,7 @@ class Retornar extends CI_Controller {
 	function index()
 	{
 		
-        $data['tareas']=$this->modelLogin->getTareas($this->session->userdata('perfil'));
+        $data['tareas']=$this->modelLogin->getTareas($this->session->userdata('id'));
         $this->session->unset_userdata('tareas');
         $this->session->set_userdata('tareas',$data['tareas']);
         //$this->load->view('viewGruposCreados',$data);
