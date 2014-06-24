@@ -8,7 +8,6 @@ class Grupo extends CI_Controller {
 		//$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
-        $this->load->model('modelLogin');
 		$this->load->model('modelGrupo');
         $this->load->model('modelUsuario');
 		$this->load->library('session');
@@ -54,10 +53,6 @@ class Grupo extends CI_Controller {
                     
                     if($this->modelGrupo->inscribirseAGrupo($form_data)==TRUE){
                         $data['exito']='Registro y se inscribio en la nueva empresa';
-
-                        $this->session->unset_userdata('tareas');
-                        $this->session->set_userdata('tareas',$this->modelLogin->getTareas($this->session->userdata('id')));
-                        
                         $this->load->view('exito',$data);
                     }else{
                         $data['exito']='Registro exitoso de la empresa pero no se pudo inscribir al grupo';

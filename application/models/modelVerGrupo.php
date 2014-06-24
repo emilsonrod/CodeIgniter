@@ -79,7 +79,7 @@ class ModelVerGrupo extends CI_Model {
 		$codigo = $this->db->query($sql);
 		$codigo->row();
 		return $codigo;
-	}/*
+	}
 	public function getTareas($rol){
 		$sql="select f.nombre_form as tarea,f.controlador  FROM formulario f,rol_formulario rf,rol r WHERE r.nombre_rol='".$rol."' and r.id_rol=rf.id_rol and rf.id_form=f.id_form";
 		$tareas=$this->db->query($sql);
@@ -90,6 +90,6 @@ class ModelVerGrupo extends CI_Model {
 
 				}
 		return $arreglo;
-	}*/
+	}
 }
 ?>

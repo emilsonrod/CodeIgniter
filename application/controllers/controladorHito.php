@@ -25,8 +25,6 @@ class ControladorHito extends CI_Controller
 
 				$data['hito']=$this->nodelHito->getHito($grupo);
 
-				$this->load->view('vistaHito',$data);
-
 				 $auxiliar=$data['hito'];
                  $guardarIdHitos=array();
                  foreach($auxiliar as $indice=>$valor){                     

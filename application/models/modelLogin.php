@@ -12,8 +12,8 @@ class ModelLogin extends CI_Model
 		return isset($this->session->userdata['usuario']);		
 	}
 
-	public function getTareas($id=''){
-		$sql="select f.nombre_form as tarea,f.controlador from actividad_usuario au,formulario f where au.id_usuario=".$id." and au.permitido='1' and au.id_form=f.id_form";        
+	public function getTareas($rol=''){
+		$sql="SELECT f.nombre_form as tarea,f.controlador  FROM formulario f,rol_formulario rf,rol r WHERE r.nombre_rol='".$rol."' and                    r.id_rol=rf.id_rol and rf.id_form=f.id_form";
 		$tareas=$this->db->query($sql);
 		$arreglo=array();
 		foreach ($tareas->result_array() as $row)
