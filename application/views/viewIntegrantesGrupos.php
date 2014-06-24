@@ -1,34 +1,37 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLoggin');?>
 
 <div id="columnacentral">
-<?php
-$attributes = array('class' => '', 'id' => '');
-echo form_open('integrantes', $attributes); ?>
+<div class="navbar-collapse collapse center-block"> 
+ <div class='conteiner'>
+    <?php
+    $attributes = array('class' => 'navbar-form navbar-center', 'id' => 'VerGrupo');
+    echo form_open('integrantes', $attributes); ?>
 
-<p>
+    <p>
 
-        <?php echo form_error('grupos'); ?>
-        <label for="grupos">Grupos</label>
+            <?php echo form_error('grupos'); ?>
+            <label for="grupos">Grupos</label>
 
-         <?php
-                foreach ($grupos as $value) {
+             <?php
+                    foreach ($grupos as $value) {
+                        ?>
+                        <div>
+                        	 <?php echo form_radio('integrantes',$value,FALSE,null)."".$value; ?> <br />
+                        </div>
+                        <?php
+                    }
+                     echo form_error('integrantes');
                     ?>
-                    <div>
-                    	 <?php echo form_radio('integrantes',$value,FALSE,null)."".$value; ?> <br />
-                    </div>
-                    <?php
-                }
-                 echo form_error('integrantes');
-                ?>
 
-</p>
+    </p>
 
-<p>
-        <?php echo form_submit( 'submit', 'Ver'); ?>
-</p>
+    <p>
+            <button type="submit" id="Ver" class="btn btn-success">Ver</button>
+    </p>
 
-<?php echo form_close(); ?>
+    <?php echo form_close(); ?>
+</div>
+</div>
 </div>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

@@ -1,5 +1,4 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 <div id="columnacentral">
 	<p>
 		<div>
@@ -15,14 +14,12 @@
 		?>
 	</div>
 	<p>
-		<?php
- 			echo form_label('Integrantes', 'integrantes');
-		?>
+		<h1>Integrantes del Grupo</h1>
 	</p>
 	<?php
 
 		$this->table->set_heading('Nombre', 'Apellido_Paterno','Apellido_Materno'); //crea la primera fila de la tabla con el encabezado
-		$tmp = array ( 'table_open'  => '<table border="3" cellpadding="3" cellspacing="1">' ); //modifica el espaciado
+		$tmp = array ( 'table_open'  => '<table border="3" cellpadding="3" cellspacing="1" class="table table-hover">' ); //modifica el espaciado
 		$this->table->set_template($tmp); //aplico los cambios de modificacion anterior
 
 		echo $this->table->generate($integrantes); //cuando termina generamos la tabla a partir del vector

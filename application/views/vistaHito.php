@@ -1,8 +1,8 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 <div id="columnacentral">
-
-	<form action="calificarHito" method="post">   
+<div class="navbar-collapse collapse center-block"> 
+ <div class='container'>
+	<form action="calificarHito navbar-form navbar-center" method="post">   
     	<div class="panel panel-primary">
     	<div class="panel-heading" align="center">Hitos</div>
 		 
@@ -20,7 +20,7 @@
                 <td><?php echo $valor['NombreEntrega'];?></td>
                 <td><?php echo $valor['FechaEntrega'];?></td>
                 <td>
-		<input type="number" name="<?php echo $index;?>" min="0" max="100" step="0.5" value=<?php echo $valor['nota']; ?>  />       
+		<input class="form-control" type="number" name="<?php echo $index;?>" min="0" max="100" step="0.5" value=<?php echo $valor['nota']; ?>  />       
                 </td>
                 </tr>
             <?php } ?>
@@ -28,9 +28,11 @@
         </table>
         </div>
         </div> 
-   		 <?php echo form_submit( 'submit', 'Agregar'); ?>
+   		 <button type="submit" id="Agregar" class="btn btn-success">Agregar</button>
  		</div>
 	</form>
+</div>
+</div>
 </div>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

@@ -1,10 +1,9 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 <div id="columnacentral">
+	<div class="navbar-collapse collapse center-block">	
+ <div class='conteiner'>
 	<p>
-		<?php
-			echo form_label('Nombre Corto', 'nombre corto');
-		?>	
+		<h3>Nombre corto del grupo</h3>
 	</p>
 	<p>
 		<div>
@@ -14,9 +13,7 @@
 		</div>
 	</p>
 	<p>
-		<?php
-			echo form_label('Nombre Largo', 'nombre Largo');
-		?>	
+		<h3>Nombre Largo del grupo</h3>
 	</p>
 
 	<div>
@@ -24,8 +21,8 @@
 			echo form_label( $nombreLargo);
 		?>
 	</div>
-
-
+</div>
+</div>
 </div>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

@@ -11,8 +11,7 @@ class Csv extends CI_Controller {
     function index() {
         if(isset($this->session->userdata['usuario'])){
             $data2['tareas']=$this->session->userdata('tareas');
-            $this->load->view('viewCabecera');
-            $this->load->view('viewIzquierda',$data2);
+            $this->load->view('viewCabeceraLogginDocente');
             $data['addressbook'] = $this->csv_model->get_addressbook();
             $this->load->view('csvindex', $data);
             $this->load->view('viewDerecha');

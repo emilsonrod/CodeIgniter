@@ -1,4 +1,4 @@
-<?php $this->load->view('viewCabecera');?>
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 <?php $this->load->view('viewIzquierda',$tareas);?>
 
 <!--LISTAR DOCUMENTOS GRUPO-->

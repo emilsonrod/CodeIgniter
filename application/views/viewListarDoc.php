@@ -1,10 +1,9 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda',$tareas);?>
+<?php $this->load->view('viewCabeceraLoggin');?>
 
 <!--LISTAR DOCUMENTOS GRUPO-->
+<div class="navbar-collapse collapse center-block">	
+ <div class='conteiner'>
 <div id="columnacentral">
-
-	
 	
 	<div id="tituloSubirDoc"><h1>DOCUMENTOS :</h1></div>	
 	<div id="contenedorSubirDoc">
@@ -40,10 +39,10 @@
 				echo"</table>";
 			}else{
 				echo"<div id='mensajevacio' align=\"center\">No hay archivos por el momento</div>";
-			}
-
-			
+			}			
 
 		?>
-		
+	</div>
+	</div>	
 </div>
+<?php $this->load->view('viewPiePagina');?>

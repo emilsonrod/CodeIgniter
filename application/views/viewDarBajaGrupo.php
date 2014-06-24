@@ -1,11 +1,10 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 
 <div id="columnacentral">
 <?php
 
 
-echo form_open('listaGrupos'); ?>
+echo form_open('listaGrupos',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal")); ?>
 
 <p>
 
@@ -24,7 +23,7 @@ echo form_open('listaGrupos'); ?>
 </p>
 
 <p>
-        <?php echo form_submit( 'submit', 'Dar Baja'); ?>
+        <button type="submit" id="baja" class="btn btn-success">Dar Baja</button>
 </p>
 
 <?php echo form_close(); ?>

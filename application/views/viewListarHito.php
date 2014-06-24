@@ -1,11 +1,8 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda',$tareas);?>
+<?php $this->load->view('viewCabeceraLoggin');?>
 
 <!--LISTAR DOCUMENTOS GRUPO-->
 <div id="columnacentral">
 
-	
-	
 	<div id="tituloSubirDoc"><h1>DOCUMENTOS :</h1></div>	
 	<div id="contenedorSubirDoc">
 		<div id = "barra1">

@@ -1,7 +1,7 @@
 <?php $this->load->view('viewCabecera');?>
 <div class="container">
 	<div id="columnacentral">
-		<h2>Verfica si tu Docente Responsable esta aca</h2>
+		<h2>Verfica si tu Grupo esta aca</h2>
 	<?php
 
 		$this->table->set_heading('Nombre', 'Apellido Paterno','Apellido Materno'); //crea la primera fila de la tabla con el encabezado

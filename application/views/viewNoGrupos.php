@@ -1,8 +1,6 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 <div id="columnacentral">
 
-    
     <span><?php echo $error; ?></span>
 
 </div>

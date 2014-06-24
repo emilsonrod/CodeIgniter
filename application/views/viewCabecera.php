@@ -34,6 +34,7 @@
           </button>
           <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="inicio">home</a></li>  
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Registrar <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -43,12 +44,12 @@
                         <li><a class="navbar-brand" href="<?php echo site_url($key); ?>"><?php echo $value; ?></a></li>
                     <?php
                     }
-                    ?>
+                    ?>                    
                   </ul>
                 </li>
               </ul>
-            </div>          
-        </div>
+            </div>  
+          </div>
 
         <div class="navbar-collapse collapse">
            <?php echo form_open('ingresar',array('class'=>"navbar-form navbar-right", 'role'=>"form"));?>

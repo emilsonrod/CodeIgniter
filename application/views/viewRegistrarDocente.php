@@ -1,10 +1,11 @@
 <?php $this->load->view('viewCabecera');?>
+<div id="columnacentral">
 <div class="navbar-collapse collapse center-block">
 	<div class="jumbotron">
 	<div class="conteiner">
     <h1> Crear una Cuenta</h1>
 
-	<?php echo form_open('registrar',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal"));?>
+	<?php echo form_open('registrarDocente',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal"));?>
 	<fieldset>
 	<legend >Ingrese los siguientes Datos Personales:</legend>
 	<div class="form-group">
@@ -75,23 +76,13 @@
 		<h5><?php echo form_error('ciDocente');?></h5>
 		</p>
 
-		<p><?php echo form_submit('Registrar', 'Registrar')?>
+		<p><button type="submit" id="Registrar" class="btn btn-success">Registrar</button>
 	</fieldset>
 	<?php echo form_close()?>
-	<div class="container">
-      <hr>
-      <footer>
-        <p>&copy; Ankasoft-Technology 2014</p>
-      </footer>
-    </div> <!-- /container -->
+	 <?php $this->load->view('viewPiePagina');?>	
+</div>
 </div>
 </div>
 </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-  </body>
-</html>
+   

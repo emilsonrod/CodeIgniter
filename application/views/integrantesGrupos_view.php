@@ -1,9 +1,7 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
-
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 <div id="columnacentral">
 <?php
-$attributes = array('class' => '', 'id' => '');
+$attributes = array('class' => 'navbar-form navbar-center', 'id' => '');
 echo form_open('integrantes', $attributes); ?>
 
 <p>
@@ -24,7 +22,8 @@ echo form_open('integrantes', $attributes); ?>
 </p>
 
 <p>
-        <?php echo form_submit( 'submit', 'Ver'); ?>
+        <button type="submit" id="Ingresar" class="btn btn-success">Ver grupos
+        </button>        
 </p>
 
 <?php echo form_close(); ?>

@@ -41,12 +41,17 @@ class Ingresar extends CI_Controller
 				$this->session->set_userdata('usuario',$username);
 				$this->session->set_userdata('perfil',$perfil);
 				$this->session->set_userdata('tareas',$data['tareas']);
-
-				$this->load->view('viewCabecera');
-				$this->load->view('viewIzquierda',$data);
-				$this->load->view('viewCentral');
-				$this->load->view('viewDerecha');
-				$this->load->view('viewPiePagina');
+				if($perfil == "docente"){
+					$this->load->view('viewCabeceraLogginDocente');
+					$this->load->view('viewCentral');
+					$this->load->view('viewDerecha');
+					$this->load->view('viewPiePagina');
+				}else{
+					$this->load->view('viewCabeceraLoggin');
+					$this->load->view('viewCentral');
+					$this->load->view('viewDerecha');
+					$this->load->view('viewPiePagina');
+			}
 			}
 			else
 			{	$data['error']="Login o Pasword incorrectos intentelo nuevamente";

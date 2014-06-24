@@ -34,25 +34,15 @@
           </button>
           <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-               
+               <li><a class="navbar-brand " href="csv">Importar Csv de Estudiantes</a></li>
+               <li><a class="navbar-brand " href="subirDocDocente">Subir Documentos</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="grupo">Crear un nuevo Grupo</a></li>
-                    <li><a class="navbar-brand " href="registrarseGrupo">Incluirse en un Grupo</a></li>
-                    <li><a class="navbar-brand " href="GruposInscritosGlobal">Ver Grupos Existentes</a></li>
-                    <li><a class="navbar-brand " href="docente">Ver Docentes actuales</a></li>
+                    <li><a class="navbar-brand " href="controladorVerGrupo">Ver mis Grupos</a></li>
+                    <li><a class="navbar-brand " href="listaGrupos">Eliminar un grupo</a></li>      
                   </ul>
-                </li>
-                
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funciones de Grupo <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="calendar2">Fijar fechas de entrega de hitos</a></li>
-                    <li><a class="navbar-brand " href="subirDocEst">Subir Documentos del grupo</a></li>
-                    <li><a class="navbar-brand " href="subirHito">Subir hitos entregables</a></li>
-                  </ul>
-                </li>
+                </li>               
               </ul>
             </div>          
         </div>
