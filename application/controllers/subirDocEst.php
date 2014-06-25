@@ -29,7 +29,8 @@ class SubirDocEst extends CI_Controller
 
 				$IdDocente = $this->modelSubirDoc->obtenerDocente($CODG);
 				foreach ($IdDocente->result() as $row) {$IDU = $row->id_docente;}
-				$hayFecha = $this->modelSubirDoc->verificarEventoDoc($IDU);
+
+				$hayFecha = $this->modelSubirDoc->verificarFechaEventoD($CODG);
 
 				if($hayFecha)
 				{
@@ -42,7 +43,7 @@ class SubirDocEst extends CI_Controller
 
 					$this->form_validation->set_message('required', 'El campo %s es obligatorio');
 
-		        	foreach ($hayFecha->result() as $fila) {$fehcaIg = $fila->FECHA_EVENTO;}
+		        	foreach ($hayFecha->result() as $fila) {$fehcaIg = $fila->fecha_evento;}
 		        	if ($this->form_validation->run() == FALSE)
 					{	
 						//foreach ($hayFecha->result() as $fila) {$fehcaIg = $fila->FECHA_EVENTO;}
@@ -50,7 +51,7 @@ class SubirDocEst extends CI_Controller
 							  'fechas' => $hayFecha,
 							  'error' =>' ',
 							  'tareas'=> $this->session->userdata('tareas'),
-							  'lista'=> $this->modelSubirDoc->listaEventos($IDU, $fehcaIg)
+							  'lista'=> $this->modelSubirDoc->listaEvento($CODG, $fehcaIg)
 							  );
 
 						$this->load->view('viewSubirDoc',$data);
@@ -64,7 +65,7 @@ class SubirDocEst extends CI_Controller
 
 							$config['file_name'] = $nombreArchivo;
 							$config['upload_path'] = './uploadsDocumento/';
-							$config['allowed_types'] = 'doc|docx|pdf';
+							$config['allowed_types'] = 'pdf';
 							$config['max_size'] = '20480';
 
 							$this->load->library('upload', $config);
@@ -74,7 +75,7 @@ class SubirDocEst extends CI_Controller
 								$tipo_archivo = $_FILES['userfile']['type']; 
 								if (!(strpos($tipo_archivo, "pdf")  ) )
 								 {
-								 	$errores = "El tipo de archivo no es correcto. El archivo tiene q ser de tipo PDF.";
+								 	$errores = "El tipo de archivo no es correcto.";
 								 }
 								else{
 									if ($_FILES['userfile']['size'] > 10485760)
@@ -84,7 +85,7 @@ class SubirDocEst extends CI_Controller
 								}
 								$error = array('error' => $errores,
 											   'tareas'=> $this->session->userdata('tareas'),
-											    'lista'=> $this->modelSubirDoc->listaEventos($IDU, $fehcaIg));
+											    'lista'=> $this->modelSubirDoc->listaEvento($CODG, $fehcaIg));
 								$this->load->view('viewSubirDoc', $error);
 								
 							}
@@ -105,7 +106,7 @@ class SubirDocEst extends CI_Controller
 								foreach ($docente->result() as $fila) 
 									{$IDU = $fila->id_docente;}
 
-								$id_ev = $this->modelSubirDoc->getEvento($evento, $IDU);
+								$id_ev = $this->modelSubirDoc->getEvento($evento, $CODG, $fehcaIg);
 								foreach($id_ev->result() as $fila)
 								{ $IDE = $fila->id_evento;}
 

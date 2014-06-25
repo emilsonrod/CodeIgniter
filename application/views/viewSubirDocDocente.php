@@ -1,6 +1,6 @@
-<?php $this->load->view('viewCabeceraLogginDocente');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 <div id="columnacentral">
-
+<div class="navbar-collapse collapse center-block">
 
 <script>
 function checkFile(fieldObj)
@@ -9,12 +9,12 @@ function checkFile(fieldObj)
         var FileExt = FileName.substr(FileName.lastIndexOf('.')+1);
         var FileSize = fieldObj.files[0].size;
         var FileSizeMB = (FileSize/10485760).toFixed(2);
-        var objErrDiv = document.getElementById('divUploadCheckError');
+        var objErrDiv = document.getElementById('divError');
 
-        if ( (FileExt != "pdf" && FileExt != "doc" && FileExt != "docx") )
+        if ( (FileExt != "pdf" && FileExt != "xls" && FileExt != "xlsx") )
         {
-        	var error = "Extension del archivo: "+ FileExt+"\n\n";
-            error += "El tipo de archivo permitido es pdf.\n\n";
+        	var error = "Extension del archivo: " + " ' "+ FileExt +" ' "+ "\n\n";
+            error += "Elija un archivo con el formato permitido.\n\n";
 
         	objErrDiv.innerHTML= error;
 	        objErrDiv.style.padding='4px 4px';
@@ -33,7 +33,7 @@ function checkFile(fieldObj)
 	    {
 	    	if(FileSize>10485760)
 	    	{
-	    		var error = "Tamaño: " + FileSizeMB + " MB \n\n";
+	    		var error = "Tamaño: " + " ' " + FileSizeMB + " ' " + " MB \n\n";
 	            error += "El tamaño permitido es de 10Mb.\n\n";
 
 	        	objErrDiv.innerHTML= error;
@@ -58,33 +58,35 @@ function checkFile(fieldObj)
 	<h1>Subir documento docente</h1>
 <!--SUBIR DOCUMENTOS-->
 	<div id="contenedorSubirDoc">		
-		<div id="formsubirDoc"></div>
-		     <?php echo form_open_multipart('subirDocDocente',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal"));?>
+		
+		     <?php echo form_open_multipart('subirDocDocente');?>
 				
-				<fieldset>
-				<legend>Elegir documento:</legend>
-					<span>El formato de los archivos permitidos son .pdf,.doc </span><br/>
-					<span>El tamaño permitido es de 20 mb.</span>
-					<p>
+					<fieldset>
+						</br>
+						<?php echo form_label('  Archivo :');?></br>
+						<span>El formato de los archivos permitidos son ".pdf",".xls" </span><br/>
+						<span>El tamaño permitido es de 10 Mb.</span>
+						
 
-						<input class="form-control",type="file" name="userfile" id="userfile" onchange="checkFile(this)"/>
-						<h5><?php echo form_error('userfile');?></h5>
-						<?php echo $error;?>
-						<div id="divUploadCheckError" class="divError"></div>
-					<p/>
-				</fieldset>
-				<fieldset>
-				<legend>Descripcion del documento:</legend>
-				<span>Numero de caracteres permitidos 150.</span><br/>
+							<input type="file" name="userfile" id="userfile" onchange="checkFile(this)"/>
+							<div id="divError"><h5><?php echo form_error('userfile');?></h5></div>
+							<div id="divError"><?php echo $error;?></div>
+							<div id="divError" class="divError"></div>
+
+					</fieldset>
+					<fieldset>
+						</br>
+						<?php echo form_label('  Descripcion:');?></br>
+					<span>Numero de caracteres permitidos 150.</span><br/>
+						
+						<?php echo form_textarea(array('class' =>'cajas' ,'name' => 'txtdes' ,'maxLength' => '150', 'id' => 'txtdes', 'style' =>'width:400px; height:50px'))?>
+						<br/>
+						<div id="divError"><h5><?php echo form_error('txtdes');?></h5></div>
 					
-					<?php echo form_textarea(array('class' =>'cajas form-control' ,'name' => 'txtdes' ,'maxLength' => '150', 'id' => 'txtdes', 'style' =>'width:400px; height:50px'))?>
-					<br/>
-					<h5><?php echo form_error('txtdes');?></h5>
-				
-				</fieldset>
-				<div aling="right">
-				<input class = "button btn btn-success" type="submit" name="submit" value="Subir Documento" />
-			</div>
+					</fieldset>
+					<div aling="right">
+					<input class = "button" type="submit" name="submit" value="Subir Documento" />
+					</div>
 			</form>
 		</div>
 		<div id = "barra1">
@@ -92,7 +94,8 @@ function checkFile(fieldObj)
 	        	<li><a href="listarDoc">Listar Documentos</a></li>
 	        </ul>
        </div> 
+       <?php $this->load->view('viewDerecha');?>
+		<?php $this->load->view('viewPiePagina');?>
+	</div>
 	</div>
 <!--FIN-->
-<?php $this->load->view('viewDerecha');?>
-<?php $this->load->view('viewPiePagina');?>

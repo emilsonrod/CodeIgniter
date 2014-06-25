@@ -1,11 +1,9 @@
-<?php $this->load->view('viewCabeceraLogginDocente');?>
-<?php $this->load->view('viewIzquierda',$tareas);?>
-
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 <!--LISTAR DOCUMENTOS GRUPO-->
 <div id="columnacentral">
 
 	
-	
+	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
 	<div id="tituloSubirDoc"><h1>DOCUMENTOS :</h1></div>	
 	<div id="contenedorSubirDoc">
 		<div id = "barra1">
@@ -17,13 +15,13 @@
 		
 			if($lista)
 		     {
-				echo"<table class='ListaArchivo'>";
+				echo"<center><table class='ListaArchivo'>";
 				echo"<caption>LISTA DE ARCHIVOS</caption>";
 
 					echo"<tr>";
 						//echo "<th width=\"40\">Estado</th>";
-						echo "<th width='20%'>Nombre</th>";
-						echo "<th width='50%'>Descripcion</th>";
+						echo "<th width='30%'>Nombre</th>";
+						echo "<th width='40%'>Descripcion</th>";
 						echo "<th width='15%'>Fecha</th>";
 						echo "<th width='15%'></th>";
 						//echo "<th align=\"center\"></th>";
@@ -37,7 +35,7 @@
 							echo"<td><center><a href='uploadsDocente/".$row->NOMBRE_DOC."'><img title='Descargar' src='images/Descargar.png' width='30' height='30'></a><a href=listarDoc/eliminarArchivo/".$row->COD_DOC_DOC."><img title='Eliminar' src='images/eliminar.png' width='30' height='30'></a></center></td>";
 							echo"</tr>";
 						}
-				echo"</table>";
+				echo"</center></table>";
 			}else{
 				echo"<div id='mensajevacio' align=\"center\">No hay archivos por el momento</div>";
 			}

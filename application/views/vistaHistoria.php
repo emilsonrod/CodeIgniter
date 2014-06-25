@@ -1,5 +1,4 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 <div id="columnacentral">
     <script type="text/javascript" src="js/validacion.js"></script>
    <div class="panel panel-primary">

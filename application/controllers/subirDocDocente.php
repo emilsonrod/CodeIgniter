@@ -43,17 +43,17 @@ class SubirDocDocente extends CI_Controller
 
 				$config['file_name'] = $nombreArchivo;
 				$config['upload_path'] = './uploadsDocente/';
-				$config['allowed_types'] = 'doc|docx|pdf';
-				$config['max_size'] = '20480';
+				$config['allowed_types'] = 'pdf|xls|xlsx';
+				$config['max_size'] = '10240';
 
 				$this->load->library('upload', $config);
 
 				if ( ! $this->upload->do_upload())
 				{
 					$tipo_archivo = $_FILES['userfile']['type']; 
-					if (!(strpos($tipo_archivo, "pdf")  ) )
+					if (!(strpos($tipo_archivo, "pdf") || strpos($tipo_archivo, "xls") || strpos($tipo_archivo, "xlxs") ) )
 					 {
-					 	$errores = "El tipo de archivo no es correcto. El archivo tiene q ser de tipo PDF.";
+					 	$errores = "El tipo de archivo no es correcto.";
 					 }
 					else{
 						if ($_FILES['userfile']['size'] > 10485760)

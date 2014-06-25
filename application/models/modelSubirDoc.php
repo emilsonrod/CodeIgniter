@@ -67,7 +67,7 @@ class ModelSubirDoc extends CI_Model
         }
     }
     //verificar si hay evento para el grupo y si el evento es de TIPO SOLO DOCUMENTACION y si aun estamos en fecha para entregar
-    function verificarEventoDoc($id_doc)
+    /*function verificarEventoDoc($id_doc)
     {
     	$sql = "select * from evento where fecha_evento >= current_date  and id_usuario = '".$id_doc."' order by fecha_evento limit 1 "; 
     	$consulta = $this->db->query($sql);
@@ -79,7 +79,20 @@ class ModelSubirDoc extends CI_Model
 		else{
 			return FALSE;
 		}
-    }
+    }*/
+    function verificarEventoDoc($cod_grupo)
+	{
+		$sql = "select e.fecha_evento from evento e, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento >= current_date and e.id_tipo_evento = '' order by fecha_evento limit 1";
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}
+	}
     function obtenerDocente($grupo)
     {
     	$sql = "select id_docente from grupo where cod_grupo = '".$grupo."'";
@@ -95,6 +108,7 @@ class ModelSubirDoc extends CI_Model
 
     }
 	//listar fechas eventos para eventos.
+	/*
 	 function listaEventos($id_doc, $fecha)
 	 {
     	$sql="SELECT te.nombre_tipo_evento  FROM evento e, tipo_evento te where e.id_usuario = '".$id_doc."' and e.fecha_evento >= current_date  and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento  order by fecha_evento";
@@ -105,11 +119,11 @@ class ModelSubirDoc extends CI_Model
 					$lista[$row['nombre_tipo_evento']]=$row['nombre_tipo_evento'];
 				}
 		return $lista;
-    }
+    }*/
     //obtenr id del evnto para ingresar en entrega
-    function getEvento($nombre_tipo_evento, $id_doc)
+     function getEvento($nombre_tipo_evento, $cod_grupo, $fecha)
     {
-    	$sql = "select e.id_evento from evento e, tipo_evento te where te.nombre_tipo_evento = '".$nombre_tipo_evento."' and te.id_tipo_evento = e.id_tipo_evento and e.id_usuario = '".$id_doc."'";
+    	$sql = "select e.id_evento from evento e, tipo_evento te, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento and te.nombre_tipo_evento = '".$nombre_tipo_evento."' ";
 		$consulta = $this->db->query($sql);
 
 		if($consulta ->num_rows() > 0)
@@ -120,5 +134,55 @@ class ModelSubirDoc extends CI_Model
 			return FALSE;
 		}	
     }
+    /*
+    function getEvento($nombre_tipo_evento, $id_doc, $fecha)
+    {
+    	$sql = "select e.id_evento from evento e, tipo_evento te where te.nombre_tipo_evento = '".$nombre_tipo_evento."' and te.id_tipo_evento = e.id_tipo_evento and e.id_usuario = '".$id_doc."' and  e.fecha_evento = '".$fecha."'";
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}	
+    }*/
+    //buscar ide de evento
+	function verificarFechaEventoD($cod_grupo)
+	{
+		$sql = "select e.fecha_evento from evento e, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento >= current_date and (e.id_tipo_evento = '1' or e.id_tipo_evento = '2') order by fecha_evento limit 1";
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
+			return FALSE;
+		}
+	}
+	function listaEvento($cod_grupo, $fecha)
+	{
+		$sql = "select te.nombre_tipo_evento from evento_particular ep, evento e, tipo_evento te where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento and (te.id_tipo_evento = '1' or te.id_tipo_evento = '2')";
+		$query = $this->db->query($sql);
+		 $lista=array();
+		foreach ($query->result_array() as $row)
+				{
+					$lista[$row['nombre_tipo_evento']]=$row['nombre_tipo_evento'];
+				}
+		return $lista;
+	}
+	function listaEventoD($cod_grupo, $fecha)
+	{
+		$sql = "select te.nombre_tipo_evento from evento_particular ep, evento e, tipo_evento te where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento and (te.id_tipo_evento = '1' or te.id_tipo_evento = '2')";
+		$query = $this->db->query($sql);
+		 $lista=array();
+		foreach ($query->result_array() as $row)
+				{
+					$lista[$row['nombre_tipo_evento']]=$row['nombre_tipo_evento'];
+				}
+		return $lista;
+	}	
 }
 ?>

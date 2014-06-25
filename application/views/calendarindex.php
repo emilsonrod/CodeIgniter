@@ -1,3 +1,4 @@
+<?php $this->load->view('viewCabeceraLoggin');?>
 <!--<div id="columnacentral" class="container-fluid">-->
 <title>Frontier JQuery Calendar</title>
 

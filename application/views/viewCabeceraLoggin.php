@@ -13,7 +13,9 @@
     <title>Sistema de ayuda a TIS</title>
 
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     <link href="./css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom styles for this template -->
     <link href="./css/jumbotron.css" rel="stylesheet">
@@ -51,6 +53,7 @@
                     <li><a class="navbar-brand " href="calendar2">Fijar fechas de entrega de hitos</a></li>
                     <li><a class="navbar-brand " href="subirDocEst">Subir Documentos del grupo</a></li>
                     <li><a class="navbar-brand " href="subirHito">Subir hitos entregables</a></li>
+                    <li><a class="navbar-brand " href="convocatoriasDoc">Documentos necesarios</a></li>
                   </ul>
                 </li>
               </ul>

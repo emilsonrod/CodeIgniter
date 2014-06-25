@@ -62,7 +62,7 @@ class SubirHito extends CI_Controller
 
 							$config['file_name'] = $nombreArchivo;
 							$config['upload_path'] = './uploadsHito/';
-							$config['allowed_types'] = 'doc|docx|pdf';
+							$config['allowed_types'] = 'zip';
 							$config['max_size'] = '20480';
 
 							$this->load->library('upload', $config);
@@ -70,12 +70,12 @@ class SubirHito extends CI_Controller
 							if ( ! $this->upload->do_upload())
 							{
 								$tipo_archivo = $_FILES['userfile']['type']; 
-								if (!(strpos($tipo_archivo, "pdf")  ) )
+								if (!(strpos($tipo_archivo, "zip")  ) )
 								 {
-								 	$errores = "El tipo de archivo no es correcto. El archivo tiene q ser de tipo PDF.";
+								 	$errores = "El tipo de archivo no es correcto. ";
 								 }
 								else{
-									if ($_FILES['userfile']['size'] > 10485760)
+									if ($_FILES['userfile']['size'] > 20971520)
 									{
 										$errores = "EL tamanio permitido es 10Mb.";
 									}
@@ -99,7 +99,7 @@ class SubirHito extends CI_Controller
 								foreach ($codGrupo->result() as $fila) 
 									{$CODG = $fila->cod_grupo;}
 
-								$id_ev = $this->modelSubirHito->getEvento($evento, $CODG);
+								$id_ev = $this->modelSubirHito->getEvento($evento, $CODG, $fehcaIg );
 								foreach($id_ev->result() as $fila)
 								{ $IDE = $fila->id_evento;}
 

@@ -1,7 +1,8 @@
-<?php $this->load->view('viewCabecera');?>
+<?php $this->load->view('viewCabeceraLoggin');?>
+
 <div class="container">
 	<div id="columnacentral">
-		<h2>Verfica si tu Grupo esta aca</h2>
+		<h2>Verifica si tu Grupo esta aca</h2>
 	<?php
 
 		$this->table->set_heading('Nombre', 'Apellido Paterno','Apellido Materno'); //crea la primera fila de la tabla con el encabezado
