@@ -1,5 +1,4 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 
 <div id="columnacentral">
 <?php

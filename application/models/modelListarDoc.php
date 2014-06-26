@@ -40,7 +40,7 @@ class ModelListarDoc extends CI_Model
 	//listar hitos de grupos =)
 	function listarHitosEst($cod_grupo)
 	{
-		$sql = "select e.id_entrega, e.nombre_entrega, e.fecha_entrega, e.comentario  from entrega e, evento ev, evento_particular ep  where ep.cod_grupo ='".$cod_grupo."' and  ep.id_evento = ev.id_evento and ev.id_tipo_evento ='4' and ev.id_evento = e.id_evento";
+		$sql = "select e.id_entrega, e.nombre_entrega, e.fecha_entrega, e.comentario  from entrega e, evento ev where e.cod_grupo ='".$cod_grupo."' and  e.id_evento = ev.id_evento and (ev.id_tipo_evento ='4' or ev.id_tipo_evento ='5') order by id_entrega";
 		$consulta = $this->db->query($sql);
 
 		if($consulta ->num_rows() > 0)
@@ -54,7 +54,7 @@ class ModelListarDoc extends CI_Model
 	//listar hitos de grupos =)
 	function listarDocumentosEst($cod_grupo)
 	{
-		$sql = "select e.id_entrega, e.nombre_entrega, e.fecha_entrega, e.comentario  from entrega e, evento ev, evento_particular ep  where ep.cod_grupo ='".$cod_grupo."' and  ep.id_evento = ev.id_evento and (ev.id_tipo_evento ='1' or ev.id_tipo_evento ='2') and ev.id_evento = e.id_evento";
+		$sql = "select e.id_entrega, e.nombre_entrega, e.fecha_entrega, e.comentario  from entrega e, evento ev where e.cod_grupo ='".$cod_grupo."' and  e.id_evento = ev.id_evento and (ev.id_tipo_evento ='1' or ev.id_tipo_evento ='2') order by id_entrega";
 		$consulta = $this->db->query($sql);
 
 		if($consulta ->num_rows() > 0)
@@ -146,6 +146,20 @@ class ModelListarDoc extends CI_Model
 		{
 			return TRUE;
 		}else{
+			return FALSE;
+		}
+	}
+	//
+	function listarConvocatoria()
+	{
+		$sql = "select * from documento_docente";
+		$consulta = $this->db->query($sql);
+
+		if($consulta ->num_rows() > 0)
+		{
+			return $consulta;
+		}
+		else{
 			return FALSE;
 		}
 	}

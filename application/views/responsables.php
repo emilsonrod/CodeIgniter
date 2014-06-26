@@ -1,5 +1,4 @@
 <?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
 <div id="columnacentral">
     <div class="panel panel-primary">
         <div class="panel-heading">

@@ -44,7 +44,7 @@ class ModelSubirHito extends CI_Model
 	//obtener la lista de eventos de una fecha
 	function listaEventoHito($cod_grupo, $fecha)
 	{
-		$sql = "select te.nombre_tipo_evento from evento_particular ep, evento e, tipo_evento te where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento";
+		$sql = "select te.nombre_tipo_evento from evento_particular ep, evento e, tipo_evento te where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento and (te.id_tipo_evento = '4' or te.id_tipo_evento = '5')";
 		$query = $this->db->query($sql);
 		 $lista=array();
 		foreach ($query->result_array() as $row)
@@ -54,9 +54,9 @@ class ModelSubirHito extends CI_Model
 		return $lista;
 	}	
 	//obtenr id del evnto para ingresar en entrega
-    function getEvento($nombre_tipo_evento, $cod_grupo)
+    function getEvento($nombre_tipo_evento, $cod_grupo, $fecha)
     {
-    	$sql = "select e.id_evento from evento e, tipo_evento te, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and  e.id_tipo_evento = te.id_tipo_evento and te.nombre_tipo_evento = '".$nombre_tipo_evento."' ";
+    	$sql = "select e.id_evento from evento e, tipo_evento te, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento = '".$fecha."' and e.id_tipo_evento = te.id_tipo_evento and te.nombre_tipo_evento = '".$nombre_tipo_evento."' ";
 		$consulta = $this->db->query($sql);
 
 		if($consulta ->num_rows() > 0)
@@ -67,5 +67,6 @@ class ModelSubirHito extends CI_Model
 			return FALSE;
 		}	
     }
+
 }
 ?>

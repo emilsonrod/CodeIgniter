@@ -1,20 +1,19 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda',$tareas);?>
+<?php $this->load->view('viewCabeceraLoggin');?>
 <div id="columnacentral">
-
+<div class="navbar-collapse collapse center-block">
 <script>
 function checkFile(fieldObj)
     {
         var FileName  = fieldObj.value;
         var FileExt = FileName.substr(FileName.lastIndexOf('.')+1);
         var FileSize = fieldObj.files[0].size;
-        var FileSizeMB = (FileSize/10485760).toFixed(2);
-        var objErrDiv = document.getElementById('divUploadCheckError');
+        var FileSizeMB = (FileSize/20971520).toFixed(2);
+        var objErrDiv = document.getElementById('divError');
 
-        if ( (FileExt != "pdf" && FileExt != "doc" && FileExt != "docx") )
+        if ( (FileExt != "zip") )
         {
-        	var error = "Extension del archivo: "+ FileExt+"\n\n";
-            error += "El tipo de archivo permitido es pdf.\n\n";
+        	var error = "Extension del archivo: "+ " ' " + FileExt+ " ' " +"\n\n";
+            error += "Elija un archivo con el formato permitido.\n\n";
 
         	objErrDiv.innerHTML= error;
 	        objErrDiv.style.padding='4px 4px';
@@ -31,10 +30,10 @@ function checkFile(fieldObj)
         }
 	    else
 	    {
-	    	if(FileSize>10485760)
+	    	if(FileSize>20971520)
 	    	{
-	    		var error = "Tamaño: " + FileSizeMB + " MB \n\n";
-	            error += "El tamaño permitido es de 10Mb.\n\n";
+	    		var error = "Tamaño: " + " ' " + FileSizeMB + " ' " +"MB \n\n";
+	            error += "El tamaño permitido es de 20Mb.\n\n";
 
 	        	objErrDiv.innerHTML= error;
 		        objErrDiv.style.padding='4px 4px';
@@ -61,31 +60,32 @@ function checkFile(fieldObj)
 		     <?php echo form_open_multipart('subirHito');?>
 				
 		     	<fieldset>
-					<legend>Elegir evento:</legend>
-						<p>
-
-						<?php echo form_label('Eventos recientes:', 'fecha');?>
+		     	
+					</br>
+						<?php echo form_label('  Eventos recientes:   ', 'fecha');?></br>
    				 		<?php echo form_dropdown('fecha', $lista, set_value('fecha')); ?>
-					<p/>
+   				 	</br>
 				</fieldset>
 
 				<fieldset>
-				<legend>Elegir archivo:</legend>
-					<span>El formato de los archivos permitidos son .zip </span><br/>
+				</br>
+					<?php echo form_label('  Archivo :');?></br>
+					<span>El formato de los archivos permitidos son .zip </span></br>
 					<span>El tamaño permitido es de 20 mb.</span>
 					<p>
 						<input type="file" name="userfile" id="userfile" onchange="checkFile(this)"/>
 					<p/>
-					<h5><?php echo form_error('userfile');?></h5>
-					<?php echo $error;?>
-					<div id="divUploadCheckError" class="divError"></div>
+					<div id="divError"> <h5><?php echo form_error('userfile');?></h5></div>
+					<div id="divError"><?php echo $error;?></div>
+					<div id="divError" class="divError"></div></br>
 				</fieldset>
 				<fieldset>
-				<legend>Descripcion del hito:</legend>
+				<!--legend>Descripcion del hito:</legend-->
+				<?php echo form_label('Descripcion: ');?></br>
 				<span>Numero de caracteres permitidos 150.</span><br/>
 					<?php echo form_textarea(array('class' =>'cajas' ,'name' => 'txtdes' ,'maxLength' => '150', 'id' => 'txtdes', 'style' =>'width:400px; height:80px'))?>
 					<br/>
-					<h5><?php echo form_error('txtdes');?></h5>
+					<div id="divError"><h5><?php echo form_error('txtdes');?></h5></div>
 				</fieldset>
 				<div aling="right">
 				<input class = "button" type="submit" name="submit" value="Subir Documento" />
@@ -97,11 +97,14 @@ function checkFile(fieldObj)
 	        	<li><a href="listarHito">Listar Documentos</a></li>
 	        </ul>
        </div> 
+      <?php $this->load->view('viewDerecha');?>
+		<?php $this->load->view('viewPiePagina');?>
 	</div>
+</div>
+
 <!--FIN-->
 
+</div>
 
 
-
-<?php $this->load->view('viewDerecha');?>
-<?php $this->load->view('viewPiePagina');?>
+ 

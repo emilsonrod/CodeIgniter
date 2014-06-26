@@ -1,4 +1,4 @@
-<?php $this->load->view('viewCabeceraLoggin');?>
+<?php $this->load->view('viewCabeceraLogginDocente2');?>
 
 <div id="columnacentral">
 <div class="navbar-collapse collapse center-block"> 

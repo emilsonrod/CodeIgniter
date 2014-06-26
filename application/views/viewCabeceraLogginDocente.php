@@ -13,6 +13,7 @@
     <title>Sistema de ayuda a TIS</title>
 
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     <link href="./css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
