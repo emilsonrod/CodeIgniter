@@ -22,6 +22,93 @@
   </head>
 
   <body>
+    <script>
+      function soloLetrasHead(e) {
+          key = e.keyCode || e.which;
+          tecla = String.fromCharCode(key).toLowerCase();
+          letras = " áéíóúabcdefghijklmnñopqrstuvwxyz1234567890";
+          especiales = [8, 37, 39, 46];
+
+          tecla_especial = false
+          for(var i in especiales) {
+              if(key == especiales[i]) {
+                  tecla_especial = true;
+                  break;
+              }
+          }
+
+          if(letras.indexOf(tecla) == -1 && !tecla_especial)
+              return false;
+      }
+
+      function limpia() {
+          var val = document.getElementById("nombre").value;
+          var tam = val.length;
+          for(i = 0; i < tam; i++) {
+              if(!isNaN(val[i]))
+                  document.getElementById("nombre").value = '';
+          }
+
+      }
+    </script>
+    <script>
+      function soloLetrasBody(e) {
+          key = e.keyCode || e.which;
+          tecla = String.fromCharCode(key).toLowerCase();
+          letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+          especiales = [8, 37, 39, 46];
+
+          tecla_especial = false
+          for(var i in especiales) {
+              if(key == especiales[i]) {
+                  tecla_especial = true;
+                  break;
+              }
+          }
+
+          if(letras.indexOf(tecla) == -1 && !tecla_especial)
+              return false;
+      }
+
+      function limpia() {
+          var val = document.getElementById("nombre").value;
+          var tam = val.length;
+          for(i = 0; i < tam; i++) {
+              if(!isNaN(val[i]))
+                  document.getElementById("nombre").value = '';
+          }
+
+      }
+    </script>
+    <script>
+      function soloNumerosBody(e) {
+          key = e.keyCode || e.which;
+          tecla = String.fromCharCode(key).toLowerCase();
+          letras = " 1234567890";
+          especiales = [8, 37, 39, 46];
+
+          tecla_especial = false
+          for(var i in especiales) {
+              if(key == especiales[i]) {
+                  tecla_especial = true;
+                  break;
+              }
+          }
+
+          if(letras.indexOf(tecla) == -1 && !tecla_especial)
+              return false;
+      }
+
+      function limpia() {
+          var val = document.getElementById("nombre").value;
+          var tam = val.length;
+          for(i = 0; i < tam; i++) {
+              if(!isNaN(val[i]))
+                  document.getElementById("nombre").value = '';
+          }
+
+      }
+    </script>
 
     <div class="navbar navbar-inverse navbar-fixed-top navbar-static-top" role="navigation">
       <div class="container">
@@ -55,7 +142,7 @@
            <?php echo form_open('ingresar',array('class'=>"navbar-form navbar-right", 'role'=>"form"));?>
           <!--<form class="navbar-form navbar-right" role="form">-->
             <div class="form-group">
-              <?php echo form_input(array('class'=>"form-control",'type'=>"text",'required'=>'required','name'=>'nombre', 'id'=>'nombre', 'value'=>set_value('nombre'), 'placeholder' => 'nombre de Usuario', 'autofocus'=>'autofocus', 'size'=>'25'))?>
+              <?php echo form_input(array('class'=>"form-control",'type'=>"text",'onkeypress'=>"return soloLetrasHead(event)",'onblur'=>"limpia()",'required'=>'required','name'=>'nombre', 'id'=>'nombre', 'value'=>set_value('nombre'), 'placeholder' => 'nombre de Usuario', 'autofocus'=>'autofocus', 'size'=>'25'))?>
               <?php echo form_error('nombre');?>
               <!--<input type="text" placeholder="Email" class="form-control">-->
             </div>           

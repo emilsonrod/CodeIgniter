@@ -12,28 +12,28 @@
 		<?php echo form_label('Nombre', 'nombre')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'nombre', 'id'=>'nombre', 'type'=>'text', 'value'=>set_value('nombre'), 'placeholder' => 'Ingrese su nombre', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasBody(event)",'name'=>'nombre', 'id'=>'nombre', 'type'=>'text', 'value'=>set_value('nombre'), 'placeholder' => 'Ingrese su nombre', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('nombre');?></h5>
 		</p>
 		<p>
 		<?php echo form_label('apellidoPaterno', 'apellidoPaterno')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'apellidoP', 'id'=>'apellidoP', 'type'=>'text', 'value'=>set_value('apellidoP'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasBody(event)",'name'=>'apellidoP', 'id'=>'apellidoP', 'type'=>'text', 'value'=>set_value('apellidoP'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('apellidoP');?></h5>
 		</p>
 		<p>
 		<?php echo form_label('apellidoMaterno', 'apellidoMaterno')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'apellidoM', 'id'=>'apellidoM', 'type'=>'text', 'value'=>set_value('apellidoM'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasBody(event)",'name'=>'apellidoM', 'id'=>'apellidoM', 'type'=>'text', 'value'=>set_value('apellidoM'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('apellidoM');?></h5>
 		</p>
 		<p>
 		<?php echo form_label('nombre usuario', 'nombre usuario')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'loggin', 'id'=>'loggin', 'type'=>'text', 'value'=>set_value('loggin'), 'placeholder' => 'Ingrese su nombre de usuario', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasHead(event)",'name'=>'loggin', 'id'=>'loggin', 'type'=>'text', 'value'=>set_value('loggin'), 'placeholder' => 'Ingrese su nombre de usuario', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('loggin');?></h5>
 		</p>
 		<p>

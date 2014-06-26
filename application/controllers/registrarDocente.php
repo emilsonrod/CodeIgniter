@@ -19,11 +19,13 @@ class RegistrarDocente extends CI_Controller
         $this->form_validation->set_rules('repassw', 'repassw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|matches[passw]');
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
         $this->form_validation->set_rules('passDocente', 'passDocente', 'trim|required|alpha_numeric');
-        $this->form_validation->set_rules('ciDocente', 'ciDocente', 'trim|required|alpha_numeric');
+        $this->form_validation->set_rules('ciDocente', 'ciDocente', 'trim|required|numeric');
+        $this->form_validation->set_rules('grupoDocente', 'grupoDocente', 'trim|required|numeric');
+        
         //|is_unique[usuario.ci_docente]
 
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
-        $this->form_validation->set_message('valid_email', 'El campo %s deve ser un correo electronico valido');
+        $this->form_validation->set_message('valid_email', 'El campo %s debe ser un correo electronico valido');
         $this->form_validation->set_message('is_unique', 'El campo %s ya esta registrado');
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
         $this->form_validation->set_message('matches', 'Las contraseñas no son iguales');
@@ -33,6 +35,7 @@ class RegistrarDocente extends CI_Controller
         $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
         $this->form_validation->set_message('regex_match', 'Su contraseña debe tener al menos una letra minuscula una mayuscula y un numero');
         $this->form_validation->set_message('is_unique', 'Ese dato ya esta en uso por favor elija otro');
+        $this->form_validation->set_message('numeric', 'El campo %s debe ser un numero');
 
 
         if ($this->form_validation->run() == FALSE)

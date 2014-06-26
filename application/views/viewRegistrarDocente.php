@@ -13,21 +13,21 @@
 		<?php echo form_label('Nombre', 'nombre')?>	
 		</p>
 		<p>	
-		<?php echo form_input(array('class'=>"form-control",'name'=>'nombre', 'id'=>'nombre', 'type'=>'text', 'value'=>set_value('nombre'), 'placeholder' => 'Ingrese su nombre', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasBody(event)",'name'=>'nombre', 'id'=>'nombre', 'type'=>'text', 'value'=>set_value('nombre'), 'placeholder' => 'Ingrese su nombre', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('nombre');?></h5>
 		</p>
 		<p>
 		<?php echo form_label('apellidoPaterno', 'apellidoPaterno')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'apellidoP', 'id'=>'apellidoP', 'type'=>'text', 'value'=>set_value('apellidoP'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasBody(event)",'name'=>'apellidoP', 'id'=>'apellidoP', 'type'=>'text', 'value'=>set_value('apellidoP'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('apellidoP');?></h5>
 		</p>
 		<p>
 		<?php echo form_label('apellidoMaterno', 'apellidoMaterno')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'apellidoM', 'id'=>'apellidoM', 'type'=>'text', 'value'=>set_value('apellidoM'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasBody(event)",'name'=>'apellidoM', 'id'=>'apellidoM', 'type'=>'text', 'value'=>set_value('apellidoM'), 'placeholder' => 'Ingrese su apellido', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('apellidoM');?></h5>
 		</p>
 	</div>
@@ -36,7 +36,7 @@
 		<?php echo form_label('nombre usuario', 'nombre usuario')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'loggin', 'id'=>'loggin', 'type'=>'text', 'value'=>set_value('loggin'), 'placeholder' => 'Ingrese su nombre de usuario', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloLetrasHead(event)",'name'=>'loggin', 'id'=>'loggin', 'type'=>'text', 'value'=>set_value('loggin'), 'placeholder' => 'Ingrese su nombre de usuario', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('loggin');?></h5>
 		</p>
 		<p>
@@ -60,7 +60,7 @@
 		<?php echo form_input(array('class'=>"form-control",'name'=>'correo', 'id'=>'correo', 'type'=>'text', 'value'=>set_value('correo'), 'placeholder' => 'Ingrese su correo electronico', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('correo');?></h5>
 		</p>
-		<legend >Datos reuqeridos para confirmar qeu es Docente:</legend>
+		<legend >Datos requeridos para confirmar que es Docente:</legend>
 		<p>
 		<?php echo form_label('La contraseña TIS es obligatoria para identificar docentes ','Contraseña Docente')?>
 		</p>
@@ -72,8 +72,15 @@
 		<?php echo form_label('Ingrese su CI para confirmar docente','Contraseña Docente')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'name'=>'ciDocente', 'id'=>'ciDocente', 'type'=>'text', 'value'=>set_value('ciDocente'), 'placeholder' => 'Ingrese su C.I.', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloNumerosBody(event)",'name'=>'ciDocente', 'id'=>'ciDocente', 'type'=>'text', 'value'=>set_value('ciDocente'), 'placeholder' => 'Ingrese su C.I.', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('ciDocente');?></h5>
+		</p>
+		<p>
+		<?php echo form_label('Ingrese su Numero de grupo','Contraseña Docente')?>
+		</p>
+		<p>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloNumerosBody(event)",'name'=>'grupoDocente', 'id'=>'grupoDocente', 'type'=>'text', 'value'=>set_value('ciDocente'), 'placeholder' => 'Numero de grupo', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<h5><?php echo form_error('grupoDocente');?></h5>
 		</p>
 
 		<p><button type="submit" id="Registrar" class="btn btn-success">Registrar</button>
