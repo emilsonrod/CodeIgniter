@@ -1,5 +1,5 @@
 <?php
-class Calendarmodel extends CI_Model
+class EventoDocenteM extends CI_Model
 {
 	var $conf;
 	public function __construct()
@@ -12,7 +12,7 @@ class Calendarmodel extends CI_Model
 	{
 	    
 	    $events = $this->db->get('evento')->result();
-	    
+	  
 	    $jsonevents = array();
 	    foreach ($events as $entry)
 	    {
@@ -21,7 +21,7 @@ class Calendarmodel extends CI_Model
 	            'inicio'			=> $entry->inicio,
 	            'id_evento' 		=> $entry->id_evento,
 	            'id_tipo_evento'	=> $entry->id_tipo_evento,
-	             'd_usuario'		=> $entry->id_usuario,
+	             'id_usuario'		=> $entry->id_usuario,
 	            'aviso' 			=> $entry->aviso,
 	            'dias'				=> ($entry->dias=='true') ? true : false,
 
@@ -29,6 +29,49 @@ class Calendarmodel extends CI_Model
 	        );
 	    }
 	    return json_encode($jsonevents);
+	}
+	public function jsonEventP()
+	{
+		$eventparticular = $this->db->get('evento_particular')->result();	
+			    //para evento particular 
+	    $jsoneventparticular = array();
+	    foreach ($eventparticular as $entry)
+	    {
+	        $jsoneventparticular[] = array(
+	            'cod_grupo'			=> $entry->cod_grupo,
+	            'id_evento' 		=> $entry->id_evento,
+
+	        );
+	    }
+	    return json_encode($jsoneventparticular);
+	}
+
+	function getGrupos($id){
+		//obteniendo los grupos q solo le pertenecen a un docente determinado
+        $sql="select cod_grupo,nombre_corto from grupo where activo=1 and id_docente=".$id;
+		$grupos=$this->db->query($sql);
+		$arreglo=array();
+		foreach ($grupos->result_array() as $row)
+				{
+					$arreglo[$row['cod_grupo']]=$row['nombre_corto'];
+
+				}
+
+		return $arreglo;
+	}
+	function nombreGrupo($grupo){
+		//obteniendo los grupos q solo le pertenecen a un docente determinado
+		//$sql="select cod_grupo from grupo where nombre_corto='".$grupo."'";
+        $sql="select cod_grupo from grupo where nombre_corto='".$grupo."'";
+		$grupos=$this->db->query($sql);
+		$data=$grupos->row()->cod_grupo;
+		return $data;
+	}
+	function recuperarId()
+	{
+		$sql="select MAX(id_evento) as evento from evento";
+		$lista=$this->db->query($sql);
+		return $lista->row()->evento;
 	}
 
 	public function drop_event($data)
@@ -71,7 +114,7 @@ class Calendarmodel extends CI_Model
 	}
 	function tipoEvento(){
 		//obteniendo los grupos q solo le pertenecen a un docente determinado
-        $sql="select id_tipo_evento ,nombre_tipo_evento from tipo_evento where id_tipo_evento=4 or id_tipo_evento=5";
+        $sql="select id_tipo_evento ,nombre_tipo_evento from tipo_evento where id_tipo_evento=1 or id_tipo_evento=2 or id_tipo_evento=3";
 		$grupos=$this->db->query($sql);
 		$arreglo=array();
 		foreach ($grupos->result_array() as $row)
@@ -90,53 +133,5 @@ class Calendarmodel extends CI_Model
 	}
 
 
-
-	public function get_calendar_data($year, $month)
-	{
-		$query = $this->db->select('fecha, comentario')->from('fecha_limite')->like('fecha', "$year-$month", 'after')->get();
-
-		$cal_data = array();
-
-		foreach ($query->result() as $row)
-		{
-			$cal_data[ltrim(substr($row->fecha,8,2),'0')] = $row->comentario;
-		}
-
-		return $cal_data;
-
-	}
-
-	public function add_calendar_data($date,$data)
-	{
-		if($this->db->select('fecha')->from('fecha_limite')
-			->where('fecha', $date)->count_all_results())
-		{
-			$this->db->where('fecha',$date)
-					->update('fecha_limite', array(
-				'fecha' => $date,
-				'comentario' => $data
-				));
-		}
-		else
-		{
-			$this->db->insert('fecha_limite',array(
-			'fecha' => $date,
-			'comentario' => $data
-			));
-		}
-
-
-	}
-
-	public function generate($year, $month)
-	{
-
-		$this->load->library('calendar',$this->conf);
-
-		$cal_data = $this->get_calendar_data($year, $month);
-
-		return $this->calendar->generate($year, $month, $cal_data);
-	}
 }
-
 ?>

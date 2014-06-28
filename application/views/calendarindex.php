@@ -1,4 +1,3 @@
-<?php $this->load->view('viewCabeceraLoggin');?>
 <!--<div id="columnacentral" class="container-fluid">-->
 <title>Frontier JQuery Calendar</title>
 
@@ -45,7 +44,7 @@ body font-size to 62.5% isn't an option, or not one you want, you can set the fo
 to 1em or set it to px.
 http://osdir.com/ml/jquery-ui/2009-04/msg00071.html
 */
-body { font-size: 62.5%; }
+body { font-size: 83.33%; }
 .shadow {
     -moz-box-shadow: 3px 3px 4px #aaaaaa;
     -webkit-box-shadow: 3px 3px 4px #aaaaaa;
@@ -231,7 +230,7 @@ $(document).ready(function(){
                 if(what == ""){
                     alert("Please enter a short event description into the \"what\" field.");
                 }else{
-                baseDatos("loquesea");
+                //baseDatos("loquesea");
                     var startDate = $("#startDate").val();
                     var startDtArray = startDate.split("-");
                     var startYear = startDtArray[0];
@@ -308,6 +307,22 @@ $(document).ready(function(){
                     );
 
                     $(this).dialog('close');
+                    $.ajax({
+                        url     : './calendar2/tocalendar',
+                        cache   : true,
+                        type    : 'POST',
+
+ 
+                    beforeSend: function()
+                    {
+                        alert('se va a activar el evento Resize');
+                     },
+                     complete: function(response)
+                 {
+                    alert(response.responseText);
+                }
+ 
+            });
 
                 }
                 
