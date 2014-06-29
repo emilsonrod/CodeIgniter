@@ -1,25 +1,26 @@
-<?php $this->load->view('viewCabecera');?>
-<?php $this->load->view('viewIzquierda');?>
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 
 <div id="columnacentral">
-
- <form class="cmxform form-horizontal" id="frmcalendar" method="post" action="./eventoDocenteC/tocalendar" novalidate="novalidate">
+<div class="navbar-collapse collapse center-block">
+    <div class="jumbotron">
+    <div class="conteiner"> 
+ <form class="cmxform form-horizontal navbar-form navbar-center" id="frmcalendar" method="post" action="./eventoDocenteC/tocalendar" novalidate="novalidate">
      <div class="control-group ">
             <label for="startdate" class="control-label">Fecha inicio</label>
             <div class="controls">
-                <input id="startdate" name="startdate" type="text">
+                <input class = "form-control" id="startdate" name="startdate" type="text">
             </div>
         </div>
         <div class="control-group ">
             <label for="enddate" class="control-label">Fecha final</label>
             <div class="controls">
-                <input id="enddate" name="enddate" type="text">
+                <input class = "form-control" id="enddate" name="enddate" type="text">
             </div>
         </div>
          <label class="control-label">Seleccionar grupo(s)</label>
          
         <div align="rigth">
-            <select name="grupos" id='grupos'>  
+            <select class = "form-control" name="grupos" id='grupos'>  
                 <option value="">--- Seleccionar ---</option>  
                     <?php
                            foreach ($grupos as $value) {
@@ -51,17 +52,17 @@
             <label class="control-label">Todo el día</label>
             <div class="controls">
                 <label class="radio">
-                    <input id="allday" type="radio" name="allday" checked="true" value="1">
+                    <input class = "form-control" id="allday" type="radio" name="allday" checked="true" value="1">
                     Sí                                        </label>
                 <label class="radio">
-                    <input id="allday" type="radio" name="allday" value="0">
+                    <input class = "form-control" id="allday" type="radio" name="allday" value="0">
                     No                                        </label>
             </div>
         </div>
         <div class="control-group ">
             <label for="event" class="control-label">Evento</label>
             <div class="controls">
-                <textarea name="event" rows="6" id="event" class="input-large"></textarea>
+                <textarea class = "form-control" name="event" rows="6" id="event" class="input-large"></textarea>
             </div>
         </div>
 
@@ -70,5 +71,8 @@
             <button class="btn" type="button">Cancelar</button>
         </div>
     </form>
+    <?php $this->load->view('viewPiePagina');?>
 </div>
-<?php $this->load->view('viewPiePagina');?>
+</div>
+</div>
+</div>

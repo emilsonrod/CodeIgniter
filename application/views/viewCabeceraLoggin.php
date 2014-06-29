@@ -50,7 +50,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funciones de Grupo <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="calendar2">Fijar fechas de entrega de hitos</a></li>
+                    <li><a class="navbar-brand " href="eventoEstudiante">Fijar fechas de eventos</a></li>
                     <li><a class="navbar-brand " href="subirDocEst">Subir Documentos del grupo</a></li>
                     <li><a class="navbar-brand " href="subirHito">Subir hitos entregables</a></li>
                     <li><a class="navbar-brand " href="convocatoriasDoc">Documentos necesarios</a></li>

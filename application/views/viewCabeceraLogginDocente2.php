@@ -37,6 +37,7 @@
               <ul class="nav navbar-nav">
                <li><a class="navbar-brand " href="csv">Importar Csv de Estudiantes</a></li>
                <li><a class="navbar-brand " href="subirDocDocente">Subir Documentos</a></li>
+               <li><a class="navbar-brand " href="eventoDocenteC">Programar un evento</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">

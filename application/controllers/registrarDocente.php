@@ -19,7 +19,7 @@ class RegistrarDocente extends CI_Controller
         $this->form_validation->set_rules('repassw', 'repassw', 'trim|required|max_length[15]|min_length[6]|alpha_numeric|matches[passw]');
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
         $this->form_validation->set_rules('passDocente', 'passDocente', 'trim|required|alpha_numeric');
-        $this->form_validation->set_rules('ciDocente', 'ciDocente', 'trim|required|numeric');
+        $this->form_validation->set_rules('ciDocente', 'ciDocente', 'trim|required|numeric|is_unique[usuario.ci_docente]');
         $this->form_validation->set_rules('grupoDocente', 'grupoDocente', 'trim|required|numeric');
         
         //|is_unique[usuario.ci_docente]
@@ -68,6 +68,7 @@ class RegistrarDocente extends CI_Controller
 			}
 			else
 			{
+				echo '<script>window.alert("La contraseña de tis es incorrecta, por favor intente de nuevo.");location.href="registrarDocente";</script>';
 				$this->load->view('viewRegistrarDocente');
 			}
 				
