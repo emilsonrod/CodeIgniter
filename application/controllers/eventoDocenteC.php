@@ -73,7 +73,7 @@ class EventoDocenteC extends CI_Controller {
             }
             else{
 
-                $allday     =   ($this->input->post('allday')==1) ? 'true' : 'false';
+                
                 
                 $startdate  =   str_replace('/', '-', $this->input->post('startdate'));
                 $startdate  =   date('Y-m-d',strtotime($startdate));
@@ -81,14 +81,6 @@ class EventoDocenteC extends CI_Controller {
                 $enddate    =   str_replace('/', '-', $this->input->post('enddate'));
                 $enddate    =   date('Y-m-d',strtotime($enddate));
 
-                if($allday=='true') // como cadena y no booleano ya que así es como va a la base de datos
-                {
-                    $startdate  =   $startdate . ' 00:00:00';
-                    $enddate    =   $enddate . ' 00:00:00';
-                } else {
-                    $startdate  =   $startdate . ' ' .$this->input->post('starthour') . ':00';
-                    $enddate    =   $enddate . ' ' .$this->input->post('endhour') . ':00';
-                }
 
                 $data=array(
                     'aviso'            =>   $this->input->post('event'),

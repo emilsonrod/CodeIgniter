@@ -118,6 +118,18 @@ CREATE TABLE IF NOT EXISTS `grupo` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `hito`(
+  `ID_HITO` int(11) NOT NULL AUTO_INCREMENT,
+  `COD_GRUPO` int(11) NOT NULL,
+  `ID_EVENTO` int(11) NOT NULL,
+  `NOMBRE_HITO` varchar(100) NOT NULL,
+  `NOTA_FINAL` int(11),
+  PRIMARY KEY(`ID_HITO`),
+  KEY `FK_RELATIONSHIP_27`(`COD_GRUPO`),
+  KEY `FK_RELATIONSHIP_28`(`ID_EVENTO`)
+)ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
 --
 -- Estructura de tabla para la tabla `historia_usuario`
 --
