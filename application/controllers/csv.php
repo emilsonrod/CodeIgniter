@@ -35,12 +35,12 @@ class Csv extends CI_Controller {
             $data['error'] = $this->upload->display_errors();
 
             $this->load->view('viewCabecera');
-            $this->load->view('csvindex', $data);
             $this->load->view('viewPiePagina');
         } else {
             $file_data = $this->upload->data();
             $file_path =  './uploads/'.$file_data['file_name'];
             
+            $this->load->view('csvindex', $data);
             if ($this->csvimport->get_array($file_path)) {
                 $csv_array = $this->csvimport->get_array($file_path);
                 foreach ($csv_array as $row) {
@@ -49,7 +49,7 @@ class Csv extends CI_Controller {
                         'apellidoM'=>$row['apellidoM'],
                         'apellidoP'=>$row['apellidoP'],
                         'loggin'=>$row['loggin'],
-                        'passw'=>$row['passw'],
+                        'passw'=>'AAaa11',
                     );
                     $this->csv_model->insert_csv($insert_data);
                 }

@@ -22,9 +22,9 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>ApellidoM</th>
                         <th>ApellidoP</th>
-                        <th>Email</th>
+                        <th>ApellidoM</th>
+                        <th>nombre usuario</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,9 +34,9 @@
                         <?php foreach ($addressbook as $row): ?>
                             <tr>
                                 <td><?php echo $row['nombre']; ?></td>
-                                <td><?php echo $row['apellidoM']; ?></td>
                                 <td><?php echo $row['apellidoP']; ?></td>
-                                <td><?php echo $row['correo']; ?></td>
+                                <td><?php echo $row['apellidoM']; ?></td>
+                                <td><?php echo $row['loggin']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>
