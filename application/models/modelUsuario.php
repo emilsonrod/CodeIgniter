@@ -20,7 +20,7 @@ class ModelUsuario extends CI_Model {
 		return $arreglo;
 	}
     function mostrarDocentes(){
-		$sql="SELECT u.nombre,u.apellidoP,u.apellidoM  FROM usuario u,rol_usuario ru,rol r
+		$sql="SELECT u.nombre,u.apellidoP,u.apellidoM,u.grupoDocente  FROM usuario u,rol_usuario ru,rol r
 			where r.nombre_rol='docente' and r.id_rol=ru.id_rol and ru.id_usuario = u.id_usuario";
 		$query = $this->db->query($sql);
 

@@ -35,7 +35,7 @@ class ModelRegister extends CI_model
 					  'id_usuario' => $IdUsuari->id_usuario,);
 		return $this->db->insert('rol_usuario',$data2);
 	}
-	public function addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente)
+	public function addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente,$grupoDocente)
 	{
 		$data = array(
 						'nombre' => $nombre,
@@ -45,6 +45,7 @@ class ModelRegister extends CI_model
 						'passw' => $passw,
 						'correo' => $correo,
 						'ci_docente' => $ciDocente,
+						'grupoDocente' => $grupoDocente,
 						);
 		$this->db->insert('usuario',$data);
 		$this->db->select('id_usuario');

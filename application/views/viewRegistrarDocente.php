@@ -69,17 +69,17 @@
 		<h5><?php echo form_error('passDocente');?></h5>
 		</p>
 		<p>
-		<?php echo form_label('Ingrese su CI para confirmar docente','Contraseña Docente')?>
+		<?php echo form_label('Ingrese su CI para confirmar docente','Ci Docente')?>
 		</p>
 		<p>
 		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloNumerosBody(event)",'name'=>'ciDocente', 'id'=>'ciDocente', 'type'=>'text', 'value'=>set_value('ciDocente'), 'placeholder' => 'Ingrese su C.I.', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('ciDocente');?></h5>
 		</p>
 		<p>
-		<?php echo form_label('Ingrese su Numero de grupo','Contraseña Docente')?>
+		<?php echo form_label('Ingrese su Numero de grupo','Grupo Docente')?>
 		</p>
 		<p>
-		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloNumerosBody(event)",'name'=>'grupoDocente', 'id'=>'grupoDocente', 'type'=>'text', 'value'=>set_value('ciDocente'), 'placeholder' => 'Numero de grupo', 'autofocus'=>'autofocus', 'size'=>'50'))?>
+		<?php echo form_input(array('class'=>"form-control",'onkeypress'=>"return soloNumerosBody(event)",'name'=>'grupoDocente', 'id'=>'grupoDocente', 'type'=>'text', 'value'=>set_value('grupoDocente'), 'placeholder' => 'Numero de grupo', 'autofocus'=>'autofocus', 'size'=>'50'))?>
 		<h5><?php echo form_error('grupoDocente');?></h5>
 		</p>
 

@@ -20,7 +20,7 @@ class RegistrarDocente extends CI_Controller
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
         $this->form_validation->set_rules('passDocente', 'passDocente', 'trim|required|alpha_numeric');
         $this->form_validation->set_rules('ciDocente', 'ciDocente', 'trim|required|numeric|is_unique[usuario.ci_docente]');
-        $this->form_validation->set_rules('grupoDocente', 'grupoDocente', 'trim|required|numeric');
+        $this->form_validation->set_rules('grupoDocente', 'grupoDocente', 'trim|required|numeric|max_length[2]');
         
         //|is_unique[usuario.ci_docente]
 
@@ -54,12 +54,13 @@ class RegistrarDocente extends CI_Controller
 				$passw = $this->input->post('passw');
 				$correo = $this->input->post('correo');
 				$ciDocente = $this->input->post('ciDocente');
+				$grupoDocente = $this->input->post('grupoDocente');
 					
-				$insert = $this->modelRegister->addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente);
+				$insert = $this->modelRegister->addUsersDocente($nombre, $apellidoP, $apellidoM, $loggin, $passw,$correo,$ciDocente,$grupoDocente);
 
 				if($insert)
 				{	$data['exito']=" Se registro correctamente docente";
-					$this->load->view('exito',$data);
+					$this->load->view('exito');
 				}
 				else
 				{

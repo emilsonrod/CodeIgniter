@@ -5,7 +5,7 @@
 		<h2>Verifica si tu Grupo esta aca</h2>
 	<?php
 
-		$this->table->set_heading('Nombre', 'Apellido Paterno','Apellido Materno'); //crea la primera fila de la tabla con el encabezado
+		$this->table->set_heading('Nombre', 'Apellido Paterno','Apellido Materno','Grupo de Docente'); //crea la primera fila de la tabla con el encabezado
 		$tmp = array ( 'table_open'  => '<table border="2" cellpadding="2" cellspacing="1" class="table table-hover">'); //modifica el espaciado
 		$this->table->set_template($tmp); //aplico los cambios de modificacion anterior
 

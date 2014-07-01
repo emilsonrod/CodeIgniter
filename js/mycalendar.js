@@ -30,7 +30,7 @@ var Script = function () {
             day: 'día'
            },
         editable: true,
-        events: './welcome/json',
+        events: './fullcalendarcontrol/json',
         
         eventResize: function(event, dayDelta, minuteDelta, revertFunc, jsEvent)
         {
@@ -41,7 +41,7 @@ var Script = function () {
             };
             
             $.ajax({
-                url     : './welcome/resize',
+                url     : './fullcalendarcontrol/resize',
                 cache   : true,
                 type    : 'POST',
                 data    : $params,
@@ -67,7 +67,7 @@ var Script = function () {
             };
             
             $.ajax({
-                url     : './welcome/drop_event/',
+                url     : './fullcalendarcontrol/drop_event/',
                 type    : 'POST',
                 data    : $params,
                 
@@ -90,7 +90,7 @@ var Script = function () {
                 };
             
                 $.ajax({
-                    url     : './welcome/delete_event',
+                    url     : './fullcalendarcontrol/delete_event',
                     type    : 'POST',
                     data    : $params,
                     complete: function(response)

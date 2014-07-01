@@ -37,12 +37,18 @@
               <ul class="nav navbar-nav">
                <li><a class="navbar-brand " href="csv">Importar Csv de Estudiantes</a></li>
                <li><a class="navbar-brand " href="subirDocDocente">Subir Documentos</a></li>
-               <li><a class="navbar-brand " href="eventoDocenteC">Programar un evento</a></li>
-                <li class="dropdown">
+               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="controladorVerGrupo">Ver Integrantes</a></li>
-                    <li><a class="navbar-brand " href="listaGrupos">Eliminar un grupo</a></li>      
+                    <li><a href="controladorVerGrupo">Ver Integrantes</a></li>
+                    <li><a href="listaGrupos">Eliminar un grupo</a></li>      
+                  </ul>
+                </li>  
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="eventoDocenteC">Programar un evento</a></li>
+                    <li><a href="fullcalendarcontrol">Ver los eventos</a></li>      
                   </ul>
                 </li>               
               </ul>
@@ -53,7 +59,7 @@
           <li class="dropdown navbar-brand navbar-right ">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido: <?php echo $this->session->userdata('usuario'); ?></php??><b class="caret"></b></a>
                <ul class="dropdown-menu">
-              <li><a class="navbar-brand " href="inicio/cerrarSession">salir</a></li>                    
+              <li><a href="inicio/cerrarSession">salir</a></li>                    
             </ul>
           </li>           
         </div><!--/.navbar-collapse -->

@@ -40,29 +40,30 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="grupo">Crear un nuevo Grupo</a></li>
-                    <li><a class="navbar-brand " href="registrarseGrupo">Incluirse en un Grupo</a></li>
-                    <li><a class="navbar-brand " href="GruposInscritosGlobal">Ver Grupos Existentes</a></li>
-                    <li><a class="navbar-brand " href="docente">Ver Docentes actuales</a></li>
+                    <li><a href="grupo">Crear un nuevo Grupo</a></li>
+                    <li><a href="registrarseGrupo">Incluirse en un Grupo</a></li>
+                    <li><a href="GruposInscritosGlobal">Ver Grupos Existentes</a></li>
+                    <li><a href="docente">Ver Docentes actuales</a></li>
                   </ul>
                 </li>
                 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funciones de Grupo <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="eventoEstudiante">Fijar fechas de eventos</a></li>
-                    <li><a class="navbar-brand " href="subirDocEst">Subir Documentos del grupo</a></li>
-                    <li><a class="navbar-brand " href="subirHito">Subir hitos entregables</a></li>
-                    <li><a class="navbar-brand " href="convocatoriasDoc">Documentos necesarios</a></li>                    
+                    <li><a href="subirDocEst">Subir Documentos del grupo</a></li>
+                    <li><a href="subirHito">Subir hitos entregables</a></li>
+                    <li><a href="convocatoriasDoc">Documentos necesarios</a></li>
+                    <li><a href="eventoEstudiante">Fijar fechas de eventos</a></li>
+                    <li><a href="fullcalendarcontrol">Ver fechas de eventos</a></li>                    
                   </ul>
                 </li>
 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Historias de Usuarios <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="historia">Crear Hitos</a></li>
-                    <li><a class="navbar-brand " href="historiaTareas">Asignar Historias</a></li>                    
-                    <li><a class="navbar-brand " href="tareaResponsable">Ver Historias</a></li>
+                    <li><a href="historia">Crear Hitos</a></li>
+                    <li><a href="historiaTareas">Asignar Historias</a></li>                    
+                    <li><a href="tareaResponsable">Ver Historias</a></li>
                   </ul>
                 </li>
 
@@ -75,7 +76,7 @@
           <li class="dropdown navbar-brand navbar-right ">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido: <?php echo $this->session->userdata('usuario'); ?></php??><b class="caret"></b></a>
                <ul class="dropdown-menu">
-              <li><a class="navbar-brand " href="inicio/cerrarSession">salir</a></li>                    
+              <li><a href="inicio/cerrarSession">salir</a></li>                    
             </ul>
           </li>           
         </div><!--/.navbar-collapse -->
