@@ -32,17 +32,6 @@
             </select>
         </div>
 
-        <div class="control-group">
-            <label class="control-label">Todo el día</label>
-            <div class="controls">
-                <label class="radio">
-                    <input class = "form-control" id="allday" type="radio" name="allday" checked="true" value="1">
-                    Sí                                        </label>
-                <label class="radio">
-                    <input class = "form-control" id="allday" type="radio" name="allday" value="0">
-                    No                                        </label>
-            </div>
-        </div>
         <div class="control-group ">
             <label for="event" class="control-label">Evento</label>
             <div class="controls">

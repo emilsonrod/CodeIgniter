@@ -22,7 +22,7 @@ echo form_open('integrantes', $attributes); ?>
 </p>
 
 <p>
-        <button type="submit" id="Ingresar" class="btn btn-success">Ver grupos
+        <button type="submit" id="Ingresar" class="btn btn-success">Aceptar
         </button>        
 </p>
 

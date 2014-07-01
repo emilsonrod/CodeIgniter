@@ -41,14 +41,14 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="controladorVerGrupo">Ver mis Grupos</a></li>
-                    <li><a class="navbar-brand " href="listaGrupos">Eliminar un grupo</a></li>      
+                   <li><a class="navbar-brand " href="controladorVerGrupo">Ver Grupos</a></li>
+                    <li><a class="navbar-brand " href="listaGrupos">Eliminar un grupo</a></li>            
                   </ul>
                 </li>  
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entregas de Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="controladorHito">Hitos</a></li>
+                    <li><a class="navbar-brand " href="controladorHito">Calificar Hitos</a></li>
                     <li><a class="navbar-brand " href="controladorDoc">Documentos</a></li> 
                     <li><a class="navbar-brand " href="integrantes">Integrantes</a></li> 
                     <li><a class="navbar-brand " href="controladorDatos">Datos Grupo</a></li>      

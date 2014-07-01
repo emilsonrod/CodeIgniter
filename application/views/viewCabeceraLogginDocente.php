@@ -39,9 +39,9 @@
                <li><a class="navbar-brand " href="subirDocDocente">Subir Documentos</a></li>
                <li><a class="navbar-brand " href="eventoDocenteC">Programar un evento</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a class="navbar-brand " href="controladorVerGrupo">Ver mis Grupos</a></li>
+                    <li><a class="navbar-brand " href="controladorVerGrupo">Ver Integrantes</a></li>
                     <li><a class="navbar-brand " href="listaGrupos">Eliminar un grupo</a></li>      
                   </ul>
                 </li>               

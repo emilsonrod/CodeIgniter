@@ -1,18 +1,18 @@
 <?php
-class CalificarHito extends CI_Controller {
+class CalificarHitos extends CI_Controller {
 
-	function __construct()
-	{
- 		parent::__construct();
+    function __construct()
+    {
+        parent::__construct();
         
-		$this->load->model('nodelHito');
-	}
-	function index()
-	{
+        $this->load->model('historia_usuario');
+    }
+    function index()
+    {
         $listaIdE=$this->session->userdata('idHito');
         foreach($listaIdE as $ide){
             $calificacion=$this->input->post(''.$ide);
-            $this->nodelHito->actualizarNotaHito($ide,$calificacion);
+            $this->historia_usuario->actalizarNotaHito($ide,$calificacion);
         }
         $this->vaciarConfig();
         
@@ -30,7 +30,7 @@ class CalificarHito extends CI_Controller {
         redirect('notaEstudiante');
         */
         
-	}
+    }
     function vaciarConfig(){
         /* $this->config->set_item('id0',FALSE);
         $this->config->set_item('id1',FALSE);

@@ -7,10 +7,9 @@ class ControladorHito extends CI_Controller
 	{
  		parent::__construct();
 		$this->load->library('form_validation');
-		//$this->load->database();
 		$this->load->helper('form');
 		$this->load->helper('url');
-		$this->load->model('nodelHito');
+		$this->load->model('historia_usuario');
 	}
 	function index()
 	{
@@ -23,16 +22,15 @@ class ControladorHito extends CI_Controller
 				$grupo=$this->session->userdata['grupo'];
 
 
-				$data['hito']=$this->nodelHito->getHito($grupo);
+				$data['hitos']=$this->historia_usuario->getHitosDoc($grupo);
 
-				 $auxiliar=$data['hito'];
+				 $auxiliar=$data['hitos'];
                  $guardarIdHitos=array();
                  foreach($auxiliar as $indice=>$valor){                     
                    $guardarIdHitos[]=$indice;
                  }
                  $this->session->set_userdata('idHito',$guardarIdHitos);
-                 $this->load->view('vistaHito',$data);
-
+                 $this->load->view('calificarhitos',$data);
 			}else{
 			redirect('inicio');
 		}

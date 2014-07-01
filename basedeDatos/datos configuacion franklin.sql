@@ -42,14 +42,14 @@ INSERT INTO `entrega` (`ID_ENTREGA`, `COD_GRUPO`, `ID_EVENTO`, `NOMBRE_ENTREGA`,
 --
 
 INSERT INTO `evento` (`FECHA_EVENTO`, `INICIO`, `ID_EVENTO`, `ID_TIPO_EVENTO`, `ID_USUARIO`, `AVISO`) VALUES
-('2014-06-01 00:00:00', '0000-00-00 00:00:00', 1, 1, 12, 'el documento A se subio '),
-('2014-05-14 00:00:00', '0000-00-00 00:00:00', 2, 2, 13, 'el documento B'),
-('2014-06-02 00:00:00', '0000-00-00 00:00:00', 3, 2, 21, 'el documento B se subio'),
-('2014-05-29 00:00:00', '0000-00-00 00:00:00', 4, 1, 5, 'documento A '),
-('2014-05-30 00:00:00', '0000-00-00 00:00:00', 5, 2, 6, 'el documento B'),
-('2014-06-11 00:00:00', '0000-00-00 00:00:00', 6, 4, 25, 'primer hito'),
-('2014-06-12 00:00:00', '0000-00-00 00:00:00', 7, 4, 27, 'primer hito'),
-('2014-06-13 00:00:00', '0000-00-00 00:00:00', 8, 5, 5, 'validacion de la base de datos');
+('2014-06-01', '0000-00-00', 1, 1, 12, 'el documento A se subio '),
+('2014-05-14', '0000-00-00', 2, 2, 13, 'el documento B'),
+('2014-06-02', '0000-00-00', 3, 2, 21, 'el documento B se subio'),
+('2014-05-29', '0000-00-00', 4, 1, 5, 'documento A '),
+('2014-05-30', '0000-00-00', 5, 2, 6, 'el documento B'),
+('2014-06-11', '0000-00-00', 6, 4, 25, 'primer hito'),
+('2014-06-12', '0000-00-00', 7, 4, 27, 'primer hito'),
+('2014-06-13', '0000-00-00', 8, 5, 5, 'validacion de la base de datos');
 
 --
 -- Volcar la base de datos para la tabla `evento_particular`

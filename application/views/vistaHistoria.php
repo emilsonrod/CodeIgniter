@@ -1,14 +1,14 @@
-<?php $this->load->view('viewCabeceraLogginDocente2');?>
+<?php $this->load->view('viewCabeceraLoggin');?>
 <div id="columnacentral">
     <script type="text/javascript" src="js/validacion.js"></script>
    <div class="panel panel-primary">
         <div class="panel-heading">
-    <h3 class="panel-title">Nueva Historia</h3>
+    <h3 class="panel-title">Nuevo Hito</h3>
   </div>
   <div class="panel-body" align="center">
      <form class="navbar-form navbar-left" role="form" action="historia" method="post">
          <div class="form-group">
-				<input  type="text" class="form-control" size="60" name="historiaNueva" id="historiaNueva">
+        <input  type="text" class="form-control" size="60" name="historiaNueva" id="historiaNueva">
                 
          </div>         
          <button onsubmit="texto()"type="submit" class="btn btn-primary">Aceptar</button>
@@ -19,8 +19,8 @@
   </div>
 <div id="listaHistorias">
     <ul class="list-group">
-        <?php if(count($historias)>0)
-        {  foreach($historias as $valor){ ?>
+        <?php if(count($hitos)>0)
+        {  foreach($hitos as $valor){ ?>
      
      <li class="list-group-item"><?php echo $valor; ?></li>
         <?php 

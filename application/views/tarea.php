@@ -1,8 +1,8 @@
-<?php $this->load->view('viewCabecera');?>
+<?php $this->load->view('viewCabeceraLoggin');?>
 <div id="columnacentral">
     <div class="panel panel-primary">
         <div class="panel-heading">
-    <h3 class="panel-title">Nuevas Tareas</h3>
+    <h3 class="panel-title">Nueva Historia</h3>
   </div>
   <div class="panel-body" align="center">
    <div class="btn-group">
@@ -10,12 +10,12 @@
      <form class="navbar-form navbar-left" role="form" action="historiaTareas" method="post">
           <div class="panel panel-default">
             <div class="panel-body">
-               <?php echo form_dropdown('historias',$historias, set_value('historias')); ?>
+               <?php echo form_dropdown('historias',$hitos, set_value('historias')); ?>
                 <h5><?php echo form_error('historias'); ?></h5>
               </div>
          </div>
          <div class="form-group">
-				<input  type="text" class="form-control" size="60" name="nuevaTarea" id="nuevaTarea">
+        <input  type="text" class="form-control" size="60" name="nuevaTarea" id="nuevaTarea" placeholder="Nueva Historia de Usuario">
                  <div>
             <h5><?php echo form_error('nuevaTarea');?></h5>
          </div>
@@ -37,7 +37,7 @@
         <?php if(count($tareas)>0)
         {  foreach($tareas as $valor){ ?>
      
-     <li class="list-group-item"><?php echo $valor; ?></li>
+     <li class="list-group-item"><?php echo $valor['historia']."==>".$valor['responsable']; ?></li>
         <?php 
             }
         }?>

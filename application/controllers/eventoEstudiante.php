@@ -6,6 +6,7 @@ class EventoEstudiante extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('calendarmodel');
+        $this->load->model('evento');
 	}
 
 	public function index()
@@ -26,7 +27,7 @@ class EventoEstudiante extends CI_Controller {
 	}
 	public function tocalendar()
     {
-    	$allday 	=	($this->input->post('allday')==1) ? 'true' : 'false';
+    
     	
     	$startdate	=	str_replace('/', '-', $this->input->post('startdate'));
     	$startdate	=	date('Y-m-d',strtotime($startdate));
@@ -37,16 +38,6 @@ class EventoEstudiante extends CI_Controller {
     	 $lista= $this->input->post('tipo');
     	 $tipoevento=$this->calendarmodel->idEvento($lista);
 
-
-    	if($allday=='true') // como cadena y no booleano ya que así es como va a la base de datos
-    	{
-    		$startdate	=	$startdate . ' 00:00:00';
-    		$enddate	=	$enddate . ' 00:00:00';
-    	} else {
-    		$startdate	=	$startdate . ' ' .$this->input->post('starthour') . ':00';
-    		$enddate	=	$enddate . ' ' .$this->input->post('endhour') . ':00';
-    	}
-
     	$data=array(
     		'aviso'		=>	$this->input->post('event'),
     		'inicio'		=>	$startdate,
@@ -55,7 +46,10 @@ class EventoEstudiante extends CI_Controller {
     		'id_usuario'	=>   $this->session->userdata('id'),
     		'dias'	=>	($this->input->post('allday')==1) ? 'true' : 'false'
     		);
-    	$this->db->insert('evento',$data);
-		redirect('calendar2');
+        if($this->evento->insertEvento($data)){
+            redirect('calendar2');
+        }
+    	
+		
     }
 }

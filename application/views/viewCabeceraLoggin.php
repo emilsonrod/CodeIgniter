@@ -53,9 +53,20 @@
                     <li><a class="navbar-brand " href="eventoEstudiante">Fijar fechas de eventos</a></li>
                     <li><a class="navbar-brand " href="subirDocEst">Subir Documentos del grupo</a></li>
                     <li><a class="navbar-brand " href="subirHito">Subir hitos entregables</a></li>
-                    <li><a class="navbar-brand " href="convocatoriasDoc">Documentos necesarios</a></li>
+                    <li><a class="navbar-brand " href="convocatoriasDoc">Documentos necesarios</a></li>                    
                   </ul>
                 </li>
+
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Historias de Usuarios <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    
+                    <li><a class="navbar-brand " href="historiaTareas">Asignar Historias</a></li>                    
+                    <li><a class="navbar-brand " href="tareaResponsable">Ver Historias</a></li>
+                  </ul>
+                </li>
+
+
               </ul>
             </div>          
         </div>
