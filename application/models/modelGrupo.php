@@ -25,6 +25,7 @@ class ModelGrupo extends CI_Model {
             $form['nombre_largo']=$form_data['nombreLargo'];
 			$form['nombre_corto']=$form_data['nombreCorto'];
 			$form['passw_grupo']=$form_data['contrasenya'];
+            $form['activo']='1';
 			$this->db->insert('grupo',$form);
 
 		if ($this->db->affected_rows() == '1')
@@ -66,7 +67,10 @@ class ModelGrupo extends CI_Model {
 		$data=array('activo'=>0);
 		$this->db->update('grupo',$data);
 		if($this->db->affected_rows()=='1')
-		{	return true;}
+		{	$idGrupo=$this->db->query("select cod_grupo from grupo where nombre_corto='".$grupo."'")->row();
+            $this->db->delete('integrantes_grupo',array('cod_grupo'=>$idGrupo->cod_grupo));
+            return true;
+        }
 		return false;
 	}
 	function getIntegrantes($grupo){

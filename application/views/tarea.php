@@ -15,7 +15,7 @@
               </div>
          </div>
          <div class="form-group">
-        <input  type="text" class="form-control" size="60" name="nuevaTarea" id="nuevaTarea" placeholder="Nueva Historia de Usuario">
+        <input  type="text" class="form-control" size="60" name="nuevaTarea" id="nuevaTarea" onkeypress="return soloLetrasBody(event)" placeholder="Nueva Historia de Usuario">
                  <div>
             <h5><?php echo form_error('nuevaTarea');?></h5>
          </div>
