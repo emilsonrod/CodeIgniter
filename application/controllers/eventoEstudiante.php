@@ -6,7 +6,7 @@ class EventoEstudiante extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('calendarmodel');
-        $this->load->model('evento');
+       // $this->load->model('evento');
 	}
 
 	public function index()
@@ -46,9 +46,9 @@ class EventoEstudiante extends CI_Controller {
     		'id_usuario'	=>   $this->session->userdata('id'),
     		'dias'	=>	($this->input->post('allday')==1) ? 'true' : 'false'
     		);
-        if($this->evento->insertEvento($data)){
+        $this->db->insert('evento',$data);
             redirect('calendar2');
-        }
+        
     	
 		
     }
