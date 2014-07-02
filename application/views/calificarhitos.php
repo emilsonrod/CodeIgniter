@@ -1,6 +1,7 @@
 <?php $this->load->view('viewCabeceraLogginDocente2');?>
-<script type="text/javascript" src="js/mio/jquery.min.js"></script>
-<script type="text/javascript" src="js/mio/bootstrap.min.js"></script>
+<!--<script type="text/javascript" src="js/mio/jquery.min.js"></script>
+<script type="text/javascript" src="js/mio/bootstrap.min.js"></script>-->
+
 <div id="columnacentral">
 
  <div class="container">
@@ -64,7 +65,7 @@
 			</div>
                 </td>                   
                 <td>
-<input type="number" name="<?php echo $index;?>" min="0" max="100" step="1" onkeyUp="return valNumero(this);" value=<?php echo $valor['nota']; ?> required />       
+<input type="number" name="<?php echo $index;?>" min="0" max="100" step="1" onkeypress="return soloNumerosBody(event)" value=<?php echo $valor['nota']; ?> required />       
                 </td>
                 </tr>
                 

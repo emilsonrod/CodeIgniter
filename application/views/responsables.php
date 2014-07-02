@@ -47,6 +47,5 @@
     </div>  
 </div></div></div></div>
 
-<script src="js/collapse.js" type="text/javascript"></script>
 <?php $this->load->view('viewDerecha');?>
 <?php $this->load->view('viewPiePagina');?>

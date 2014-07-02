@@ -33,9 +33,10 @@ class ControladorVerGrupo extends CI_Controller {
 			else
 			{
 				$entrar['tareas'] = $this->modelVerGrupo->getVerGrupos();
+				/*
 				$this->session->unset_userdata('tareas');
 				$this->session->set_userdata('tareas',$entrar['tareas']);
-
+				*/
 				
 				$this->load->library('table');
 				$this->load->library('pagination'); //cargamos la libreria de paginacion

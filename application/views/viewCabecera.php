@@ -18,102 +18,18 @@
 		<!-- Custom styles for this template -->
 		<link href="./css/jumbotron.css" rel="stylesheet">
 		<link href="./css/carousel.css" rel="stylesheet">
-		
+		<script type="text/javascript" src="./js/validaciones.js"></script>
 	</head>
 
 	<body>
 		<script>
-			function soloLetrasHead(e) {
-					key = e.keyCode || e.which;
-					tecla = String.fromCharCode(key).toLowerCase();
-					letras = " áéíóúabcdefghijklmnñopqrstuvwxyz1234567890";
-					especiales = [8, 37, 39, 46];
-
-					tecla_especial = false
-					for(var i in especiales) {
-							if(key == especiales[i]) {
-									tecla_especial = true;
-									break;
-							}
-					}
-
-					if(letras.indexOf(tecla) == -1 && !tecla_especial)
-							return false;
-			}
-
-			function limpia() {
-					var val = document.getElementById("nombre").value;
-					var tam = val.length;
-					for(i = 0; i < tam; i++) {
-							if(!isNaN(val[i]))
-									document.getElementById("nombre").value = '';
-					}
-
-			}
-		</script>
-		<script>
-			function soloLetrasBody(e) {
-					key = e.keyCode || e.which;
-					tecla = String.fromCharCode(key).toLowerCase();
-					letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-					especiales = [8, 37, 39, 46];
-
-					tecla_especial = false
-					for(var i in especiales) {
-							if(key == especiales[i]) {
-									tecla_especial = true;
-									break;
-							}
-					}
-
-					if(letras.indexOf(tecla) == -1 && !tecla_especial)
-							return false;
-			}
-
-			function limpia() {
-					var val = document.getElementById("nombre").value;
-					var tam = val.length;
-					for(i = 0; i < tam; i++) {
-							if(!isNaN(val[i]))
-									document.getElementById("nombre").value = '';
-					}
-
-			}
-		</script>
-		<script>
-			function soloNumerosBody(e) {
-					key = e.keyCode || e.which;
-					tecla = String.fromCharCode(key).toLowerCase();
-					letras = " 1234567890";
-					especiales = [8, 37, 39, 46];
-
-					tecla_especial = false
-					for(var i in especiales) {
-							if(key == especiales[i]) {
-									tecla_especial = true;
-									break;
-							}
-					}
-
-					if(letras.indexOf(tecla) == -1 && !tecla_especial)
-							return false;
-			}
-
-			function limpia() {
-					var val = document.getElementById("nombre").value;
-					var tam = val.length;
-					for(i = 0; i < tam; i++) {
-							if(!isNaN(val[i]))
-									document.getElementById("nombre").value = '';
-					}
-
-			}
+			
 		</script>
 
 		<div class="navbar navbar-inverse navbar-fixed-top navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>

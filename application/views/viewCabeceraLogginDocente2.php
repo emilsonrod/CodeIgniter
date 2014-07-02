@@ -19,7 +19,7 @@
     <!-- Custom styles for this template -->
     <link href="./css/jumbotron.css" rel="stylesheet">
     <link href="./css/carousel.css" rel="stylesheet">
-    
+    <script type="text/javascript" src="./js/validaciones.js"></script>
   </head>
 
   <body>
@@ -53,6 +53,12 @@
                     <li><a class="navbar-brand " href="integrantes">Integrantes</a></li> 
                     <li><a class="navbar-brand " href="controladorDatos">Datos Grupo</a></li>      
                   </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estudiantes<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a class="navbar-brand " href="notaEstudiante">Calificar Estudiantes</a></li>                          
+                  </ul>
                 </li>               
               </ul>
             </div>          
@@ -62,7 +68,7 @@
           <li class="dropdown navbar-brand navbar-right ">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido: <?php echo $this->session->userdata('usuario'); ?></php??><b class="caret"></b></a>
                <ul class="dropdown-menu">
-              <li><a class="navbar-brand " href="ingresar/cerrarSession">salir</a></li>                    
+              <li><a class="navbar-brand " href="inicio/cerrarSession">salir</a></li>                    
             </ul>
           </li>           
         </div><!--/.navbar-collapse -->

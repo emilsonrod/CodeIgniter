@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="./css/jumbotron.css" rel="stylesheet">
     <link href="./css/carousel.css" rel="stylesheet">
-    
+    <script type="text/javascript" src="./js/validaciones.js"></script>
   </head>
 
   <body>
@@ -60,7 +60,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Historias de Usuarios <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    
+                    <li><a class="navbar-brand " href="historia">Crear Hitos</a></li>
                     <li><a class="navbar-brand " href="historiaTareas">Asignar Historias</a></li>                    
                     <li><a class="navbar-brand " href="tareaResponsable">Ver Historias</a></li>
                   </ul>
@@ -75,7 +75,7 @@
           <li class="dropdown navbar-brand navbar-right ">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido: <?php echo $this->session->userdata('usuario'); ?></php??><b class="caret"></b></a>
                <ul class="dropdown-menu">
-              <li><a class="navbar-brand " href="ingresar/cerrarSession">salir</a></li>                    
+              <li><a class="navbar-brand " href="inicio/cerrarSession">salir</a></li>                    
             </ul>
           </li>           
         </div><!--/.navbar-collapse -->

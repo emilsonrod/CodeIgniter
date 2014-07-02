@@ -129,5 +129,12 @@ class ModelGrupo extends CI_Model {
         }
         return false;
     }
+    function tieneGruposDoc($docente=''){
+        $query=$this->db->query("select count(id_docente) as cantidad from grupo where id_docente=".$docente)->row();
+        if($query->cantidad>0){
+            return true;
+        }
+        else{return false;}
+    }
 }
 ?>

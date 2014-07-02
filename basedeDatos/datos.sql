@@ -2,10 +2,10 @@
 -- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 24-06-2014 a las 14:06:26
--- Versión del servidor: 5.1.41
--- Versión de PHP: 5.3.1
+-- Host: localhost
+-- Generation Time: Jun 30, 2014 at 10:51 p.m.
+-- Server version: 5.1.41
+-- PHP Version: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,51 +16,59 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `sistemadeayuda`
+-- Database: 'sistemadeayuda'
 --
 
 --
--- Volcar la base de datos para la tabla `documento_docente`
+-- Dumping data for table 'documento_docente'
 --
 
-INSERT INTO `documento_docente` (`ID_USUARIO`, `COD_DOC_DOC`, `NOMBRE_DOC`, `FECHA_SUBIDA`, `DESCRIPCION`) VALUES
-(24, 1, '1402927388-Anka_Soft.pdf', '2014-06-16', 'prueba'),
-(31, 2, '1403491168-Anka_Soft.pdf', '2014-06-22', 'adfa');
+INSERT INTO documento_docente (ID_USUARIO, COD_DOC_DOC, NOMBRE_DOC, FECHA_SUBIDA, DESCRIPCION) VALUES
+(24, 0, '1402927388-Anka_Soft.pdf', '2014-06-16', 'prueba'),
+(31, 0, '1403491168-Anka_Soft.pdf', '2014-06-22', 'adfa');
 
 --
--- Volcar la base de datos para la tabla `entrega`
+-- Dumping data for table 'entrega'
 --
 
-INSERT INTO `entrega` (`ID_ENTREGA`, `COD_GRUPO`, `ID_EVENTO`, `NOMBRE_ENTREGA`, `FECHA_ENTREGA`, `COMENTARIO`) VALUES
+INSERT INTO entrega (ID_ENTREGA, COD_GRUPO, ID_EVENTO, NOMBRE_ENTREGA, FECHA_ENTREGA, COMENTARIO) VALUES
 (1, 7, 4, 'documento A', '2014-05-29', 'documento A'),
 (2, 7, 5, 'documento B', '2014-05-30', 'documento B'),
 (3, 7, 6, 'hito', '2014-06-11', 'fhajhfj'),
 (4, 7, 8, 'documento general ', '2014-06-13', 'validacion de la base de datos');
 
 --
--- Volcar la base de datos para la tabla `evento`
+-- Dumping data for table 'evento'
 --
 
-INSERT INTO `evento` (`FECHA_EVENTO`, `INICIO`, `ID_EVENTO`, `ID_TIPO_EVENTO`, `ID_USUARIO`, `AVISO`) VALUES
-('2014-06-01', '0000-00-00', 1, 1, 12, 'el documento A se subio '),
-('2014-05-14', '0000-00-00', 2, 2, 13, 'el documento B'),
-('2014-06-02', '0000-00-00', 3, 2, 21, 'el documento B se subio'),
-('2014-05-29', '0000-00-00', 4, 1, 5, 'documento A '),
-('2014-05-30', '0000-00-00', 5, 2, 6, 'el documento B'),
-('2014-06-11', '0000-00-00', 6, 4, 25, 'primer hito'),
-('2014-06-12', '0000-00-00', 7, 4, 27, 'primer hito'),
-('2014-06-13', '0000-00-00', 8, 5, 5, 'validacion de la base de datos');
+INSERT INTO evento (FECHA_EVENTO, INICIO, ID_EVENTO, ID_TIPO_EVENTO, ID_USUARIO, AVISO, DIAS) VALUES
+('2014-06-01 00:00:00', '0000-00-00 00:00:00', 1, 1, 12, 'el documento A se subio ', 0),
+('2014-05-14 00:00:00', '0000-00-00 00:00:00', 2, 2, 13, 'el documento B', 0),
+('2014-06-02 00:00:00', '0000-00-00 00:00:00', 3, 2, 21, 'el documento B se subio', 0),
+('2014-05-29 00:00:00', '0000-00-00 00:00:00', 4, 1, 5, 'documento A ', 0),
+('2014-05-30 00:00:00', '0000-00-00 00:00:00', 5, 2, 6, 'el documento B', 0),
+('2014-06-11 00:00:00', '0000-00-00 00:00:00', 6, 4, 25, 'primer hito', 0),
+('2014-06-12 00:00:00', '0000-00-00 00:00:00', 7, 4, 27, 'primer hito', 0),
+('2014-06-13 00:00:00', '0000-00-00 00:00:00', 8, 5, 5, 'validacion de la base de datos', 0),
+('2014-06-27 17:21:01', '2014-06-16 17:21:22', 9, 4, 7, 'hito numero 2', 0),
+('2014-05-20 17:22:46', '2014-05-06 17:22:16', 10, 4, 7, 'hito numero 1', 0),
+('2014-04-25 00:00:00', '2014-04-25 00:00:00', 12, 4, 6, 'hito3-grupo7', 0),
+('2014-05-26 00:00:00', '2014-04-25 00:00:00', 13, 5, 6, 'documento-grupo7', 0);
 
 --
--- Volcar la base de datos para la tabla `evento_particular`
+-- Dumping data for table 'evento_particular'
 --
 
+INSERT INTO evento_particular (COD_GRUPO, ID_EVENTO) VALUES
+(5, 9),
+(5, 10),
+(7, 12);
 
 --
--- Volcar la base de datos para la tabla `formulario`
+-- Dumping data for table 'formulario'
 --
 
-INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `CONTROLADOR`) VALUES
+INSERT INTO formulario (ID_FORM, NOMBRE_FORM, CONTROLADOR) VALUES
 (2, 'Registrar Grupo', 'grupo'),
 (3, 'Inscribirse', 'registrarseGrupo'),
 (5, 'Ver Grupos', 'controladorVerGrupo'),
@@ -71,7 +79,7 @@ INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `CONTROLADOR`) VALUES
 (11, 'Registrarse', 'registrar'),
 (12, 'Docentes', 'docente'),
 (13, 'Grupos existentes', 'gruposInscritosGlobal'),
-(14, 'Calificacion Hitos', 'notaHitos'),
+(14, 'Calificacion Hitos', 'notahitos'),
 (15, 'Calificacion Estudiantes', 'notaEstudiante'),
 (18, 'Datos Grupo', 'controladorDatos'),
 (19, 'Integrantes', 'integrantes'),
@@ -80,30 +88,47 @@ INSERT INTO `formulario` (`ID_FORM`, `NOMBRE_FORM`, `CONTROLADOR`) VALUES
 (20, 'volver', 'retornar'),
 (21, 'subir hito', 'subirHito'),
 (22, 'subir documentos', 'subirDocEst'),
-(23,'Historias de Usuario','historia');
+(23, 'Historias de Usuario', 'historia');
 
 --
--- Volcar la base de datos para la tabla `grupo`
+-- Dumping data for table 'grupo'
 --
 
-INSERT INTO `grupo` (`COD_GRUPO`, `ID_DOCENTE`, `ID_REPRESENTANTE`, `CORREO_GRUPO`, `NOMBRE_LARGO`, `NOMBRE_CORTO`, `PASSW_GRUPO`, `ACTIVO`) VALUES
+INSERT INTO grupo (COD_GRUPO, ID_DOCENTE, ID_REPRESENTANTE, CORREO_GRUPO, NOMBRE_LARGO, NOMBRE_CORTO, PASSW_GRUPO, ACTIVO) VALUES
 (5, 31, 7, 'softEli@gmail.com', 'desarrollo de software Eli', 'softEli', 'aaAA55', 1),
 (6, 31, 15, 'sofgolty@gmail.com', 'dfee bere  eli', 'softGolty', 'dfasdfwe', 1),
 (7, 24, 25, 'abc@gmail.es', 'Algo vhjsdfh', 'ABC', 'abc123', 1),
-(8, 24, 26, 'jas@vshd.com', 'dsf123 $%&amp;', 'jas', 'j123456', 0),
+(8, 24, 26, 'jas@vshd.com', 'dsf123 $%&amp;', 'jas', 'j123456', 1),
 (9, 6, 27, 'gokuBall@gmail.com', 'super sayayin', 'goku', 'Goku2014', 1),
 (10, 24, 2, 'edrosoft@gmail.com', 'desarrolo de software aguila andina', 'edrosoft', 'Edrosoft2014', 0);
 
 --
--- Volcar la base de datos para la tabla `historia_usuario`
+-- Dumping data for table 'historia_usuario'
 --
 
+INSERT INTO historia_usuario (ID_HISTORIA, ID_HITO, COD_GRUPO, RESPONSABLE, NOM_HISTORIA, EVALUACION_EST, EVALUACION_DOC) VALUES
+(9, 5, 7, 9, 'hito2-g7-historia2-luna salinas lucas', 0, 0),
+(8, 4, 7, 9, 'hito1-g7-historiaA-luna salinas lucas', 0, 0),
+(7, 5, 7, 6, 'hito2-g7-historia1-salinas lopez sergio', 0, 0),
+(10, 5, 7, 25, 'h2-T3-g7-perez-montan-juan', 0, 0),
+(11, 6, 7, 5, 'H1-g7-h3-quispe siles franklin', 0, 0),
+(12, 6, 7, 9, 'H2-g7-h3-luna salinas lucas', 0, 0),
+(13, 6, 7, 14, 'NUEVA HISTORIA-H3-NELLY', 0, 0);
 
 --
--- Volcar la base de datos para la tabla `integrantes_grupo`
+-- Dumping data for table 'hito'
 --
 
-INSERT INTO `integrantes_grupo` (`COD_GRUPO`, `ID_USUARIO`) VALUES
+INSERT INTO hito (ID_HITO, COD_GRUPO, ID_EVENTO, NOMBRE_HITO, NOTA_FINAL) VALUES
+(4, 7, NULL, 'hito 1 del grupo7', 10),
+(5, 7, NULL, 'hito 2 del grupo7', 10),
+(6, 7, 12, 'hito3-grupo7', 10);
+
+--
+-- Dumping data for table 'integrantes_grupo'
+--
+
+INSERT INTO integrantes_grupo (COD_GRUPO, ID_USUARIO) VALUES
 (5, 7),
 (6, 11),
 (6, 12),
@@ -122,17 +147,17 @@ INSERT INTO `integrantes_grupo` (`COD_GRUPO`, `ID_USUARIO`) VALUES
 (10, 2);
 
 --
--- Volcar la base de datos para la tabla `nota`
+-- Dumping data for table 'nota'
 --
 
-INSERT INTO `nota` (`ID_ENTREGA`, `CALIFICACION`, `OBSERVACION`) VALUES
-(3, 30, 'no estan bien terminadas las historias ');
+INSERT INTO nota (ID_ENTREGA, CALIFICACION, OBSERVACION) VALUES
+(3, 89, 'no estan bien terminadas las historias ');
 
 --
--- Volcar la base de datos para la tabla `nota_estudiante`
+-- Dumping data for table 'nota_estudiante'
 --
 
-INSERT INTO `nota_estudiante` (`ID_USUARIO`, `NOTA_ESTUDIANTE`) VALUES
+INSERT INTO nota_estudiante (ID_USUARIO, NOTA_ESTUDIANTE) VALUES
 (7, 50),
 (12, 45),
 (13, 45),
@@ -145,15 +170,10 @@ INSERT INTO `nota_estudiante` (`ID_USUARIO`, `NOTA_ESTUDIANTE`) VALUES
 (27, 0);
 
 --
--- Volcar la base de datos para la tabla `responsable_tarea`
+-- Dumping data for table 'rol'
 --
 
-
---
--- Volcar la base de datos para la tabla `rol`
---
-
-INSERT INTO `rol` (`ID_ROL`, `NOMBRE_ROL`) VALUES
+INSERT INTO rol (ID_ROL, NOMBRE_ROL) VALUES
 (1, 'docente'),
 (2, 'estudiante'),
 (3, 'cliente'),
@@ -162,10 +182,10 @@ INSERT INTO `rol` (`ID_ROL`, `NOMBRE_ROL`) VALUES
 (6, 'grupo');
 
 --
--- Volcar la base de datos para la tabla `rol_formulario`
+-- Dumping data for table 'rol_formulario'
 --
 
-INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
+INSERT INTO rol_formulario (ID_FORM, ID_ROL) VALUES
 (1, 2),
 (2, 2),
 (3, 2),
@@ -186,12 +206,13 @@ INSERT INTO `rol_formulario` (`ID_FORM`, `ID_ROL`) VALUES
 (20, 6),
 (21, 2),
 (22, 2),
-(23,2);
+(23, 2);
+
 --
--- Volcar la base de datos para la tabla `rol_usuario`
+-- Dumping data for table 'rol_usuario'
 --
 
-INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
+INSERT INTO rol_usuario (ID_ROL, ID_USUARIO) VALUES
 (1, 1),
 (1, 4),
 (1, 18),
@@ -225,15 +246,10 @@ INSERT INTO `rol_usuario` (`ID_ROL`, `ID_USUARIO`) VALUES
 (2, 30);
 
 --
--- Volcar la base de datos para la tabla `tarea`
+-- Dumping data for table 'tipo_evento'
 --
 
-
---
--- Volcar la base de datos para la tabla `tipo_evento`
---
-
-INSERT INTO `tipo_evento` (`ID_TIPO_EVENTO`, `NOMBRE_TIPO_EVENTO`) VALUES
+INSERT INTO tipo_evento (ID_TIPO_EVENTO, NOMBRE_TIPO_EVENTO) VALUES
 (1, 'documento_a'),
 (2, 'documento_b'),
 (3, 'reunion_grupo'),
@@ -241,10 +257,10 @@ INSERT INTO `tipo_evento` (`ID_TIPO_EVENTO`, `NOMBRE_TIPO_EVENTO`) VALUES
 (5, 'documento_general');
 
 --
--- Volcar la base de datos para la tabla `usuario`
+-- Dumping data for table 'usuario'
 --
 
-INSERT INTO `usuario` (`ID_USUARIO`, `NOMBRE`, `APELLIDOP`, `APELLIDOM`, `LOGGIN`, `PASSW`, `CORREO`, `ACTIVO`, `CI_DOCENTE`) VALUES
+INSERT INTO usuario (ID_USUARIO, NOMBRE, APELLIDOP, APELLIDOM, LOGGIN, PASSW, CORREO, ACTIVO, CI_DOCENTE) VALUES
 (16, 'janet', 'luna', 'nuvia', 'janca', 'AAaa11', 'janet@gmail.com', 1, 0),
 (15, 'richart', '', 'miranda', 'ririo', 'AAaa11', 'riog@hotmail.com', 1, 0),
 (14, 'nelly', 'quispe', 'flores', 'nelly', 'AAaa11', 'nelly@hotmail.com', 1, 0),

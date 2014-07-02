@@ -28,6 +28,7 @@ class Historia_usuario extends CI_Model {
         }      
     
   }
+
     
     function agregarNuevoHito($integrante='',$hito=''){
        $grupoUsuario=$this->db->query("SELECT cod_grupo FROM integrantes_grupo WHERE id_usuario=".$integrante);
@@ -48,18 +49,17 @@ class Historia_usuario extends CI_Model {
        }        
     }
 
-    function noRepetido($histori='',$id=''){
-        $query = $this->db->query("SELECT nom_historia FROM historia_usuario WHERE 
-        cod_grupo=(SELECT cod_grupo from integrantes_grupo where id_usuario=".$id.") and nom_historia='".$histori."'");
+    function hitoRepetido($hito='',$id=''){
+        $query = $this->db->query("SELECT nombre_hito FROM hito WHERE 
+        cod_grupo=(SELECT cod_grupo from integrantes_grupo where id_usuario=".$id.") and nombre_hito='".$hito."'");
         if ($query->num_rows() >0){
             return false;
         }else{return true;}
     }
     function getHitos($id=''){
-         $sql="SELECT cod_grupo as grupo FROM integrantes_grupo WHERE id_usuario=".$id;
-         $query = $this->db->query($sql);
-        if ($query->num_rows() >0)
-        {   $row = $query->row();
+         $sql="SELECT cod_grupo as grupo FROM integrantes_grupo WHERE id_usuario=".$id;         
+         $query = $this->db->query($sql);       
+          $row = $query->row();
             $hitos=$this->db->query("SELECT id_hito,nombre_hito FROM hito WHERE cod_grupo=".$row->grupo);
              $arreglo=array();
            if($hitos->num_rows()>0){
@@ -71,20 +71,16 @@ class Historia_usuario extends CI_Model {
                 return $arreglo;
            }
            return $arreglo;
-        }else{
-           return false;
-        }
     }
     
     function getEquipo($id=''){
-        $sql=$this->db->query("SELECT cod_grupo as grupo FROM integrantes_grupo WHERE id_usuario=".$id);
-         $sql2="SELECT  u.id_usuario,u.nombre,u.apellidoP,u.apellidoM FROM integrantes_grupo ig,usuario u WHERE ig.id_usuario=u.id_usuario                            and ig.cod_grupo='".$sql->row()->grupo."'";
+        $sql=$this->db->query("SELECT cod_grupo as grupo FROM integrantes_grupo WHERE id_usuario=".$id)->row();
+         $sql2="SELECT  u.id_usuario,u.nombre,u.apellidoP,u.apellidoM FROM integrantes_grupo ig,usuario u WHERE ig.id_usuario=u.id_usuario  and ig.cod_grupo=".$sql->grupo;
     $query = $this->db->query($sql2);
+           $arreglo=array();
         if ($query->num_rows() >0)
-        {  
-           
-             $arreglo=array(''=>'Elegir Responsable');           
-               
+        {                         
+               $arreglo['']="Elegir Responsable";
                 foreach ($query->result() as $valor)
             {
             $arreglo[$valor->id_usuario]=$valor->apellidoP." ".$valor->apellidoM." ".$valor->nombre;
@@ -93,8 +89,12 @@ class Historia_usuario extends CI_Model {
            
            return $arreglo;
         }else{
-           return false;
+           return $arreglo;
         }      
+    }
+    function inscritoGrupo($id=''){
+        $query=$this->db->query("SELECT cod_grupo as grupo FROM integrantes_grupo WHERE id_usuario=".$id);
+        return ($query->num_rows()>0);
     }
     function nuevaHistoria($historia='',$hito='',$integrante='',$responsable){
         /*$id_histo=$this->db->query("select id_historia from historia_usuario where nom_historia='".$histo."' and id_usuario=".$integrante);
@@ -150,7 +150,7 @@ class Historia_usuario extends CI_Model {
     }
     
     function getHitosDoc($grupo=''){
-          $hitos=$this->db->query("select id_hito,nombre_hito,nota_final from hito where cod_grupo=(select cod_grupo from grupo where         nombre_corto='".$grupo."')");         
+          $hitos=$this->db->query("select id_hito,nombre_hito,nota_final from hito where cod_grupo=(select cod_grupo from grupo where  nombre_corto='".$grupo."')");         
         $responsables=array();
         if($hitos->num_rows()>0){
             foreach($hitos->result() as $fila){

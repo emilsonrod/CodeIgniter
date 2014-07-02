@@ -20,8 +20,23 @@ class Inicio extends CI_Controller
 	    $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
 
 	    if ($this->form_validation->run() == FALSE)
-		{	
+		{	if(!$this->session->userdata('usuario')){
 			$this->load->view('home');
+			}else{
+				$perfil=$this->session->userdata['perfil'];
+
+		        	if($perfil == "docente"){
+						$this->load->view('viewCabeceraLogginDocente');
+						$this->load->view('viewCentral');
+						$this->load->view('viewDerecha');
+						$this->load->view('viewPiePagina');
+					}else{
+						$this->load->view('viewCabeceraLoggin');
+						$this->load->view('viewCentral');
+						$this->load->view('viewDerecha');
+						$this->load->view('viewPiePagina');
+					}
+			}
 		}
 		else{
 			$nombre = $this->input->post('nombre');
@@ -53,14 +68,19 @@ class Inicio extends CI_Controller
 						$this->load->view('viewPiePagina');
 					}
 		        }else{
-		          $this->load->view('home');
-		        }
+
+		        	$this->load->view('home');	        }
 	    	}
 	    	else{
 	    		echo '<script>window.alert("Ha fallado su nombre de usuario o contraseña, intente de nuevo.");location.href="inicio";</script>';
 				$this->load->view('home');
 	    	}
     	}
+	}
+	public function cerrarSession()
+	{
+		$this->session->sess_destroy();
+		redirect('inicio');
 	}
 }
 ?>

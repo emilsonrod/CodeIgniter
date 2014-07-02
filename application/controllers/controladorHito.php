@@ -9,6 +9,7 @@ class ControladorHito extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->helper('form');
 		$this->load->helper('url');
+		$this->load->model('modelGrupo');
 		$this->load->model('historia_usuario');
 	}
 	function index()
@@ -17,20 +18,34 @@ class ControladorHito extends CI_Controller
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
 		if(isset($this->session->userdata['usuario']))
 			{
+				if($this->modelGrupo->tieneGruposDoc($this->session->userdata('id'))){
 				$this->load->library('table');
 				$this->load->library('pagination'); //cargamos la libreria de paginacion
 				$grupo=$this->session->userdata['grupo'];
 
 
 				$data['hitos']=$this->historia_usuario->getHitosDoc($grupo);
+				    if($data['hitos']!=false){
+				    	$auxiliar=$data['hitos'];
+                 		$guardarIdHitos=array();
+                 		foreach($auxiliar as $indice=>$valor){                     
+                   			$guardarIdHitos[]=$indice;
+                 		}
+                 		$this->session->set_userdata('idHito',$guardarIdHitos);
+                 		$this->load->view('calificarhitos',$data);				    	
+				    }else{
+				    	$data['error']="El grupo ".$grupo." no tiene hitos";
+				    
+                 	$this->load->view('error',$data);	
+				    }  
 
-				 $auxiliar=$data['hitos'];
-                 $guardarIdHitos=array();
-                 foreach($auxiliar as $indice=>$valor){                     
-                   $guardarIdHitos[]=$indice;
+                 }else{
+                 	$data['error']="No tiene grupos inscritos para calificar sus hitos";
+                 	
+                 	$this->load->view('error',$data);
                  }
-                 $this->session->set_userdata('idHito',$guardarIdHitos);
-                 $this->load->view('calificarhitos',$data);
+             
+
 			}else{
 			redirect('inicio');
 		}
