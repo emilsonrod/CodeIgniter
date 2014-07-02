@@ -25,6 +25,7 @@ class ModelGrupo extends CI_Model {
             $form['nombre_largo']=$form_data['nombreLargo'];
 			$form['nombre_corto']=$form_data['nombreCorto'];
 			$form['passw_grupo']=$form_data['contrasenya'];
+            $form['activo']='1';
 			$this->db->insert('grupo',$form);
 
 		if ($this->db->affected_rows() == '1')
