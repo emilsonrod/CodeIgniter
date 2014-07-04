@@ -131,7 +131,17 @@ class EventoDocenteM extends CI_Model
 		$arreglo=$this->db->query($sql);
 		return $arreglo->row()->id_tipo_evento;
 	}
-
+	function validar_fecha($str){
+        $patron="/^(\d){4}\-(\d){2}\-(\d){2}$/i";
+        if (preg_match($patron,$str))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+	}
 
 }
 ?>

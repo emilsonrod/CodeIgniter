@@ -20,14 +20,14 @@ class HistoriaTareas extends CI_Controller
          $this->form_validation->set_message('required', 'El campo %s es obligatorio');
          $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
          
-         
+         if($this->historia_usuario->inscritoGrupo($this->session->userdata('id'))){
            $data['hitos']=$this->historia_usuario->getHitos($this->session->userdata('id'));
            $data['equipo']=$this->historia_usuario->getEquipo($this->session->userdata('id'));
             if ($this->form_validation->run() == FALSE)
             {   
                 $data['error']="";
                 
-                if($this->historia_usuario->inscritoGrupo($this->session->userdata('id'))){
+                
                     
                     if(count($data['hitos'])>0){
                         $data['tareas']=array();                     
@@ -37,10 +37,7 @@ class HistoriaTareas extends CI_Controller
                     
                         $this->load->view('error',$data);
                     }
-                 }else{
-                    echo '<script>window.alert("No esta inscrito en un grupo inscribase o registre nuevo grupo");location.href="registrarseGrupo";</script>';    
-                    
-                 }                  
+                                   
             }else{   
                 $historia=$_POST['nuevaTarea'];
                 $hito=$_POST['historias'];
@@ -54,7 +51,11 @@ class HistoriaTareas extends CI_Controller
                     
                     $this->load->view('error',$data);
                 }
-            }        
+            }
+            }else{
+                    echo '<script>window.alert("No esta inscrito en un grupo inscribase o registre nuevo grupo");location.href="registrarseGrupo";</script>';    
+                    
+                 }        
             
         }else{
             redirect('inicio');

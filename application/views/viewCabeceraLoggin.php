@@ -21,6 +21,7 @@
     <link href="./css/jumbotron.css" rel="stylesheet">
     <link href="./css/carousel.css" rel="stylesheet">
     <script type="text/javascript" src="./js/validaciones.js"></script>
+    
   </head>
 
   <body>

@@ -6,14 +6,37 @@ class EventoDocenteC extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('eventoDocenteM');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        //$this->load->library('form_validation');
+         $this->load->library('calendar');
+      
 	}
 
 	public function index()
 	{
 			//$this->load->view('viewCabecera');
-			//$this->load->view('viewIzquierda');
+        
+            //echo $this->calendar->generate();
+		if(isset($this->session->userdata['usuario']))
+        {
+            $this->form_validation->set_rules('startdate','Fecha inicio','trim|required|valid_date');
+            $this->form_validation->set_rules('enddate','Fecha final','trim|required|numeric');
+            $this->form_validation->set_rules('event','Evento','trim|required|max_lenght[250]|min_length[10]');
+            $this->form_validation->set_rules('grupos','grupos','trim|required');
+            $this->form_validation->set_rules('tipo','Tipo de evento','trim|required');
+            $this->form_validation->set_rules('startdate','Fecha inicio','required|date|chk_date[<=]');
 
-		if(isset($this->session->userdata['usuario'])){
+           // $this->form_validation->set_message('chk_date', 'La fecha no puede ser mayor a la fecha actual');
+            $this->form_validation->set_message('required','El campo %s es obligatorio');
+            $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
+            $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
+            $this->form_validation->set_message('numeric', 'El campo %s debe ser dd/mm/aaaa');
+           // $this->form_validation->set_message('valid_date', 'El campo %s debe contener una fecha con el formato YYYY-MM-DD');
+
+            if($this->form_validation->run()==FALSE)
+            {
+
 		      	 $lista=$this->eventoDocenteM->tipoEvento();
                  $arreglo=array();
                 	 foreach($lista as $value){
@@ -32,69 +55,71 @@ class EventoDocenteC extends CI_Controller {
                     $mensage['error']='Lo sentimos no tiene grupos';
                       $this->load->view('eventoDocente',$mensaje);
                 }
+            }
+            else
+            {
+                 $todo=$this->input->post('todos');
+                $lista= $this->input->post('tipo');
+                $tipoevento=$this->eventoDocenteM->idEvento($lista);
+                $nomgrupo=$this->input->post('grupos');
 
-            //	 $this->load->view('eventoDocente',$data);
-			    // $this->load->view('EventoDocente',$datas);
-			}
+                if($nomgrupo != $todo)
+                {
+                        $nombregrupo=$this->eventoDocenteM->nombreGrupo($nomgrupo);
+
+                        //$allday   =   ($this->input->post('allday')==1) ? 'true' : 'false';
+
+                        
+                        $startdate  =   str_replace('/', '-', $this->input->post('startdate'));
+                        $startdate  =   date('Y-m-d',strtotime($startdate));
+
+                        $enddate    =   str_replace('/', '-', $this->input->post('enddate'));
+                        $enddate    =   date('Y-m-d',strtotime($enddate));
+
+                        $data=array(
+                            'aviso'            =>   $this->input->post('event'),
+                            'inicio'           =>   $startdate,
+                            'fecha_evento'     =>   $enddate,
+                            'id_tipo_evento'   =>   $tipoevento,
+                            'id_usuario'       =>   $this->session->userdata('id'),
+                            );
+                        $this->db->insert('evento',$data);
+
+                        $datas=array(
+                            'cod_grupo'   =>   $nombregrupo,
+                            'id_evento'   =>   $this->eventoDocenteM->recuperarId()
+                            );
+                        $this->db->insert('evento_particular',$datas);
+
+                        redirect('calendar2');
+                    }
+                    else
+                    {
+
+
+                        
+                        $startdate  =   str_replace('/', '-', $this->input->post('startdate'));
+                        $startdate  =   date('Y-m-d',strtotime($startdate));
+
+                        $enddate    =   str_replace('/', '-', $this->input->post('enddate'));
+                        $enddate    =   date('Y-m-d',strtotime($enddate));
+
+                        $data=array(
+                            'aviso'            =>   $this->input->post('event'),
+                            'inicio'           =>   $startdate,
+                            'fecha_evento'     =>   $enddate,
+                            'id_tipo_evento'   =>   $tipoevento,
+                            'id_usuario'       =>   $this->session->userdata('id')
+                            );
+                        $this->db->insert('evento',$data);               
+
+                        redirect('calendar2');   
+
+                     }
+            }
+
+		}
+          
 	}
-	public function tocalendar()
-    {
-        $todo=$this->input->post('todos');
-        $lista= $this->input->post('tipo');
-        $tipoevento=$this->eventoDocenteM->idEvento($lista);
-        $nomgrupo=$this->input->post('grupos');
-
-        if($nomgrupo != $todo){
-                $nombregrupo=$this->eventoDocenteM->nombreGrupo($nomgrupo);
-            	
-            	$startdate	=	str_replace('/', '-', $this->input->post('startdate'));
-            	$startdate	=	date('Y-m-d',strtotime($startdate));
-
-            	$enddate	=	str_replace('/', '-', $this->input->post('enddate'));
-            	$enddate	=	date('Y-m-d',strtotime($enddate));
-
-            	$data=array(
-            		'aviso'		       =>	$this->input->post('event'),
-            		'inicio'		   =>	$startdate,
-            		'fecha_evento'	   =>	$enddate,
-            		'id_tipo_evento'   =>   $tipoevento,
-            		'id_usuario'	   =>   $this->session->userdata('id'),
-            		'dias'	           =>	($this->input->post('allday')==1) ? 'true' : 'false'
-            		);
-            	$this->db->insert('evento',$data);
-
-                $datas=array(
-                    'cod_grupo'   =>   $nombregrupo,
-                    'id_evento'   =>   $this->eventoDocenteM->recuperarId()
-                    );
-                $this->db->insert('evento_particular',$datas);
-
-        		redirect('calendar2');
-            }
-            else{
-
-                
-                
-                $startdate  =   str_replace('/', '-', $this->input->post('startdate'));
-                $startdate  =   date('Y-m-d',strtotime($startdate));
-
-                $enddate    =   str_replace('/', '-', $this->input->post('enddate'));
-                $enddate    =   date('Y-m-d',strtotime($enddate));
-
-
-                $data=array(
-                    'aviso'            =>   $this->input->post('event'),
-                    'inicio'           =>   $startdate,
-                    'fecha_evento'     =>   $enddate,
-                    'id_tipo_evento'   =>   $tipoevento,
-                    'id_usuario'       =>   $this->session->userdata('id'),
-                    'dias'             =>   ($this->input->post('allday')==1) ? 'true' : 'false'
-                    );
-                $this->db->insert('evento',$data);               
-
-                redirect('calendar2');   
-
-            }
-        }
 
 }

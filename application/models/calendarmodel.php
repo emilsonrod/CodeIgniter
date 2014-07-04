@@ -108,20 +108,20 @@ class Calendarmodel extends CI_Model
 
 	public function add_calendar_data($date,$data)
 	{
-		if($this->db->select('fecha')->from('fecha_limite')
-			->where('fecha', $date)->count_all_results())
+		if($this->db->select('inicio')->from('evento')
+			->where('inicio', $date)->count_all_results())
 		{
-			$this->db->where('fecha',$date)
-					->update('fecha_limite', array(
-				'fecha' => $date,
-				'comentario' => $data
+			$this->db->where('inicio',$date)
+					->update('evento', array(
+				'inicio' => $date,
+				'aviso' => $data
 				));
 		}
 		else
 		{
-			$this->db->insert('fecha_limite',array(
-			'fecha' => $date,
-			'comentario' => $data
+			$this->db->insert('evento',array(
+			'inicio' => $date,
+			'aviso' => $data
 			));
 		}
 
