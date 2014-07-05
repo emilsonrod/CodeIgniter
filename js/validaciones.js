@@ -2,7 +2,7 @@ function soloLetrasHead(e) {
 					key = e.keyCode || e.which;
 					tecla = String.fromCharCode(key).toLowerCase();
 					letras = " áéíóúabcdefghijklmnñopqrstuvwxyz1234567890";
-					especiales = [8, 37, 39, 46];
+					especiales = [8,39, 46];
 
 					tecla_especial = false
 					for(var i in especiales) {
@@ -31,7 +31,7 @@ function soloLetrasBody(e) {
 					key = e.keyCode || e.which;
 					tecla = String.fromCharCode(key).toLowerCase();
 					letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-					especiales = [8, 37, 39, 46];
+					especiales = [8, 39, 46];
 
 					tecla_especial = false
 					for(var i in especiales) {
@@ -59,7 +59,7 @@ function soloNumerosBody(e) {
 					key = e.keyCode || e.which;
 					tecla = String.fromCharCode(key).toLowerCase();
 					letras = " 1234567890";
-					especiales = [8, 37, 39, 46];
+					especiales = [8, 47, 39, 46];
 
 					tecla_especial = false
 					for(var i in especiales) {

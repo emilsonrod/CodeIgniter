@@ -37,17 +37,32 @@ class ModelGrupo extends CI_Model {
 		return FALSE;
 	}
     function inscribirseAGrupo($form_data){
-            $idGrupo=$this->db->query("SELECT cod_grupo FROM grupo WHERE nombre_corto='".$form_data['nombreCorto']."'");
-            $form['cod_grupo']=$idGrupo->row()->cod_grupo;
-			$form['id_usuario']=$form_data['integrante'];
-			$this->db->insert('integrantes_grupo', $form);
-			if ($this->db->affected_rows() == '1')
-		    {
+            $idGrupo=$this->db->query("SELECT cod_grupo FROM grupo WHERE nombre_corto='".$form_data['grupo']."'")->row();
+            $data=array(array('cod_grupo'=>$idGrupo->cod_grupo,'id_usuario'=>$form_data['user1']),
+                        array('cod_grupo'=>$idGrupo->cod_grupo,'id_usuario'=>$form_data['user2']),
+                        array('cod_grupo'=>$idGrupo->cod_grupo,'id_usuario'=>$form_data['user3']));
+
+			$this->db->insert_batch('integrantes_grupo',$data);
+			if ($this->db->affected_rows() == '3')
+		    {   $data2=array(array('id_usuario'=>$form_data['user1'],'nota_estudiante'=>0),
+                             array('id_usuario'=>$form_data['user2'],'nota_estudiante'=>0),
+                             array('id_usuario'=>$form_data['user3'],'nota_estudiante'=>0));
+                $this->db->insert_batch('nota_estudiante',$data2);
 			     return TRUE;
 		    }
 		return FALSE;
     }
-	
+	function agregarIntegrante($form_data){
+        $idGrupo=$this->db->query("SELECT cod_grupo FROM grupo WHERE nombre_corto='".$form_data['grupo']."'")->row();
+        $data=array('cod_grupo'=>$idGrupo->cod_grupo,
+                    'id_usuario'=>$form_data['nuevoIntegrante']);
+        $this->db->insert('integrantes_grupo',$data);
+        if($this->db->affected_rows==1){
+            $this->db->insert('nota_estudiante',array('id_usuario'=>$form_data['nuevoIntegrante'],'nota_estudiante'=>0));
+            return true;
+        }else{ return false;}
+    }
+
 	function getGrupos($id){
 		//obteniendo los grupos q solo le pertenecen a un docente determinado
         $sql="select cod_grupo,nombre_corto from grupo where activo=1 and id_docente=".$id;
@@ -139,6 +154,22 @@ class ModelGrupo extends CI_Model {
             return true;
         }
         else{return false;}
+    }
+    function tieneGrupo($user='',$key=''){
+        $query=$this->db->query("select u.id_usuario,ig.cod_grupo from usuario u,integrantes_grupo ig where u.loggin='".$user."' and u.passw='".$key."' and u.id_usuario=ig.id_usuario");
+        return $query->num_rows()>0;
+    }
+    function existe($usuario='',$clave=''){
+        $query=$this->db->query("select * from usuario where loggin='".$usuario."' and passw='".$clave."'");
+         if($query->num_rows()>0){
+            return true; 
+         }else{
+            return false;
+         }
+    }
+    function getId($u='',$k=''){
+        $query=$this->db->query("select id_usuario from usuario where loggin='".$u."' and passw='".$k."'")->row();
+        return $query->id_usuario;
     }
 }
 ?>

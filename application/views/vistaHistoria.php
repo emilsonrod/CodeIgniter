@@ -8,7 +8,7 @@
   <div class="panel-body" align="center">
      <form class="navbar-form navbar-left" role="form" action="historia" method="post">
          <div class="form-group">
-        <input  type="text" class="form-control" size="60" name="historiaNueva" onkeypress="return soloLetrasBody(event)" id="historiaNueva">
+        <input  type="text" class="form-control" size="60" name="historiaNueva" onkeypress="return soloLetrasHead(event)" id="historiaNueva">
                 
          </div>         
          <button onsubmit="texto()"type="submit" class="btn btn-primary">Aceptar</button>

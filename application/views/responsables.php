@@ -5,7 +5,7 @@
     <div class="col-md-12 column">
         <div class="panel panel-primary">
         <div class="panel-heading">
-    <h3 class="panel-title">Lista de Historias</h3>
+    <h3 class="panel-title">Lista de Hitos</h3>
   </div>
   <div class="panel-body" align="center">
       <?php 
@@ -40,10 +40,13 @@
         </div>          
       </div>
   </div>
+
   
 </div><?php $identificador=$identificador+1; }?>
       
-</div></div>
+</div>
+<span><strong> Hacer click en un hito para ver sus historias de ususario y respectivos responsables</strong></span>
+</div>
     </div>  
 </div></div></div></div>
 

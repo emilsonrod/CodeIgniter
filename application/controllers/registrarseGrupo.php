@@ -16,18 +16,23 @@ class RegistrarseGrupo extends CI_Controller {
 		
         $this->form_validation->set_rules('grupo', 'grupo', 'required');
 		$this->form_validation->set_rules('contrasenya', 'Contraseña', 'required|trim|xss_clean|min_length[6]|max_length[15]|callback_password_correcto');		
-        $this->form_validation->set_rules('integrante','integrante','callback_check_inscrito');
+        
         
         $this->form_validation->set_message('password_correcto','La %s no es correcta');
 		$this->form_validation->set_message('required', 'El campo %s es obligatorio');        
 		$this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
 		$this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');		
-        $this->form_validation->set_message('check_inscrito','Usted ya esta inscrito en un grupo, no es posible inscribirse a este grupo ');
+        //$this->form_validation->set_message('check_inscrito','Usted ya esta inscrito en un grupo, no es posible inscribirse a este grupo ');
 		
         $data['lista']=$this->modelGrupo->listaGrupos();
 		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
-		{			
-			$this->load->view('viewRegistrarseGrupo',$data);
+		{	
+			if($this->modelGrupo->inscritoEnUnaEmpresa($this->session->userdata('id'))){
+         			echo '<script>window.alert("Ya esta inscrito en un grupo");location.href="inicio";</script>';
+        		}
+        		else{		
+				$this->load->view('viewRegistrarseGrupo',$data);
+			}
 		}
 		else
 		{		
@@ -50,12 +55,7 @@ class RegistrarseGrupo extends CI_Controller {
 				redirect('inicio');
 			}
 	}
-    function check_inscrito(){
-         if($this->modelGrupo->inscritoEnUnaEmpresa($this->session->userdata('id'))){
-         return false;
-        }
-        else{return true;}
-    }
+
     function password_correcto(){
         return $this->modelGrupo->esCorrecto($this->input->post('grupo'),$this->input->post('contrasenya'));
     }
