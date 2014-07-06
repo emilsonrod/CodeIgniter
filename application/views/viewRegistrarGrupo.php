@@ -1,11 +1,13 @@
 <?php $this->load->view('viewCabeceraLoggin');?>
 <div class='container'>
 <div id="columnacentral">
-<script type="text/javascript" src="js/validar_grupo.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/validarUsuario.js"></script>
+
         <div class="row clearfix">
         <h1>Registrar nuevo grupo</h1>
         <?php
-        $attributes = array('class' => 'navbar-form', 'id' => 'Registrargrupo');
+        $attributes = array('class' => 'navbar-form', 'id' => 'Registrargrupo','name'=>'Registrargrupo');
         echo form_open('grupo', $attributes); ?>    
             <div class="col-md-6 column">
                 <div class="panel panel-primary">
@@ -27,7 +29,8 @@
                 </div>
                                 </td><td><div class="form-group">
                                  <input type="password" class="form-control" id="p1" name="p1" disabled="true" value="claveU" required>
-                </div></td>
+                                <h5><?php echo form_error('u1'); ?></h5>
+                                </div></td>
                                 </tr>
                                 <tr>
                                 <td>2</td><td><div class="form-group">
@@ -107,7 +110,7 @@
             </div>
 <div class="col-md-12 column">
 <p>
-        <button type="submit" class="btn btn-primary btn-lg btn-block">Aceptar</button>
+        <button type="submit" id="crearGrupo" onclick="validar()" class="btn btn-primary btn-lg btn-block">Aceptar</button>
 </p>
 </div>
 <?php echo form_close(); ?>

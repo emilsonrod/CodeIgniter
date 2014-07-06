@@ -15,10 +15,11 @@ class Grupo extends CI_Controller {
 	function index()
 	{	if(isset($this->session->userdata['usuario'])){
 
+			$this->form_validation->set_rules('u1','Usuarios','callback_repetido');
 			$this->form_validation->set_rules('u2','usuario #2','required');
-			$this->form_validation->set_rules('p2','usuario #2','required|callback_existeUsuarioA|callback_inscritoGrupoA');
+			$this->form_validation->set_rules('p2','usuario #2','required|callback_existeUsuarioA|callback_inscritoGrupoA|callback_repetidoA');
 			$this->form_validation->set_rules('u3','usuario #3','required');
-			$this->form_validation->set_rules('p3','usuario #3','required|callback_existeUsuarioB|callback_inscritoGrupoB');
+			$this->form_validation->set_rules('p3','usuario #3','required|callback_existeUsuarioB|callback_inscritoGrupoB|callback_repetidoB');
 
 			$this->form_validation->set_rules('nombreCorto','Nombre Corto','trim|required|max_length[15]|min_length[3]|is_unique[grupo.nombre_corto]|alpha_numeric');
             $this->form_validation->set_rules('correo','Correo','required|valid_email|is_unique[grupo.correo_grupo]');
@@ -27,7 +28,7 @@ class Grupo extends CI_Controller {
 			$this->form_validation->set_rules('docente', 'docente', 'required');			
            
 
-			
+			$this->form_validation->set_message('repetido','Uno de los %s esta repetido cambie uno de ellos');
             $this->form_validation->set_message('inscritoGrupoA','El %s esta inscrito en otro grupo busque otro integrante');
             $this->form_validation->set_message('inscritoGrupoB','El %s esta inscrito en otro grupo busque otro integrante');
             $this->form_validation->set_message('existeUsuarioA','El %s no existe');
@@ -110,6 +111,14 @@ class Grupo extends CI_Controller {
     	$usuario=$_POST['u3'];
     	$clave=$_POST['p3'];
     	return $this->modelGrupo->existe($usuario,$clave);
+    }
+    function repetido(){
+    	$usuario1=$this->session->userdata('usuario');
+    	$usuario2=$_POST['u2'];
+    	$usuario3=$_POST['u3'];
+
+    	return ($usuario1!=$usuario2 && $usuario1!=$usuario3 && $usuario2!=$usuario3);
+
     }
 }
 //fin del archivo

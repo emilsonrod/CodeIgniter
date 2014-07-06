@@ -64,7 +64,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="historia">Crear Hitos</a></li>
                     <li><a href="historiaTareas">Asignar Historias</a></li>                    
-                    <li><a href="tareaResponsable">Ver Historias</a></li>
+                    <li><a href="tareaResponsable">Ver Hitos e Historias</a></li>
                   </ul>
                 </li>
 
