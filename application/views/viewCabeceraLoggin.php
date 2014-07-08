@@ -39,23 +39,23 @@
               <ul class="nav navbar-nav">
                
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupo-Empresas <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="grupo">Crear un nuevo Grupo</a></li>
-                    <li><a href="registrarseGrupo">Incluirse en un Grupo</a></li>
-                    <li><a href="GruposInscritosGlobal">Ver Grupos Existentes</a></li>
-                    <li><a href="docente">Ver Docentes actuales</a></li>
+                    <li><a href="grupo">Crear un Nuevo Grupo-Empresa</a></li>
+                    <li><a href="registrarseGrupo">Integrarse en un Grupo-Empresa</a></li>
+                    <li><a href="GruposInscritosGlobal">Grupo-Empresas Existentes</a></li>
+                    <li><a href="docente">Docentes Actuales</a></li>
                   </ul>
                 </li>
                 
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funciones de Grupo <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funciones de Grupo-Empresa <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="subirDocEst">Subir Documentos del grupo</a></li>
-                    <li><a href="subirHito">Subir hitos entregables</a></li>
-                    <li><a href="convocatoriasDoc">Documentos necesarios</a></li>
-                    <li><a href="eventoEstudiante">Fijar fechas de eventos</a></li>
-                    <li><a href="eventosdegrupo">Ver fechas de eventos</a></li>                    
+                    <li><a href="subirDocEst">Subir Documentos</a></li>
+                    <li><a href="subirHito">Subir Hitos</a></li>
+                    <li><a href="convocatoriasDoc">Documentos Necesarios</a></li>
+                    <li><a href="eventoEstudiante">Crear Evento</a></li>
+                    <li><a href="eventosdegrupo">Ver Eventos</a></li>                    
                   </ul>
                 </li>
 

@@ -9,7 +9,8 @@
 	<div id="contenedorSubirDoc">
 		<div id = "barra1">
 	        <ul>
-	        	<li><a href="subirDocEst">subir Documento</a></li>
+	        	
+	        	<!--li><a href="subirDocEst">subir Documento</a></li-->
 	        </ul>
         </div>		
 		<?php
@@ -17,7 +18,7 @@
 			if($lista)
 		     {
 				echo"<center><table class='ListaArchivo'>";
-				echo"<caption>LISTA DE ARCHIVOS</caption>";
+				//echo"<caption>LISTA DE ARCHIVOS</caption>";
 
 					echo"<tr>";
 						//echo "<th width=\"40\">Estado</th>";

@@ -96,7 +96,7 @@ class SubirDocEst extends CI_Controller
 								$nombre = $file_data['file_name'];
 								$descrip =  $this->input->post('txtdes');
 								$evento = $this->input->post('fecha');
-								$fecha =  date('Y/m/d');
+								$fecha =  date("Y-m-d H:i:s");
 
 								$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));
 								foreach ($codGrupo->result() as $fila) 
@@ -113,7 +113,7 @@ class SubirDocEst extends CI_Controller
 								$insertar = $this->modelSubirDoc->agregarDoc($CODG, $IDE, $nombre, $descrip, $fecha);
 								if ($insertar)
 								{
-									echo '<script>window.alert("El archivo se agrego correctamente");location.href="subirDocEst";</script>';
+									echo '<script>window.alert("El archivo se agrego correctamente");location.href="listarDocEst";</script>';
 								}else{
 									echo '<script>window.alert("Ocurrio un error al subir el archivo");location.href="subirDocEst";</script>';	
 								}
@@ -126,7 +126,7 @@ class SubirDocEst extends CI_Controller
 					    }
 					}	
 				}else{
-					echo '<script>window.alert("Aun no hay fechas definidas  para poder subir Documentos");location.href="listarDocEst";</script>';
+					echo '<script>window.alert("Aun no hay fechas definidas  para poder subir Documentos");location.href="inicio";</script>';
 				}
 			}
 			else{

@@ -2,25 +2,24 @@
 <div id="columnacentral">
 	<div class="navbar-collapse collapse center-block">	
  <div class='conteiner'>
+ 	<fieldset>
+	<span style=";font-family:comic sans ms;font-size:18px;color:blue;" align="center">NOMBRE CORTO DE GRUPO-EMPRESA</span>
 	<p>
-		<h3>Nombre corto del grupo</h3>
-	</p>
-	<p>
-		<div>
+	<span style=";font-family:comic sans ms;font-size:18px;color:black;" align="center" >
 			<?php
 				echo form_label( $nombreCorto);
 			?>
-		</div>
+		</span>
 	</p>
+</fieldset>
+	<span style=";font-family:comic sans ms;font-size:18px;color:blue;" align="center">NOMBRE LARGO DE GRUPO-EMPRESA</span>
 	<p>
-		<h3>Nombre Largo del grupo</h3>
-	</p>
-
-	<div>
+	<span style=";font-family:comic sans ms;font-size:18px;color:black;" align="center">
 		<?php
 			echo form_label( $nombreLargo);
 		?>
-	</div>
+	</span>
+</p>
 </div>
 </div>
 </div>

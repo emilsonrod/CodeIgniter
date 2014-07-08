@@ -38,17 +38,23 @@
                <li><a class="navbar-brand " href="csv">Importar Csv de Estudiantes</a></li>
                <li><a class="navbar-brand " href="subirDocDocente">Subir Documentos</a></li>
                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupo-Empresas<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="controladorVerGrupo">Elegir Grupo</a></li>
-                    <li><a href="listaGrupos">Dar de Baja</a></li>      
+                    <li><a href="controladorVerGrupo">Elegir Grupo-Empresa</a></li>
+                    <li><a href="listaGrupos">Eliminar Grupo-Empresa</a></li>      
                   </ul>
                 </li>  
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="eventoDocenteC">Programar un evento</a></li>
-                    <li><a href="fullcalendarcontrol">Ver los eventos</a></li>      
+                    <li><a href="eventoDocenteC">Crear Evento</a></li>
+                    <li><a href="calendarEvento">Ver Eventos</a></li>      
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Estudiantes<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="notaEstudiante">Calificar Estudiantes</a></li>                          
                   </ul>
                 </li>               
               </ul>

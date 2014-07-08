@@ -1,19 +1,38 @@
 <?php $this->load->view('viewCabeceraLogginDocente');?>
-    <h1>Crear evento</h1>
+    <h1>CREAR EVENTO PARA GRUPO-EMPRESA(S)</h1>
 <div id="columnacentral">
      <link rel="stylesheet" href="js/jquery-ui.css">
  <script src="js/jquery-1.10.2.js"></script>
  <script src="js/jquery-ui.js"></script>
    
    <script>
+        $.datepicker.regional['es'] = {
+         closeText: 'Cerrar',
+         prevText: '<Ant',
+         nextText: 'Sig>',
+         currentText: 'Hoy',
+         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+         monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+         dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+         dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+         dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+         weekHeader: 'Sm',
+         dateFormat: 'dd/mm/yy',
+         firstDay: 1,
+         isRTL: false,
+         showMonthAfterYear: false,
+         yearSuffix: ''
+         };
+         $.datepicker.setDefaults($.datepicker.regional['es']);
+
     (function ($) {
         $(document).ready(function () {
-            $("#startdate").datepicker();       
+            $("#startdate").datepicker();  
         });
     })(jQuery);
     (function ($) {
         $(document).ready(function () {
-            $("#enddate").datepicker();            
+            $("#enddate").datepicker();           
         });
     })(jQuery);
 </script>

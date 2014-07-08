@@ -17,7 +17,7 @@
 			if($lista)
 		     {
 				echo"<center><table class='ListaArchivo'>";
-				echo"<caption>LISTA DE ARCHIVOS</caption>";
+				
 
 					echo"<tr>";
 						//echo "<th width=\"40\">Estado</th>";

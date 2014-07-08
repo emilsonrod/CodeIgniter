@@ -77,12 +77,18 @@ class ModelGrupo extends CI_Model {
 		return $arreglo;
 	}
 	function darBaja($grupo){
+        $idGrupo=$this->db->query("select cod_grupo from grupo where nombre_corto='".$grupo."'")->row();
+        $integrantes=$this->db->query("select id_usuario from integrantes_grupo where cod_grupo='".$idGrupo->cod_grupo."'");
 
         $this->db->where('nombre_corto',$grupo);
 		$data=array('activo'=>0);
 		$this->db->update('grupo',$data);
+
 		if($this->db->affected_rows()=='1')
-		{	$idGrupo=$this->db->query("select cod_grupo from grupo where nombre_corto='".$grupo."'")->row();
+		{	
+            foreach($integrantes->result_array() as $id){
+                $this->db->delete('nota_estudiante',array('id_usuario'=>$id['id_usuario']));
+            }
             $this->db->delete('integrantes_grupo',array('cod_grupo'=>$idGrupo->cod_grupo));
             return true;
         }

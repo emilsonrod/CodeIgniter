@@ -2,8 +2,9 @@
 <div align="center" id="columnaizquierda" class="alert alert-info" role="alert">
 		
 
-   
-    <h2><?php echo $error; ?></h2>
+   <span style=";font-family:comic sans ms;font-size:18px;color:black;" align="center" ><?php echo $error; ?></span>
+
+    <!--<h2><?php //echo $error; ?></h2>-->
 
 
 </div>

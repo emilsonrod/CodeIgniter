@@ -49,6 +49,30 @@ function checkFile(fieldObj)
 	    }
 	        
     }
+    var textareaContent = "" ; 
+			var numCaracteresValidos = 150;
+
+			function validar_long(){ 
+			   var numCaracteresIntro = document.forms[0].txtdes.value.length; 
+
+			   if (numCaracteresIntro > numCaracteresValidos){ 
+			      document.forms[0].txtdes.value = textareaContent; 
+			   }else{ 
+			      textareaContent = document.forms[0].txtdes.value;	
+			   } 
+
+			   if (numCaracteresIntro >= numCaracteresValidos){ 
+			      document.forms[0].caracteres.style.color="#ff0000"; 
+			   }else{ 
+			      document.forms[0].caracteres.style.color="gray"; 
+			   } 
+
+			   score() 
+			} 
+
+			function score(){ 
+			   document.forms[0].caracteres.value=document.forms[0].txtdes.value.length; 
+			} 
     
 </script>
 	
@@ -56,7 +80,7 @@ function checkFile(fieldObj)
 	
 		<div id="contenedorSubirDoc">
 		
-			<?php echo form_open_multipart('subirDocEst');?>
+			<?php echo form_open_multipart('subirDocEst',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal"));?>
 					<fieldset>
 						</br>
 							<p>
@@ -82,12 +106,14 @@ function checkFile(fieldObj)
 				</br>
 					<?php echo form_label('Descripcion :', 'fecha');?></br>
 					<span>Numero de caracteres permitidos 150.</span><br/>
-					<?php echo form_textarea(array('class' =>'cajas' ,'name' => 'txtdes' ,'maxLength' => '150', 'id' => 'txtdes', 'style' =>'width:400px; height:80px'))?>
-					<br/>
+					<input class="control-input" type="text" name="caracteres" value = "0" readOnly size=2><br/>
+						<textarea class = "form-control" name="txtdes" id = "txtdes" maxLength = "150" onKeyDown="validar_long()" onKeyUp="validar_long()" style = "width:400px; height:80px"></textarea> 
+						
+						<br/>
 					<div id="divError"><h5><?php echo form_error('txtdes');?></h5> </div>
 				</fieldset>
 				<div aling="right">
-					<input class = "button" type="submit" name="submit" value="Subir Documento" />
+					<input class = "btn btn-primary" type="submit" name="submit" value="Subir Documento" />
 				</div>
 			</form>
 					<div id = "barra1">

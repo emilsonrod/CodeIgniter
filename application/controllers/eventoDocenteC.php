@@ -8,8 +8,6 @@ class EventoDocenteC extends CI_Controller {
 		$this->load->model('eventoDocenteM');
         $this->load->helper('form');
         $this->load->library('form_validation');
-        //$this->load->library('form_validation');
-         $this->load->library('calendar');
       
 	}
 
@@ -56,7 +54,7 @@ class EventoDocenteC extends CI_Controller {
             }
             else
             {
-                 $todo=$this->input->post('todos');
+                $todo=$this->input->post('todos');
                 $lista= $this->input->post('tipo');
                 $tipoevento=$this->eventoDocenteM->idEvento($lista);
                 $nomgrupo=$this->input->post('grupos');
@@ -68,11 +66,14 @@ class EventoDocenteC extends CI_Controller {
                         //$allday   =   ($this->input->post('allday')==1) ? 'true' : 'false';
 
                         
-                        $startdate  =   str_replace('/', '-', $this->input->post('startdate'));
-                        $startdate  =   date('Y-m-d',strtotime($startdate));
+                        $startdate1  =   str_replace('/', '-', $this->input->post('startdate'));
+                        $startdate  =   date('Y-m-d',strtotime($startdate1));
 
-                        $enddate    =   str_replace('/', '-', $this->input->post('enddate'));
-                        $enddate    =   date('Y-m-d',strtotime($enddate));
+                        $enddate1    =   str_replace('/', '-', $this->input->post('enddate'));
+                        $enddate    =   date('Y-m-d',strtotime($enddate1));
+
+                        $nuevafecha1 = strtotime ( '+1 day' , strtotime ( $enddate ) ) ;
+                        $nuevafecha = date ( 'Y-m-j' , $nuevafecha1 );
 
                         $data=array(
                             'aviso'            =>   $this->input->post('event'),
@@ -89,18 +90,27 @@ class EventoDocenteC extends CI_Controller {
                             );
                         $this->db->insert('evento_particular',$datas);
 
-                        redirect('fullcalendarcontrol');
+                        $data2=array(
+                            'title'            =>   $this->input->post('event'),
+                            'start'           =>   $startdate,
+                            'end'              =>   $nuevafecha,
+                            'id_tipo_evento'   =>   $tipoevento,
+                            'id_usuario'       =>   $this->session->userdata('id'),
+                            );
+                         $this->db->insert('evento_cal',$data2);
+                        redirect('calendarEvento');
                     }
                     else
                     {
 
+                        $startdate1  =   str_replace('/', '-', $this->input->post('startdate'));
+                        $startdate  =   date('Y-m-d',strtotime($startdate1));
 
-                        
-                        $startdate  =   str_replace('/', '-', $this->input->post('startdate'));
-                        $startdate  =   date('Y-m-d',strtotime($startdate));
+                        $enddate1    =   str_replace('/', '-', $this->input->post('enddate'));
+                        $enddate    =   date('Y-m-d',strtotime($enddate1));
 
-                        $enddate    =   str_replace('/', '-', $this->input->post('enddate'));
-                        $enddate    =   date('Y-m-d',strtotime($enddate));
+                        $nuevafecha1 = strtotime ( '+1 day' , strtotime ( $enddate ) ) ;
+                        $nuevafecha = date ( 'Y-m-j' , $nuevafecha1 );
 
                         $data=array(
                             'aviso'            =>   $this->input->post('event'),
@@ -111,7 +121,22 @@ class EventoDocenteC extends CI_Controller {
                             );
                         $this->db->insert('evento',$data);               
 
-                        redirect('fullcalendarcontrol');   
+                         $datas=array(
+                            'cod_grupo'   =>   $this->session->userdata('id')."99",
+                            'id_evento'   =>   $this->eventoDocenteM->recuperarId()
+                            );
+                         $this->db->insert('evento_particular',$datas);
+
+                          $data2=array(
+                            'title'            =>   $this->input->post('event'),
+                            'start'           =>   $startdate,
+                            'end'              =>   $nuevafecha,
+                            'id_tipo_evento'   =>   $tipoevento,
+                            'id_usuario'       =>   $this->session->userdata('id'),
+                            );
+                         $this->db->insert('evento_cal',$data2);
+                         
+                        redirect('calendarEvento');   
 
                      }
             }

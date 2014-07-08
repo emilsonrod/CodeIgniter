@@ -1,4 +1,4 @@
-<?php $this->load->view('viewCabeceraLogginDocente2');?>
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 <!--LISTAR DOCUMENTOS GRUPO-->
 <div id="columnacentral">
 
@@ -16,7 +16,7 @@
 			if($lista)
 		     {
 				echo"<center><table class='ListaArchivo'>";
-				echo"<caption>LISTA DE ARCHIVOS</caption>";
+				//echo"<caption>LISTA DE ARCHIVOS</caption>";
 
 					echo"<tr>";
 						//echo "<th width=\"40\">Estado</th>";

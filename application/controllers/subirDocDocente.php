@@ -72,12 +72,15 @@ class SubirDocDocente extends CI_Controller
 					$id = $this->session->userdata('id');
 					$nombre = $file_data['file_name'];
 					$descrip =  $this->input->post('txtdes');
-					$fecha =  date('Y/m/d');
+					$fecha =  date("Y-m-d H:i:s"); 
 
 					$insertar = $this->modelSubirDoc->agregarDocDoc($id, $nombre, $descrip, $fecha);
+					
+
 							if ($insertar)
 							{
-								echo '<script>window.alert("El archivo se agrego correctamente");location.href="subirDocDocente";</script>';
+								
+								echo '<script>window.alert("El archivo se agrego correctamente");location.href="listarDoc";</script>';
 							}else{
 								echo '<script>window.alert("Ocurrio un error al subir el archivo");location.href="subirDocDocente";</script>';	
 							}
@@ -87,7 +90,7 @@ class SubirDocDocente extends CI_Controller
 			catch (Exception $ex) 
 			{
 				echo "0";
-				echo '<script>window.alert("Ocurrio un error al subir el documento");location.href="../SubirDocDocente";</script>';
+				echo '<script>window.alert("Ocurrio un error al subir el documento");location.href="subirDocDocente";</script>';
 			}
 			}
 		}

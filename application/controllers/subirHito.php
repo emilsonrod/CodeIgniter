@@ -93,7 +93,7 @@ class SubirHito extends CI_Controller
 								$nombre = $file_data['file_name'];
 								$descrip =  $this->input->post('txtdes');
 								$evento = $this->input->post('fecha');
-								$fecha =  date('Y/m/d');
+								$fecha =  date("Y-m-d H:i:s");
 
 								$codGrupo = $this->modelSubirDoc->getCodGrupo($this->session->userdata('id'));
 								foreach ($codGrupo->result() as $fila) 
@@ -106,7 +106,7 @@ class SubirHito extends CI_Controller
 								$insertar = $this->modelSubirDoc->agregarDoc($CODG, $IDE, $nombre, $descrip, $fecha);
 								if ($insertar)
 								{
-									echo '<script>window.alert("El archivo se agrego correctamente");location.href="subirHito";</script>';
+									echo '<script>window.alert("El archivo se agrego correctamente");location.href="listarHito";</script>';
 								}else{
 									echo '<script>window.alert("Ocurrio un error al subir el archivo");location.href="subirHito";</script>';	
 								}
@@ -114,12 +114,12 @@ class SubirHito extends CI_Controller
 						}
 						catch (Exception $ex) 
 						{
-							echo '<script>window.alert("Ocurrio un error al subir el documento");location.href="subirHito";</script>';
+							echo '<script>window.alert("Ocurrio un error al subir el documento");location.href="listarHito";</script>';
 						}
 					}
 					
 				}else{
-					echo '<script>window.alert("Aun no hay fechas definidas  para poder subir Documentos");location.href="listarHito";</script>';
+					echo '<script>window.alert("Aun no hay fechas definidas  para poder subir Documentos");location.href="inicio";</script>';
 				}
 			}
 			else{

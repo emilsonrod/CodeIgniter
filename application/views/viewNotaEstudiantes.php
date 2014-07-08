@@ -1,4 +1,4 @@
-<?php $this->load->view('viewCabeceraLogginDocente2');?>
+<?php $this->load->view('viewCabeceraLogginDocente');?>
 <div id="columnacentral" align="center">
 
 <form action="calificarEstudiante" method="post">    

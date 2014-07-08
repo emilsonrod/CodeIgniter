@@ -1,11 +1,30 @@
-<?php $this->load->view('viewCabeceraLoggin');?>
-
- <link rel="stylesheet" href="js/jquery-ui.css">
+<?php $this->load->view('viewCabeceraLoggin');?> 
+<h1>CREAR EVENTO</h1>
+<link rel="stylesheet" href="js/jquery-ui.css">
  <script src="js/jquery-1.10.2.js"></script>
  <script src="js/jquery-ui.js"></script>
+  <script src="js/es.js"></script>
    
+   <script>
+        $.datepicker.regional['es'] = {
+         closeText: 'Cerrar',
+         prevText: '<Ant',
+         nextText: 'Sig>',
+         currentText: 'Hoy',
+         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+         monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+         dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+         dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+         dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+         weekHeader: 'Sm',
+         dateFormat: 'dd/mm/yy',
+         firstDay: 1,
+         isRTL: false,
+         showMonthAfterYear: false,
+         yearSuffix: ''
+         };
+         $.datepicker.setDefaults($.datepicker.regional['es']);
 
-<script>
     (function ($) {
         $(document).ready(function () {
             $("#startdate").datepicker();       
@@ -13,34 +32,33 @@
     })(jQuery);
     (function ($) {
         $(document).ready(function () {
-            $("#enddate").datepicker();            
+            $("#enddate").datepicker();           
         });
     })(jQuery);
 </script>
-<h1>CREAR EVENTO</h1>
 <div class="navbar-collapse collapse center-block">
     <div class="jumbotron">
     <div class="conteiner"> 
 
 
  <form class="cmxform form-horizontal navbar-form navbar-center" id="frmcalendar" method="post" novalidate="novalidate">
-        <div class="control-group ">
-            <label for="Fecha inicio" class="control-label">Fecha inicio :</label>
+     <div class="control-group ">
+            <label for="Fecha inicio" class="control-label">Fecha inicio</label>
             <div class="controls">
-                <input class = "form-control" id="startdate" readonly name="startdate" type="text" placeholder = 'DD/MM/AAAA' >
-                <div id="divError"><h5><?php echo form_error ('startdate') ;?></h5></div>
+                <input class = "form-control" id="startdate" name="startdate" type="text"  placeholder = 'formato: DD/MM/AAAA'>
+                <?php echo form_error ('startdate') ;?>
             </div>
-        </div></br>
+        </div>
         <div class="control-group ">
-            <label for="Fecha final" class="control-label">Fecha final :</label>
+            <label for="Fecha final" class="control-label">Fecha final</label>
             <div class="controls">
-                <input class = "form-control" id="enddate" name="enddate" readonly type="text"  placeholder = 'DD/MM/AAAA'>
-                <div id="divError"><?php echo form_error ('enddate') ;?></div>
+                <input class = "form-control" id="enddate" name="enddate" type="text"  placeholder = 'formato: DD/MM/AAAA'>
+                <?php echo form_error ('enddate') ;?>
             </div>
-        </div></br>
-         <label for="Tipo evento"class="control-label">Tipo de evento :</label>
+        </div>
+         <label for="Tipo evento"class="control-label">Tipo de evento</label>
         <div align="rigth">
-            <select class = "form-control" name="tipo">
+            <select name="tipo">
             <option value="">--- Seleccionar ---</option> 
             <?php
                         foreach ($tipo as $value) {
@@ -50,15 +68,15 @@
                         }?>
 
             </select>
-            <div id="divError"><?php echo form_error ('tipo') ;?></div>
+            <?php echo form_error ('tipo') ;?>
             <span style=";font-family:comic sans ms;font-size:13px;color:red;" align="center" > (*) EL CAMPO TIPO DE EVENTO ES OBLIGATORIO </span>
-        </div></br>
+        </div>
 
         <div class="control-group ">
-            <label for="Evento" class="control-label">Evento :</label>
+            <label for="Evento" class="control-label">Evento</label>
             <div class="controls">
-                <textarea class = "form-control" maxLength=150 name="event" style = "width:300px; height:80px" rows="6" id="event"></textarea>
-                <div id="divError"><h5><?php echo form_error ('event') ;?></h5></div>
+                <textarea class = "form-control" name="event" rows="6" id="event" class="input-large"></textarea>
+                <?php echo form_error ('event') ;?>
             </div>
         </div>
         <br/>

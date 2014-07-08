@@ -68,7 +68,16 @@ class EventoEstudiante extends CI_Controller {
                             );
                 $this->db->insert('evento_particular',$datas);
 
-                redirect('fullcalendarcontrol');
+
+                $data2=array(
+                    'title'     =>  $this->input->post('event'),
+                    'start'        =>  $startdate,
+                    'end'      =>  $nuevafecha,
+                    'id_tipo_evento'    =>$tipoevento,
+                    'id_usuario'    =>   $this->session->userdata('id')
+                    );
+                $this->db->insert('evento_cal',$data2);
+                redirect('calendarEventoEst');
              } 
 		}
 	}

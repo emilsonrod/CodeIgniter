@@ -40,15 +40,15 @@
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="controladorVerGrupo">Elegir Grupo</a></li>
-                    <li><a href="listaGrupos">Dar de Baja</a></li>      
+                    <li><a href="controladorVerGrupo">Elegir Grupo-Empresa</a></li>
+                    <li><a href="listaGrupos">Eliminar Grupo-Empresa</a></li>      
                   </ul>
                 </li> 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="eventoDocenteC">Programar un evento</a></li>
-                    <li><a href="fullcalendarcontrol">Ver los eventos</a></li>      
+                    <li><a href="eventoDocenteC">Crear Evento</a></li>
+                    <li><a href="calendarEvento">Ver Eventos </a></li>      
                   </ul>
                 </li>   
                 <li class="dropdown">
@@ -56,8 +56,8 @@
                   <ul class="dropdown-menu">
                     <li><a href="controladorHito">Calificar Hitos</a></li>
                     <li><a href="controladorDoc">Documentos</a></li> 
-                    <li><a href="integrantes">Integrantes</a></li> 
-                    <li><a href="controladorDatos">Datos Grupo</a></li>      
+                    <!--<li><a href="integrantes">Integrantes</a></li> -->
+                    <li><a href="controladorDatos">Nombre Grupo-Empresa</a></li>      
                   </ul>
                 </li>
                 <li class="dropdown">

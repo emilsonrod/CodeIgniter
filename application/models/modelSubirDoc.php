@@ -61,7 +61,7 @@ class ModelSubirDoc extends CI_Model
         $query= $this->db->query("SELECT * FROM integrantes_grupo WHERE id_usuario=".$id);
         if ($query->num_rows() >0)
         {
-            return true;
+            return $query;
         }else{
             return false;
         }
@@ -95,7 +95,7 @@ class ModelSubirDoc extends CI_Model
 	}
     function obtenerDocente($grupo)
     {
-    	$sql = "select id_docente from grupo where cod_grupo = '".$grupo."'";
+    	$sql = "select id_docente  from grupo where cod_grupo = '".$grupo."'";
     	$consulta = $this->db->query($sql);
 
 		if($consulta -> num_rows() > 0)
