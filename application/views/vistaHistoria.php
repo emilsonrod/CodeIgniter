@@ -6,7 +6,7 @@
     <h3 class="panel-title">Nuevo Hito</h3>
   </div>
   <div class="panel-body" align="center">
-     <form class="navbar-form navbar-left" role="form" action="historia" method="post">
+     <form class="navbar-form navbar-left" role="form" action="hito" method="post">
          <div class="form-group">
         <input  type="text" class="form-control" size="60" name="historiaNueva" onkeypress="return soloLetrasHead(event)" id="historiaNueva">
                 

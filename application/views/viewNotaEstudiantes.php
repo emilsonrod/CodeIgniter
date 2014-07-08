@@ -1,5 +1,5 @@
 <?php $this->load->view('viewCabeceraLogginDocente2');?>
-<div id="columnacentral">
+<div id="columnacentral" align="center">
 
 <form action="calificarEstudiante" method="post">    
     <div class="panel panel-primary">
@@ -27,8 +27,8 @@
         </table>
         </div>
         </div>       
-    </div>
-    <?php echo form_submit( 'submit', 'Aceptar'); ?>
+    </div><!--F mi cambio agregue* class="btn btn-success"-->
+    <?php echo form_submit( 'submit', 'Aceptar','class="btn btn-success"'); ?>
 </form>   
 </div>
 <?php $this->load->view('viewDerecha');?>

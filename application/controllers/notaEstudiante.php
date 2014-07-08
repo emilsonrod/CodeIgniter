@@ -13,7 +13,7 @@ class NotaEstudiante extends CI_Controller {
 		
 		if(isset($this->session->userdata['usuario'])){
              if ($this->form_validation->run() === FALSE) // validation hasn't been passed
-		      {
+		      {/*//a
                 $lista=$this->modelGrupo->getGrupos($this->session->userdata('id'));
                 $arreglo=array();
                 foreach($lista as $value){
@@ -21,8 +21,10 @@ class NotaEstudiante extends CI_Controller {
                 }
                 $data['grupos']=$arreglo;
                 $this->load->view('viewNotaEstud',$data);
-             }else{
-                 $grupo= $this->input->post('grupos');
+                //a
+                */
+                
+                 $grupo= $this->session->userdata('grupo');
                  $data['integrantes']=$this->modelGrupo->getIntegrantesNota($grupo);
                  $auxiliar=$data['integrantes'];
                  $guardarIdEstudiantes=array();
@@ -31,6 +33,20 @@ class NotaEstudiante extends CI_Controller {
                  }
                  $this->session->set_userdata('idEst',$guardarIdEstudiantes);
                  $this->load->view('viewNotaEstudiantes',$data);
+             }else{/*
+                //anterior
+                $grupo= $this->input->post('grupos');
+                 $data['integrantes']=$this->modelGrupo->getIntegrantesNota($grupo);
+                 $auxiliar=$data['integrantes'];
+                 $guardarIdEstudiantes=array();
+                 foreach($auxiliar as $indice=>$valor){                     
+                   $guardarIdEstudiantes[]=$indice;
+                 }
+                 $this->session->set_userdata('idEst',$guardarIdEstudiantes);
+                 $this->load->view('viewNotaEstudiantes',$data);
+                 // fin anterior
+
+                 */
              }
             
 		}else{

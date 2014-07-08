@@ -53,12 +53,12 @@ class ModelGrupo extends CI_Model {
 		return FALSE;
     }
 	function agregarIntegrante($form_data){
-        $idGrupo=$this->db->query("SELECT cod_grupo FROM grupo WHERE nombre_corto='".$form_data['grupo']."'")->row();
+        $idGrupo=$this->db->query("SELECT cod_grupo FROM grupo WHERE nombre_corto='".$form_data['nombreCorto']."'")->row();
         $data=array('cod_grupo'=>$idGrupo->cod_grupo,
-                    'id_usuario'=>$form_data['nuevoIntegrante']);
+                    'id_usuario'=>$form_data['integrante']);
         $this->db->insert('integrantes_grupo',$data);
-        if($this->db->affected_rows==1){
-            $this->db->insert('nota_estudiante',array('id_usuario'=>$form_data['nuevoIntegrante'],'nota_estudiante'=>0));
+        if($this->db->affected_rows()==1){
+            $this->db->insert('nota_estudiante',array('id_usuario'=>$form_data['integrante'],'nota_estudiante'=>0));
             return true;
         }else{ return false;}
     }
@@ -160,16 +160,26 @@ class ModelGrupo extends CI_Model {
         return $query->num_rows()>0;
     }
     function existe($usuario='',$clave=''){
-        $query=$this->db->query("select * from usuario where loggin='".$usuario."' and passw='".$clave."'");
+     // solo este metodo franklin   
+        $query=$this->db->query("select id_usuario from usuario where loggin='".$usuario."' and passw='".$clave."'");
          if($query->num_rows()>0){
-            return true; 
+            $idEst=$query->row()->id_usuario;
+            $perfil=$this->db->query("select r.nombre_rol as rol from rol_usuario ru,rol r where ru.id_usuario=".$idEst." and ru.id_rol=r.id_rol")->row();              
+            if($perfil->rol=='estudiante'){
+                return true; 
+            }else{
+                return false;
+            }
          }else{
             return false;
          }
+      // hasta aqui franklin   
     }
     function getId($u='',$k=''){
         $query=$this->db->query("select id_usuario from usuario where loggin='".$u."' and passw='".$k."'")->row();
         return $query->id_usuario;
-    }
+    }	
+
+  
 }
 ?>

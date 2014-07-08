@@ -30,6 +30,21 @@ class Calendarmodel extends CI_Model
 	    }
 	    return json_encode($jsonevents);
 	}
+	function idGrupo($id){
+		//obteniendo los grupos q solo le pertenecen a un docente determinado
+		//$sql="select cod_grupo from grupo where nombre_corto='".$grupo."'";
+        $sql="select ig.cod_grupo from integrantes_grupo ig, usuario u where ig.id_usuario ='".$id."' AND u.id_usuario =".$id;
+		$grupos=$this->db->query($sql);
+		$data=$grupos->row()->cod_grupo;
+		return $data;
+	}
+	//SELECT ig.cod_grupo FROM integrantes_grupo ig, usuario u WHERE ig.id_usuario =15 AND u.id_usuario =15
+	function recuperarId()
+	{
+		$sql="select MAX(id_evento) as evento from evento";
+		$lista=$this->db->query($sql);
+		return $lista->row()->evento;
+	}
 
 	public function drop_event($data)
 	{

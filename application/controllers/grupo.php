@@ -66,7 +66,8 @@ class Grupo extends CI_Controller {
 					       	'docente' => set_value('docente'),
 							'integrante'=>$this->session->userdata('id'));
 
-				if ($this->modelGrupo->SaveForm($form_data) == TRUE){					   
+				if ($this->modelGrupo->SaveForm($form_data) == TRUE){
+									   
                     $id2=$this->modelGrupo->getId($_POST['u2'],$_POST['p2']);
                     $id3=$this->modelGrupo->getId($_POST['u3'],$_POST['p3']);
                     $form=array(

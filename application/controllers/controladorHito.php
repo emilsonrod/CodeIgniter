@@ -34,15 +34,15 @@ class ControladorHito extends CI_Controller
                  		$this->session->set_userdata('idHito',$guardarIdHitos);
                  		$this->load->view('calificarhitos',$data);				    	
 				    }else{
-				    	$data['error']="El grupo ".$grupo." no tiene hitos";
+				    	$data['error']="El grupo ".$grupo." no tiene hitos elija otro grupo";
 				    
-                 	$this->load->view('error',$data);	
+                 	$this->load->view('viewNogrupos',$data);	
 				    }  
 
                  }else{
                  	$data['error']="No tiene grupos inscritos para calificar sus hitos";
                  	
-                 	$this->load->view('error',$data);
+                 	$this->load->view('viewNogrupos',$data);
                  }
              
 
@@ -50,6 +50,7 @@ class ControladorHito extends CI_Controller
 			redirect('inicio');
 		}
 	}
+
 
 
 }

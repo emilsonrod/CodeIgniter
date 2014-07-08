@@ -1,15 +1,17 @@
     <div id="columnacentral">
+        
         <div class="container-fluid" style="margin-top:50px">    
             <h2>Importar Estudiantes</h2>
 
-                <form method="post" action="<?php echo base_url() ?>csv/importcsv" enctype="multipart/form-data" class="form-horizontal">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <?php echo form_label('  Archivo :');?></br>
                     <input type="file" name="userfile" class = "span3"><br><br>
-                    <input type="submit" name="submit" value="UPLOAD" class="btn btn-primary">
+                    <div id="divError"><h3><?php echo form_error('userfile');?></h3></div>
+                    <div id="divError"><h3><?php echo $error;?></h3></div>
+                    <input type="submit" name="submit" value="Ingresar Estudiantes" class="btn btn-primary">
                 </form>
                 <div class="row">
-                    <?php if (isset($error)): ?>
-                    <div class="alert alert-error span3"><?php echo $error; ?></div>
-                    <?php endif; ?>
+                    
                     <?php if ($this->session->flashdata('success') == TRUE): ?>
                     <div class="alert alert-success span3">
                         <?php echo $this->session->flashdata('success'); ?>
@@ -18,7 +20,7 @@
                 </div>
             <br><br>
             <table class="table table-striped table-hover table-bordered">
-                <caption>Estudiantes Inscritos</caption>
+                <caption><h2>Estudiantes Inscritos</h2></caption>
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -44,5 +46,5 @@
             </table>
             <hr>
         </div>
+    
 </div>
-

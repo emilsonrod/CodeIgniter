@@ -6,7 +6,7 @@ class Historia_usuario extends CI_Model {
   {
     parent::__construct();
   }
-    function getHitos2($integrante='')
+   function getHitos2($integrante='')
   { 
         $sql="SELECT cod_grupo as grupo FROM integrantes_grupo WHERE id_usuario=".$integrante;
     $query = $this->db->query($sql);
@@ -99,19 +99,26 @@ class Historia_usuario extends CI_Model {
     function nuevaHistoria($historia='',$hito='',$integrante='',$responsable){
         /*$id_histo=$this->db->query("select id_historia from historia_usuario where nom_historia='".$histo."' and id_usuario=".$integrante);
         */
+          $res=0;
+          $repetido=$this->db->query("select cod_grupo from historia_usuario where responsable=".$responsable." and nom_historia='".$historia."'");
           $grupo=$this->db->query("select cod_grupo from integrantes_grupo where id_usuario=".$integrante);
-               if($grupo->num_rows()>0){
-                   $data=array('id_hito'=>$hito,
+               if($repetido->num_rows()>0){
+                   $res=1;
+                   //$idtarea=$this->db->query("select id_tarea from tarea where nom_tarea='".$historia."' and id_historia=".$histo);
+                
+               }else{
+                 $data=array('id_hito'=>$hito,
                         'cod_grupo'=>$grupo->row()->cod_grupo,
                         'responsable'=>$responsable,       
                      'nom_historia'=>$historia,
                      'evaluacion_est'=>'0',
                      'evaluacion_doc'=>'0');
-                    $this->db->insert('historia_usuario',$data); 
-                   //$idtarea=$this->db->query("select id_tarea from tarea where nom_tarea='".$historia."' and id_historia=".$histo);
-                
+                    $this->db->insert('historia_usuario',$data);
+                    if($this->db->affected_rows() == '1'){
+                      $res=2;
+                    }
                }
-       return ($this->db->affected_rows() == '1');
+       return $res;
         
     }
     function getTareasHistoria($hito='',$integrante=''){
@@ -176,10 +183,5 @@ class Historia_usuario extends CI_Model {
     { return true;}
     return false;
     }
-    
-    /*
-                        SELECT t.nom_tarea,u.id_usuario,u.apellidoP,u.apellidoM,u.nombre FROM responsable_tarea rt,usuario u,tarea t   WHERE t.id_historia=21 and t.id_tarea=rt.id_tarea and rt.id_usuario=u.id_usuario
-        $historias=$this->db->query("select id_historia,nom_historia,responsable from historia_usuario  where cod_grupo = (select                                               cod_grupo from integrantes_grupo where id_usuario=".$id.")");        
-                */
 }
 ?>

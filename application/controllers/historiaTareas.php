@@ -23,35 +23,50 @@ class HistoriaTareas extends CI_Controller
          if($this->historia_usuario->inscritoGrupo($this->session->userdata('id'))){
            $data['hitos']=$this->historia_usuario->getHitos($this->session->userdata('id'));
            $data['equipo']=$this->historia_usuario->getEquipo($this->session->userdata('id'));
-            if ($this->form_validation->run() == FALSE)
-            {   
-                $data['error']="";
+                if ($this->form_validation->run() == FALSE)
+                {   
+                    $data['error']="";
                 
                 
                     
-                    if(count($data['hitos'])>0){
-                        $data['tareas']=array();                     
-                         $this->load->view('tarea',$data);
+                        if(count($data['hitos'])>0){
+                            $data['tareas']=array();                     
+                            $this->load->view('tarea',$data);
+                        }else{
+                            $data['error']="No tiene Hitos para asignar nuevas historias";
+                    
+                            $this->load->view('error',$data);
+                        }
+                                   
+                }else{   
+                    $historia=ucfirst(strtolower($_POST['nuevaTarea']));
+                    $hito=$_POST['historias'];
+                    $responsable=$_POST['integrante'];
+
+                    switch ($this->historia_usuario->nuevaHistoria($historia,$hito,$this->session->userdata('id'),$responsable)) {
+                        case 0:
+                            echo '<script>window.alert("Ocurrio algo inesperado No se guardo la nueva historia de usuario intentelo otra vez");location.href="historiaTareas";</script>';
+                            break;
+                        case 1:
+                            echo '<script>window.alert("Esta repitiendo responsable a esta historia de usuario, elija otro responsable por favor");location.href="historiaTareas";</script>';
+                            break;
+                        case 2:
+                            $data['tareas']=$this->historia_usuario->getTareasHistoria($hito,$this->session->userdata('id'));                    
+                            $this->load->view('tarea',$data);
+                            break;
+                    }
+
+                    /*F
+                    if($this->historia_usuario->nuevaHistoria($historia,$hito,$this->session->userdata('id'),$responsable)){
+                        $data['tareas']=$this->historia_usuario->getTareasHistoria($hito,$this->session->userdata('id'));
+                    
+                        $this->load->view('tarea',$data);
                     }else{
-                        $data['error']="No tiene Hitos para asignar a historias";
+                        $data['error']="NO SE PUDO INSERTAR LA NUEVA TAREA, INTENTE  OTRAVEZ POR FAVOR";
                     
                         $this->load->view('error',$data);
-                    }
-                                   
-            }else{   
-                $historia=$_POST['nuevaTarea'];
-                $hito=$_POST['historias'];
-                $responsable=$_POST['integrante'];
-                if($this->historia_usuario->nuevaHistoria($historia,$hito,$this->session->userdata('id'),$responsable)){
-                    $data['tareas']=$this->historia_usuario->getTareasHistoria($hito,$this->session->userdata('id'));
-                    
-                    $this->load->view('tarea',$data);
-                }else{
-                    $data['error']="NO SE PUDO INSERTAR LA NUEVA TAREA, INTENTE  OTRAVEZ POR FAVOR";
-                    
-                    $this->load->view('error',$data);
+                    }*/
                 }
-            }
             }else{
                     echo '<script>window.alert("No esta inscrito en un grupo inscribase o registre nuevo grupo");location.href="registrarseGrupo";</script>';    
                     
@@ -62,4 +77,4 @@ class HistoriaTareas extends CI_Controller
         }
     }
 }
-?>
+?>		

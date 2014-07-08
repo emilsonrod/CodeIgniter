@@ -77,9 +77,9 @@ class SubirDocDocente extends CI_Controller
 					$insertar = $this->modelSubirDoc->agregarDocDoc($id, $nombre, $descrip, $fecha);
 							if ($insertar)
 							{
-								echo '<script>window.alert("El archivo se agrego correctamente");location.href="SubirDocDocente";</script>';
+								echo '<script>window.alert("El archivo se agrego correctamente");location.href="subirDocDocente";</script>';
 							}else{
-								echo '<script>window.alert("Ocurrio un error al subir el archivo");location.href="SubirDocDocente";</script>';	
+								echo '<script>window.alert("Ocurrio un error al subir el archivo");location.href="subirDocDocente";</script>';	
 							}
 						
 				}

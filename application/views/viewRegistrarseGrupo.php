@@ -8,7 +8,9 @@
 		echo form_open('registrarseGrupo',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal")); ?>
 		<p>        
 		    <?php echo form_label('Grupo', 'grupo');?><br/>
-		    <?php echo form_dropdown('grupo', $lista, set_value('grupo')); ?>
+		    <!-- F <?php //echo form_dropdown('grupo', $lista, set_value('grupo')); ?>-->
+
+		    <?php echo form_dropdown('grupo', $lista, set_value('grupo'),'class="form-control"'); ?>
 		    <h5><?php echo form_error('grupo'); ?></h5>
 		</p>
 		<p>

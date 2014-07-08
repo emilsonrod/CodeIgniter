@@ -23,8 +23,9 @@ class ListaGrupos extends CI_Controller {
                 if($numeroGrupos>0){
 			         $this->load->view('viewDarBajaGrupo',$data);
                 }else{
-                     $mensage['error']="No tiene grupos disponible";
-                     $this->load->view('error',$mensage);
+                     $mensage['error']="No tiene grupos para dar de baja";
+                     //F $this->load->view('error',$mensage);
+                     $this->load->view('viewNoGrupos',$mensage);
                 }
 		      }
 		  else{

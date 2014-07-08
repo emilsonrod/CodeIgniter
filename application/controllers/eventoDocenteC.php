@@ -20,19 +20,17 @@ class EventoDocenteC extends CI_Controller {
             //echo $this->calendar->generate();
 		if(isset($this->session->userdata['usuario']))
         {
-            $this->form_validation->set_rules('startdate','Fecha inicio','trim|required|valid_date');
-            $this->form_validation->set_rules('enddate','Fecha final','trim|required|numeric');
+            $this->form_validation->set_rules('startdate','Fecha inicio','trim|required|exact_length[10]');
+            $this->form_validation->set_rules('enddate','Fecha final','trim|required|exact_length[10]');
             $this->form_validation->set_rules('event','Evento','trim|required|max_lenght[250]|min_length[10]');
-            $this->form_validation->set_rules('grupos','grupos','trim|required');
+            //$this->form_validation->set_rules('grupos','grupos','trim|required');
             $this->form_validation->set_rules('tipo','Tipo de evento','trim|required');
-            $this->form_validation->set_rules('startdate','Fecha inicio','required|date|chk_date[<=]');
+            //$this->form_validation->set_rules('startdate','Fecha inicio','required|date|chk_date[<=]');
 
-           // $this->form_validation->set_message('chk_date', 'La fecha no puede ser mayor a la fecha actual');
             $this->form_validation->set_message('required','El campo %s es obligatorio');
             $this->form_validation->set_message('max_length', 'El Campo %s debe tener un Maximo de %d Caracteres');
             $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
-            $this->form_validation->set_message('numeric', 'El campo %s debe ser dd/mm/aaaa');
-           // $this->form_validation->set_message('valid_date', 'El campo %s debe contener una fecha con el formato YYYY-MM-DD');
+            $this->form_validation->set_message('exact_length', 'El Campo %s tiene el formato DD/MM/AAAA');
 
             if($this->form_validation->run()==FALSE)
             {
@@ -52,8 +50,8 @@ class EventoDocenteC extends CI_Controller {
                     //$this->load->view('viewIzquierda');
                     $this->load->view('eventoDocente',$data);
                 }else{
-                    $mensage['error']='Lo sentimos no tiene grupos';
-                      $this->load->view('eventoDocente',$mensaje);
+                    $mensage['error']='No puede crear eventos sin tener grupos';
+                    $this->load->view('viewNoGrupos',$mensage);
                 }
             }
             else
@@ -91,7 +89,7 @@ class EventoDocenteC extends CI_Controller {
                             );
                         $this->db->insert('evento_particular',$datas);
 
-                        redirect('calendar2');
+                        redirect('fullcalendarcontrol');
                     }
                     else
                     {
@@ -113,7 +111,7 @@ class EventoDocenteC extends CI_Controller {
                             );
                         $this->db->insert('evento',$data);               
 
-                        redirect('calendar2');   
+                        redirect('fullcalendarcontrol');   
 
                      }
             }

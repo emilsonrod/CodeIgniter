@@ -52,14 +52,18 @@
 
 				<div class="navbar-collapse collapse">
 					 <?php echo form_open('inicio',array('class'=>"navbar-form navbar-right", 'role'=>"form"));?>
-					<!--<form class="navbar-form navbar-right" role="form">-->
+			
 						<div class="form-group">
-							<?php echo form_input(array('class'=>"form-control",'type'=>"text",'onkeypress'=>"return soloLetrasHead(event)",'onblur'=>"limpia()",'required'=>'required','name'=>'nombre', 'id'=>'nombre', 'value'=>set_value('nombre'), 'placeholder' => 'nombre de Usuario', 'autofocus'=>'autofocus', 'size'=>'25'))?>
+							<!-- F <?php //echo form_input(array('class'=>"form-control",'type'=>"text",'onkeypress'=>"return soloLetrasHead(event)",'required'=>'required','name'=>'nombre', 'id'=>'nombre', 'value'=>set_value('nombre'), 'placeholder' => 'nombre de Usuario', 'autofocus'=>'autofocus', 'size'=>'25'))?>
+							-->	
+							<?php echo form_input(array('class'=>"form-control",'type'=>"text",'onkeypress'=>"return soloLetrasHead(event)",'required'=>'required','name'=>'nombre', 'id'=>'nombre', 'placeholder' => 'nombre de Usuario', 'autofocus'=>'autofocus', 'size'=>'25'))?>
 							<?php echo form_error('nombre');?>
 							<!--<input type="text" placeholder="Email" class="form-control">-->
 						</div>           
 						<div class="form-group">
-							<?php echo form_password(array('class'=>"form-control",'required'=>'required','name'=>'passw', 'id'=>'passw', 'type'=>'password', 'value'=>set_value('passw'), 'placeholder' => 'contraseña', 'autofocus'=>'autofocus', 'size'=>'25'))?>
+						<!-- F	<?php //echo form_password(array('class'=>"form-control",'required'=>'required','name'=>'passw', 'id'=>'passw', 'type'=>'password', 'value'=>set_value('passw'), 'placeholder' => 'contraseña', 'autofocus'=>'autofocus', 'size'=>'25'))?>-->
+
+							<?php echo form_password(array('class'=>"form-control",'required'=>'required','name'=>'passw', 'id'=>'passw', 'type'=>'password','placeholder' => 'contraseña', 'autofocus'=>'autofocus', 'size'=>'25'))?>
 							<?php echo form_error('passw')?>
 							<!--<input type="password" placeholder="Password" class="form-control">-->
 						</div>

@@ -55,15 +55,17 @@
                     <li><a href="subirHito">Subir hitos entregables</a></li>
                     <li><a href="convocatoriasDoc">Documentos necesarios</a></li>
                     <li><a href="eventoEstudiante">Fijar fechas de eventos</a></li>
-                    <li><a href="fullcalendarcontrol">Ver fechas de eventos</a></li>                    
+                    <li><a href="eventosdegrupo">Ver fechas de eventos</a></li>                    
                   </ul>
                 </li>
 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Historias de Usuarios <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="historia">Crear Hitos</a></li>
-                    <li><a href="historiaTareas">Asignar Historias</a></li>                    
+                    <li><a href="hito">Crear Hitos</a></li>
+                    <li><a href="historiaTareas">Asignar Historias</a></li>
+                    <!--F                     
+                    <li><a href="tareaResponsable">Ver Historias</a></li>-->
                     <li><a href="tareaResponsable">Ver Hitos e Historias</a></li>
                   </ul>
                 </li>

@@ -40,8 +40,8 @@
                <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                   <li><a href="controladorVerGrupo">Ver Grupos</a></li>
-                    <li><a href="listaGrupos">Eliminar un grupo</a></li>            
+                    <li><a href="controladorVerGrupo">Elegir Grupo</a></li>
+                    <li><a href="listaGrupos">Dar de Baja</a></li>      
                   </ul>
                 </li> 
                 <li class="dropdown">

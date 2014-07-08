@@ -1,0 +1,80 @@
+-********************************
+- CONTROLADOR
+-*********************************
+1 notaEstudiante
+2 registrarEstudiante
+3 listaGrupos
+4 controladorHito
+5 historia
+6 historiaTareas
+
+
+
+
+
+
+
+
+
+-********************************
+-MODELO
+-*********************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-********************************
+- VISTA
+-*********************************
+1 viewCabecera
+2 viewCentralExito
+3 error ---solo sera de estudiante
+4 viewCabeceraLoggin
+5 viewNogrupos..
+6 viewRegistrarseGrupo
+7 tarea
+8responsables
+9 viewCabeceraLogginDocente
+10 viewCabeceraLogginDocente2
+11 viewNotaEstudiante
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-*******************OBSERVACIONES*************************
+en estudiante
+--Funciones de grupo**falta validar los menus todo
+*Fijar fechas evento
+*ver fechas evento
+--cuando esta como docente en el menu ver grupos y seleccionas un grupo recien aparece
+eventos ¿no deberia estar antes como fijo?

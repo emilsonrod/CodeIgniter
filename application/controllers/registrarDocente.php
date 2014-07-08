@@ -20,7 +20,7 @@ class RegistrarDocente extends CI_Controller
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
         $this->form_validation->set_rules('passDocente', 'passDocente', 'trim|required|alpha_numeric');
         $this->form_validation->set_rules('ciDocente', 'ciDocente', 'trim|required|numeric|is_unique[usuario.ci_docente]');
-        $this->form_validation->set_rules('grupoDocente', 'grupoDocente', 'trim|required|numeric|max_length[2]');
+        $this->form_validation->set_rules('grupoDocente', 'grupoDocente', 'trim|required|numeric|max_length[2]|is_unique[usuario.grupoDocente]');
         
         //|is_unique[usuario.ci_docente]
 
@@ -39,7 +39,7 @@ class RegistrarDocente extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE)
-		{	$data['tareas']=$this->session->userdata('tareas');
+		{	//$data['tareas']=$this->session->userdata('tareas');
 			$this->load->view('viewRegistrarDocente');
 		}
 		else
@@ -60,7 +60,7 @@ class RegistrarDocente extends CI_Controller
 
 				if($insert)
 				{	$data['exito']=" Se registro correctamente docente";
-					$this->load->view('exito');
+					$this->load->view('exitoregistro',$data);
 				}
 				else
 				{

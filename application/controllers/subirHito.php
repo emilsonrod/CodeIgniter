@@ -123,7 +123,7 @@ class SubirHito extends CI_Controller
 				}
 			}
 			else{
-				echo '<script>window.alert("Tieme que pertenecer a un grupo para poder subir documentos. Puede crear un nuevo grupo o incribirse a uno ya registrado.");location.href="registrarseGrupo";</script>';
+				echo '<script>window.alert("Tiene que pertenecer a un GRUPO para poder subir documentos. Puede crear un nuevo grupo o incribirse a uno ya registrado.");location.href="registrarseGrupo";</script>';
 			}
 		}
 		else

@@ -45,7 +45,7 @@
 </div><?php $identificador=$identificador+1; }?>
       
 </div>
-<span><strong> Hacer click en un hito para ver sus historias de ususario y respectivos responsables</strong></span>
+<strong><h3> <p class="text-primary">Hacer click en un hito para ver sus historias de ususario y respectivos responsables</p></h3></strong>
 </div>
     </div>  
 </div></div></div></div>

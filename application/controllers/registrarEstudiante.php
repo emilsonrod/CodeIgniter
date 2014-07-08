@@ -20,7 +20,7 @@ class RegistrarEstudiante extends CI_Controller
         $this->form_validation->set_rules('correo', 'correo', 'trim|required|valid_email|is_unique[usuario.correo]');
 
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
-        $this->form_validation->set_message('valid_email', 'El campo %s deve ser un correo electronico valido');
+        $this->form_validation->set_message('valid_email', 'El campo %s debe ser un correo electronico valido');
         $this->form_validation->set_message('is_unique', 'El campo %s ya esta registrado');
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
         $this->form_validation->set_message('matches', 'Las contraseñas no son iguales');
@@ -33,8 +33,9 @@ class RegistrarEstudiante extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE)
-		{	$data['tareas']=$this->session->userdata('tareas');
-			$this->load->view('viewRegistrarEstudiante',$data);
+		{	//F $data['tareas']=$this->session->userdata('tareas');
+			//F $this->load->view('viewRegistrarEstudiante',$data);
+			$this->load->view('viewRegistrarEstudiante');
 		}
 		else
 		{
@@ -49,7 +50,8 @@ class RegistrarEstudiante extends CI_Controller
 			
 			if($insert)
 			{	$data['exito']=" Se registro correctamente estudiante";
-				$this->load->view('exito',$data);
+			//F $this->load->view('exito',$data);
+				$this->load->view('exitoregistro',$data);
 			}
 			else
 			{

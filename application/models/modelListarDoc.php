@@ -150,9 +150,9 @@ class ModelListarDoc extends CI_Model
 		}
 	}
 	//
-	function listarConvocatoria()
+	function listarConvocatoria($id_docente)
 	{
-		$sql = "select * from documento_docente";
+		$sql = "select * from documento_docente where id_usuario = '".$id_docente."'";
 		$consulta = $this->db->query($sql);
 
 		if($consulta ->num_rows() > 0)

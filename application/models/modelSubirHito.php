@@ -30,7 +30,7 @@ class ModelSubirHito extends CI_Model
 	//buscar ide de evento
 	function verificarFechaEvento($cod_grupo)
 	{
-		$sql = "select e.fecha_evento from evento e, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento >= current_date and e.id_tipo_evento = '4' order by fecha_evento limit 1";
+		$sql = "select e.fecha_evento from evento e, evento_particular ep where ep.cod_grupo = '".$cod_grupo."' and ep.id_evento = e.id_evento and e.fecha_evento >= current_date and (e.id_tipo_evento = '4' or e.id_tipo_evento = '5') order by fecha_evento limit 1";
 		$consulta = $this->db->query($sql);
 
 		if($consulta ->num_rows() > 0)

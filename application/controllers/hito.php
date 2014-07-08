@@ -1,5 +1,5 @@
 <?php
-class Historia extends CI_Controller
+class Hito extends CI_Controller
 {
     function __construct()
   {
@@ -9,9 +9,9 @@ class Historia extends CI_Controller
     $this->load->library('form_validation');
   }
   public function index()
-  {    
-    if(isset($this->session->userdata['usuario'])){
-             $this->form_validation->set_rules('historiaNueva', 'Nueva Historia','trim|required|min_length[8]|callback_unicoHito');
+  {
+   if(isset($this->session->userdata['usuario'])){
+             $this->form_validation->set_rules('historiaNueva', 'Nueva Historia','trim|required|min_length[4]|callback_unicoHito');
         
          $this->form_validation->set_message('required', 'El campo %s es obligatorio');
          $this->form_validation->set_message('min_length', 'El Campo %s debe tener un Minimo de %d Caracteres');
@@ -29,12 +29,12 @@ class Historia extends CI_Controller
               }                
           }else
              {   
-                $nuevaHistoria=$_POST['historiaNueva'];
+                $nuevaHistoria=ucfirst(strtolower($_POST['historiaNueva']));
                 if($this->historia_usuario->agregarNuevoHito($this->session->userdata('id'),$nuevaHistoria)){
                   $data['hitos']= $this->historia_usuario->getHitos($this->session->userdata('id'));
                   $this->load->view('vistaHistoria',$data);
                 }else{
-                    $data['error']="No se pudo agregar la nueva historia, intente otra vez por favor";
+                    $data['error']="No se pudo agregar la nuevo hito, intente otra vez por favor";
                     $this->load->view('error',$data);
              }  
           }        
@@ -45,6 +45,6 @@ class Historia extends CI_Controller
   }
     public function unicoHito(){
         return $this->historia_usuario->hitoRepetido($this->input->post('historiaNueva'),$this->session->userdata('id'));
-    }
+    }    
 }
 ?>

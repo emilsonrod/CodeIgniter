@@ -16,7 +16,7 @@ class RegistrarseGrupo extends CI_Controller {
 		
         $this->form_validation->set_rules('grupo', 'grupo', 'required');
 		$this->form_validation->set_rules('contrasenya', 'Contraseña', 'required|trim|xss_clean|min_length[6]|max_length[15]|callback_password_correcto');		
-        
+        //$this->form_validation->set_rules('integrante','integrante','callback_check_inscrito');
         
         $this->form_validation->set_message('password_correcto','La %s no es correcta');
 		$this->form_validation->set_message('required', 'El campo %s es obligatorio');        
@@ -40,7 +40,7 @@ class RegistrarseGrupo extends CI_Controller {
 					       	'nombreCorto' => set_value('grupo'),
 						    'integrante'=>$this->session->userdata('id')
 						);
-				if ($this->modelGrupo->inscribirseAGrupo($form_data) == TRUE)
+				if ($this->modelGrupo->agregarIntegrante($form_data) == TRUE)
 				{
                     $data['exito']='Es integrante de la empresa';
 					$this->load->view('exito',$data);   // or whatever logic needs to occur
@@ -55,7 +55,6 @@ class RegistrarseGrupo extends CI_Controller {
 				redirect('inicio');
 			}
 	}
-
     function password_correcto(){
         return $this->modelGrupo->esCorrecto($this->input->post('grupo'),$this->input->post('contrasenya'));
     }

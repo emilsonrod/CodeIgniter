@@ -18,7 +18,7 @@
 
 <p></p>
 <p>
-        <?php echo form_submit( 'submit', 'Estudiantes'); ?>
+        <?php echo form_submit( 'submit', 'Estudiantes','class="btn btn-success"'); ?>
 </p>
 </div>
 <?php echo form_close(); ?>
