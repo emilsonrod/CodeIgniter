@@ -5,7 +5,7 @@
 <script type="text/javascript" src="js/validarUsuario.js"></script>
 
         <div class="row clearfix">
-        <h1>Registrar nuevo grupo</h1>
+        <span style=";font-family:arial black;font-size:18px;color:black;" >REGISTRAR NUEVO GRUPO</span>
         <?php
         $attributes = array('class' => 'navbar-form', 'id' => 'Registrargrupo','name'=>'Registrargrupo');
         echo form_open('grupo', $attributes); ?>    
@@ -73,7 +73,8 @@
                               
                  </div>
                  </div>
-                 <span>No deben repetirse los Usuarios asegurarse q el ususario no pertenesca  otro grupo</span>
+                <span style=";font-family:calibri;font-size:15px;color:red;" >NO DEBE REPETIRSE EL USUARIO EN EL CAMPO "USUARIO", ASEGURESE QUE EL USUARIO NO PERTENEZCA A OTRO GRUPO-EMPRESA </span>
+                 
             </div>
             <div class="col-md-6 column">
                 <p>

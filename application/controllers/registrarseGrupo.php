@@ -28,7 +28,7 @@ class RegistrarseGrupo extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) // validation hasn't been passed
 		{	
 			if($this->modelGrupo->inscritoEnUnaEmpresa($this->session->userdata('id'))){
-         			echo '<script>window.alert("Ya esta inscrito en un grupo");location.href="inicio";</script>';
+         			echo '<script>window.alert("Ya esta inscrito en un grupo-empresa");location.href="inicio";</script>';
         		}
         		else{		
 				$this->load->view('viewRegistrarseGrupo',$data);
@@ -42,12 +42,12 @@ class RegistrarseGrupo extends CI_Controller {
 						);
 				if ($this->modelGrupo->agregarIntegrante($form_data) == TRUE)
 				{
-                    $data['exito']='Es integrante de la empresa';
+                    $data['exito']='Es integrante del grupo-empresa';
 					$this->load->view('exito',$data);   // or whatever logic needs to occur
 				}
 				else
 				{
-					$data['error']='No se pudo inscribir a la empresa';
+					$data['error']='No se pudo inscribir en el grupo-empresa';
 					$this->load->view('error',$data);
 				}
 			}

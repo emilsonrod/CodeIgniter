@@ -49,7 +49,7 @@ class Grupo extends CI_Controller {
 			if ($this->form_validation->run() == FALSE)
 			{	
 				if($this->modelGrupo->inscritoEnUnaEmpresa($this->session->userdata('id'))){
-         			echo '<script>window.alert("Ya esta inscrito en un grupo");location.href="inicio";</script>';
+         			echo '<script>window.alert("Ya esta inscrito en un grupo.empresa");location.href="inicio";</script>';
         		}
         		else{
         				$this->load->view('viewRegistrarGrupo',$data);
@@ -76,15 +76,15 @@ class Grupo extends CI_Controller {
                     	'user2'=>$id2,
                     	'user3'=>$id3);
                     if($this->modelGrupo->inscribirseAGrupo($form)==TRUE){
-                        $data['exito']='Registro y se inscribio en la nueva empresa';
+                        $data['exito']='Registro y se inscribio en la nueva grupo-empresa';
                         $this->load->view('exito',$data);
                     }else{
-                        $data['exito']='Registro exitoso de la empresa pero no se pudo inscribir al grupo';
+                        $data['exito']='Registro exitoso de la empresa pero no se pudo registrar el grupo-empresa';
                         $this->load->view('exito',$data);
                     }
 				}
 				else{
-                    $data['error']='No se pudo registra el grupo';
+                    $data['error']='No se pudo registra el grupo-empresa';
 					$this->load->view('error',$data);
 				}
 			}

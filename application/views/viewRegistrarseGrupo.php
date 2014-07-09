@@ -3,7 +3,7 @@
 <div id="columnacentral">
 <div class="navbar-collapse collapse center-block">	
  <div class='conteiner'>
-	<h1> Inscribirse Grupo</h1>
+	<span style=";font-family:arial black;font-size:18px;color:black;" align="center" > Inscribirse Grupo-Empresa</span>
 		<?php
 		echo form_open('registrarseGrupo',array('class'=>"navbar-form navbar-center", 'role'=>"form-horizontal")); ?>
 		<p>        
